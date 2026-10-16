@@ -3,35 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CRM · Scandia Travel</title>
+<title>CRM · Specialle Viagens</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css" rel="stylesheet">
 <style>
 
 /* ════════════════════════════════════════════════════════════════════════════
    CRM DA AGÊNCIA — DESIGN SYSTEM v3
-   Paleta idêntica ao dashboard /dash/ — Scandia Travel
+   Paleta idêntica ao dashboard /dash/ — Specialle Viagens
    ════════════════════════════════════════════════════════════════════════════ */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* ── paleta idêntica ao /dash/ ── */
-  --purple:      #0F1B2D;
-  --purple-dark: #0F1B2D;
-  --purple-soft: #F4F1EC;
-  --teal:        #4A6278;
-  --teal-dark:   #364B5E;
-  --teal-soft:   #E8EDF1;
-  --cream:       #F4F1EC;
-  --cream-soft:  #F4F1EC;
-  --ink:         #14181D;
-  --ink-soft:    #4a4a4a;
-  --ink-mute:    #8a8a8a;
-  --grad:        linear-gradient(135deg, #0F1B2D 0%, #4A6278 100%);
-  --grad-h:      linear-gradient(135deg, #0F1B2D 0%, #364B5E 100%);
+  /* ── paleta Specialle, extraída do logo oficial ── */
+  --purple:      #430A62;
+  --purple-dark: #2C0640;
+  --purple-soft: #F4F0F7;
+  --teal:        #6E3B96;
+  --teal-dark:   #552C75;
+  --teal-soft:   #EDE3F4;
+  --cream:       #F4F0F7;
+  --cream-soft:  #FAF7FC;
+  --ink:         #231F20;
+  --ink-soft:    #4a4546;
+  --ink-mute:    #8a8589;
+  --grad:        linear-gradient(135deg, #430A62 0%, #6E3B96 100%);
+  --grad-h:      linear-gradient(135deg, #430A62 0%, #552C75 100%);
   --green:       #0f7d55;
   --green-soft:  #e6f7f0;
   --amber-col:   #d97706;
@@ -41,22 +41,22 @@
   --blue-col:    #2d6eb5;
 
   /* ── aliases usados no HTML existente ── */
-  --primary:     #0F1B2D;
-  --primary-d:   #0F1B2D;
-  --primary-l:   #9b5eb5;
-  --accent:      #0F1B2D;
-  --accent-d:    #0F1B2D;
-  --bg:          #F4F1EC;
+  --primary:     #430A62;
+  --primary-d:   #2C0640;
+  --primary-l:   #9B6FBD;
+  --accent:      #430A62;
+  --accent-d:    #2C0640;
+  --bg:          #F4F0F7;
   --card:        #ffffff;
-  --card-2:      #f8f4fc;
-  --text:        #14181D;
-  --muted:       #8a8a8a;
-  --border:      #DEDAD3;
-  --line:        #DEDAD3;
-  --line-strong: #d8cee8;
-  --surface-hi:  rgba(15,27,45,.05);
+  --card-2:      #FAF7FC;
+  --text:        #231F20;
+  --muted:       #8a8589;
+  --border:      #E2D9EA;
+  --line:        #E2D9EA;
+  --line-strong: #CFC0DC;
+  --surface-hi:  rgba(67,10,98,.05);
   --green:       #0f7d55;
-  --amber:       #4A6278;
+  --amber:       #6E3B96;
   --red:         #c0392b;
   --blue:        #2d6eb5;
 
@@ -70,20 +70,21 @@
   --r-full: 999px;
 
   /* ── sombras (light) ── */
-  --sh:    0 1px 3px rgba(15,27,45,.08), 0 4px 16px rgba(15,27,45,.06);
-  --sh-md: 0 2px 8px rgba(15,27,45,.10), 0 10px 32px rgba(15,27,45,.08);
-  --sh-lg: 0 8px 24px rgba(15,27,45,.14), 0 24px 64px rgba(15,27,45,.10);
-  --ring:  0 0 0 3px rgba(15,27,45,.20);
-  --glow:  0 0 24px rgba(15,27,45,.10);
+  --sh:    0 1px 3px rgba(67,10,98,.08), 0 4px 16px rgba(67,10,98,.06);
+  --sh-md: 0 2px 8px rgba(67,10,98,.10), 0 10px 32px rgba(67,10,98,.08);
+  --sh-lg: 0 8px 24px rgba(67,10,98,.14), 0 24px 64px rgba(67,10,98,.10);
+  --ring:  0 0 0 3px rgba(67,10,98,.20);
+  --glow:  0 0 24px rgba(67,10,98,.10);
 
   /* ── motion ── */
   --tr-fast: .14s cubic-bezier(.4,0,.2,1);
   --tr:      .22s cubic-bezier(.4,0,.2,1);
   --tr-slow: .45s cubic-bezier(.16,1,.3,1);
 
-  /* ── tipografia (idêntica ao /dash/) ── */
-  --font-ui:   'Lato', sans-serif;
-  --font-body: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* ── tipografia Specialle ── */
+  --font-ui:   'Montserrat', sans-serif;
+  --font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-script: 'Corinthia', cursive;
 }
 
 html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
@@ -95,7 +96,7 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 999px; }
 ::-webkit-scrollbar-thumb:hover { background: #c8bede; }
 
-::selection { background: rgba(15,27,45,.20); }
+::selection { background: rgba(67,10,98,.20); }
 
 .hidden { display: none; }
 
@@ -116,8 +117,8 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 /* scrim para legibilidade — leve tom da marca */
 .login-scrim { position:absolute; inset:0; z-index:1; pointer-events:none;
   background:
-    linear-gradient(100deg, rgba(24,16,34,.80) 0%, rgba(24,16,34,.48) 42%, rgba(15,80,82,.22) 100%),
-    linear-gradient(0deg, rgba(24,16,34,.55) 0%, rgba(24,16,34,0) 34%); }
+    linear-gradient(100deg, rgba(28,4,42,.82) 0%, rgba(28,4,42,.50) 42%, rgba(67,10,98,.26) 100%),
+    linear-gradient(0deg, rgba(28,4,42,.58) 0%, rgba(28,4,42,0) 34%); }
 
 /* palco */
 .login-stage { position:relative; z-index:2; height:100%; width:100%;
@@ -127,11 +128,11 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 /* hero (lado esquerdo) */
 .login-hero { color:#fff; max-width:540px; animation:rise var(--tr-slow) both; }
 .login-eyebrow { font-family:var(--font-ui); font-size:12px; font-weight:700; letter-spacing:3px;
-  text-transform:uppercase; color:rgba(244,241,236,.92); margin-bottom:22px; }
-.login-title { font-family:'Cormorant Garamond',serif; font-weight:600; color:#fff;
+  text-transform:uppercase; color:rgba(244,240,247,.92); margin-bottom:22px; }
+.login-title { font-family:var(--font-ui); font-weight:600; color:#fff;
   font-size:clamp(38px,5.2vw,66px); line-height:1.04; letter-spacing:-.02em; margin-bottom:20px;
   text-shadow:0 2px 30px rgba(0,0,0,.35); }
-.login-title em { font-style:italic; font-weight:400; color:var(--cream); }
+.login-title em { font-style:normal; font-weight:300; color:var(--cream); }
 .login-lead { font-family:var(--font-body); font-size:clamp(15px,1.4vw,17.5px); line-height:1.6;
   color:rgba(255,255,255,.86); max-width:440px; }
 
@@ -145,7 +146,7 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 .login-lock svg { width:24px; height:24px; color:var(--purple); }
 .login-kicker { font-family:var(--font-ui); font-size:11.5px; font-weight:700; letter-spacing:2px;
   text-transform:uppercase; color:var(--teal); margin-bottom:10px; }
-.login-welcome { font-family:'Cormorant Garamond',serif; font-weight:600; font-size:32px;
+.login-welcome { font-family:var(--font-ui); font-weight:600; font-size:32px;
   color:var(--ink); letter-spacing:-.02em; line-height:1.1; margin-bottom:8px; }
 .login-welcome-sub { font-size:14px; color:var(--ink-soft); line-height:1.55; margin-bottom:26px; }
 .login-lbl { display:block; font-family:var(--font-ui); font-size:12px; font-weight:700;
@@ -157,10 +158,10 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 .login-card input:focus { border-color:var(--purple); box-shadow:var(--ring); }
 .login-card button { margin-top:16px; width:100%; padding:16px; background:var(--grad); color:#fff;
   border:none; border-radius:14px; font-size:14.5px; font-weight:700; cursor:pointer;
-  font-family:var(--font-ui); letter-spacing:.4px; box-shadow:0 10px 26px rgba(15,27,45,.32);
+  font-family:var(--font-ui); letter-spacing:.4px; box-shadow:0 10px 26px rgba(67,10,98,.32);
   transition:filter var(--tr-fast), transform var(--tr-fast), box-shadow var(--tr-fast);
   display:inline-flex; align-items:center; justify-content:center; gap:8px; }
-.login-card button:hover { filter:brightness(1.06); box-shadow:0 14px 32px rgba(15,27,45,.4); transform:translateY(-1px); }
+.login-card button:hover { filter:brightness(1.06); box-shadow:0 14px 32px rgba(67,10,98,.4); transform:translateY(-1px); }
 .login-card button:active { transform:translateY(0); }
 .login-err { min-height:18px; font-size:12.5px; color:var(--red-col); margin-top:12px; text-align:center; }
 .login-foot { margin-top:22px; padding-top:20px; border-top:1px solid var(--border);
@@ -189,7 +190,7 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 /* ── sidebar ────────────────────────────────────────────────────────────────── */
 .sidebar { width:var(--sidebar); background:var(--grad); color:#fff;
   display:flex; flex-direction:column; position:fixed; top:0; left:0; height:100vh; z-index:10; overflow:hidden;
-  box-shadow:2px 0 24px rgba(15,27,45,.25); }
+  box-shadow:2px 0 24px rgba(67,10,98,.25); }
 .sb-logo { padding:24px 16px 20px; border-bottom:1px solid rgba(255,255,255,.18); display:flex; flex-direction:column; align-items:center; gap:0; }
 .sb-logo-img { width:112px; display:block; transition:opacity var(--tr); }
 .sb-logo .tag { font-size:9.5px; color:rgba(255,255,255,.65); margin-top:8px; font-family:var(--font-ui); letter-spacing:2.2px; text-transform:uppercase; text-align:center; }
@@ -224,7 +225,7 @@ body.sb-off .main    { margin-left:0; }
 body.sb-sobreposta .main { margin-left:0; }
 
 .sb-backdrop { display:none; position:fixed; inset:0; z-index:9;
-  background:rgba(15,27,45,.45); -webkit-backdrop-filter:blur(2px); backdrop-filter:blur(2px); }
+  background:rgba(67,10,98,.45); -webkit-backdrop-filter:blur(2px); backdrop-filter:blur(2px); }
 body.sb-sobreposta:not(.sb-off) .sb-backdrop { display:block; animation:fadein var(--tr) both; }
 
 .sb-toggle { flex-shrink:0; width:34px; height:34px; display:inline-flex; align-items:center; justify-content:center;
@@ -249,11 +250,11 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
 .main { margin-left:var(--sidebar); flex:1; display:flex; flex-direction:column; min-width:0;
   transition:margin-left var(--tr); }
 .topbar { background:rgba(255,255,255,.85); -webkit-backdrop-filter:saturate(1.15) blur(14px); backdrop-filter:saturate(1.15) blur(14px);
-  border-bottom:1px solid var(--border); box-shadow:0 1px 24px rgba(15,27,45,.05);
+  border-bottom:1px solid var(--border); box-shadow:0 1px 24px rgba(67,10,98,.05);
   padding:20px 36px; display:flex; align-items:center; justify-content:space-between; gap:16px;
   position:sticky; top:0; z-index:5; }
 /* margin-right:auto agrupa botão + título à esquerda e manda as ações pra direita */
-.topbar h1 { font-family:'Cormorant Garamond',serif; font-size:23px; font-weight:600; letter-spacing:-.01em; color:var(--ink); margin-right:auto; }
+.topbar h1 { font-family:var(--font-ui); font-size:23px; font-weight:600; letter-spacing:-.01em; color:var(--ink); margin-right:auto; }
 .content { padding:32px 36px 48px; flex:1; animation:rise var(--tr-slow) both; }
 
 /* ── buttons ────────────────────────────────────────────────────────────────── */
@@ -263,8 +264,8 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
   font-family:var(--font-ui); white-space:nowrap; letter-spacing:.25px; }
 .btn:focus-visible { outline:none; box-shadow:var(--ring); }
 .btn:disabled { opacity:.45; cursor:not-allowed; pointer-events:none; }
-.btn-primary { background:var(--grad); color:#fff; box-shadow:0 2px 10px rgba(15,27,45,.28); }
-.btn-primary:hover { filter:brightness(1.06); box-shadow:0 4px 16px rgba(15,27,45,.35); }
+.btn-primary { background:var(--grad); color:#fff; box-shadow:0 2px 10px rgba(67,10,98,.28); }
+.btn-primary:hover { filter:brightness(1.06); box-shadow:0 4px 16px rgba(67,10,98,.35); }
 .btn-primary:active { transform:translateY(1px); filter:brightness(.97); }
 .btn-sm { padding:5px 11px; font-size:11.5px; border-radius:7px; }
 .btn-ghost { background:#fff; color:var(--ink-soft); border:1.5px solid var(--border); font-family:var(--font-body); font-weight:600; }
@@ -277,14 +278,14 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
 /* ── cards ──────────────────────────────────────────────────────────────────── */
 .card { background:var(--card); border:1px solid var(--border);
   border-radius:var(--r); box-shadow:var(--sh); transition:border-color var(--tr), box-shadow var(--tr); }
-.card:hover { border-color:var(--purple); box-shadow:0 8px 32px rgba(15,27,45,.10); }
+.card:hover { border-color:var(--purple); box-shadow:0 8px 32px rgba(67,10,98,.10); }
 .card-p { padding:26px; }
 
 /* ── kpi grid ───────────────────────────────────────────────────────────────── */
 .kpi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:18px; margin-bottom:28px; }
 .kpi { padding:24px 26px; }
 .kpi-label { font-size:11px; color:var(--ink-mute); font-weight:700; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; font-family:var(--font-ui); }
-.kpi-value { font-size:2rem; font-weight:700; line-height:1; font-family:'Cormorant Garamond',serif; letter-spacing:-.03em; color:var(--ink); }
+.kpi-value { font-size:2rem; font-weight:700; line-height:1; font-family:var(--font-ui); letter-spacing:-.03em; color:var(--ink); }
 .kpi-sub { font-size:.75rem; color:var(--ink-mute); margin-top:8px; }
 
 /* ── dashboard grid ─────────────────────────────────────────────────────────── */
@@ -403,9 +404,9 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
 /* auto-fit em vez de 3 colunas fixas: o financeiro passou a ter 4 KPIs */
 .fin-kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(172px,1fr)); gap:14px; margin-bottom:24px; }
 .fin-kpi { background:var(--card); border:1px solid var(--border); border-radius:var(--r); padding:20px 22px; box-shadow:var(--sh); transition:border-color var(--tr), box-shadow var(--tr); }
-.fin-kpi:hover { border-color:var(--purple); box-shadow:0 8px 32px rgba(15,27,45,.10); }
+.fin-kpi:hover { border-color:var(--purple); box-shadow:0 8px 32px rgba(67,10,98,.10); }
 .fin-kpi-label { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.9px; color:var(--ink-mute); font-family:var(--font-ui); margin-bottom:10px; }
-.fin-kpi-value { font-size:26px; font-weight:700; line-height:1; font-family:'Cormorant Garamond',serif; letter-spacing:-.4px; color:var(--ink); }
+.fin-kpi-value { font-size:26px; font-weight:700; line-height:1; font-family:var(--font-ui); letter-spacing:-.4px; color:var(--ink); }
 .month-nav { display:flex; align-items:center; gap:12px; margin-bottom:18px; }
 .month-nav button { background:#fff; border:1.5px solid var(--border); border-radius:var(--r-sm); width:32px; height:32px; cursor:pointer; font-size:15px; display:flex; align-items:center; justify-content:center; color:var(--ink-mute); transition:border-color var(--tr-fast), color var(--tr-fast), background var(--tr-fast); }
 .month-nav button:hover { border-color:var(--purple); color:var(--purple); background:var(--purple-soft); }
@@ -457,7 +458,7 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
 .prop-pane { display:none; }
 .prop-pane.active { display:flex; flex-direction:column; gap:13px; animation:rise var(--tr) both; }
 .prop-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
-.prop-tag { display:flex; align-items:center; gap:5px; background:var(--purple-soft); color:var(--purple); border:1px solid rgba(15,27,45,.2); border-radius:var(--r-full); padding:4px 12px; font-size:12px; font-weight:600; }
+.prop-tag { display:flex; align-items:center; gap:5px; background:var(--purple-soft); color:var(--purple); border:1px solid rgba(67,10,98,.2); border-radius:var(--r-full); padding:4px 12px; font-size:12px; font-weight:600; }
 .prop-tag button { background:none; border:none; color:var(--purple); cursor:pointer; font-size:15px; line-height:1; padding:0; opacity:.7; transition:opacity var(--tr-fast); }
 .prop-tag button:hover { opacity:1; }
 .hotel-card, .flight-card, .activity-card, .day-card { background:var(--bg); border-radius:var(--r); border:1px solid var(--border); padding:16px; margin-bottom:10px; display:flex; flex-direction:column; gap:11px; transition:border-color var(--tr); }
@@ -478,7 +479,7 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
 .filter-bar { display:flex; align-items:center; gap:8px; margin-bottom:24px; flex-wrap:wrap; }
 .filter-btn { padding:6px 15px; border-radius:var(--r-full); border:1.5px solid var(--border); background:#fff; color:var(--ink-mute); font-size:12.5px; font-weight:600; cursor:pointer; transition:border-color var(--tr-fast), color var(--tr-fast), background var(--tr-fast); font-family:var(--font-ui); }
 .filter-btn:hover { border-color:var(--purple); color:var(--purple); background:var(--purple-soft); }
-.filter-btn.active { background:var(--grad); border-color:transparent; color:#fff; box-shadow:0 2px 10px rgba(15,27,45,.28); }
+.filter-btn.active { background:var(--grad); border-color:transparent; color:#fff; box-shadow:0 2px 10px rgba(67,10,98,.28); }
 .filter-count { margin-left:auto; font-size:12px; color:var(--ink-mute); font-family:var(--font-ui); }
 /* vencimento + nº de parcelas + valor da parcela cabem em três colunas */
 .row2.row3 { grid-template-columns:1fr 1fr 1fr; }
@@ -492,7 +493,7 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
 .c-card.ativo   { border-top-color:var(--teal); }
 .c-card.inativo { border-top-color:var(--ink-mute); }
 .c-head { display:flex; align-items:center; gap:13px; }
-.c-av { width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:800; color:#fff; flex-shrink:0; font-family:var(--font-ui); box-shadow:0 2px 8px rgba(15,27,45,.3); }
+.c-av { width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:800; color:#fff; flex-shrink:0; font-family:var(--font-ui); box-shadow:0 2px 8px rgba(67,10,98,.3); }
 .c-name-wrap { flex:1; min-width:0; }
 .c-name { font-size:14.5px; font-weight:700; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .c-empresa { font-size:12px; color:var(--ink-mute); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
@@ -553,7 +554,7 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
 .dd-kpi--y::after  { background:var(--amber-col); }
 .dd-kpi--p::after  { background:var(--purple); }
 .dd-kpi-ico { font-size:20px; margin-bottom:16px; line-height:1; width:42px; height:42px; border-radius:12px; background:var(--purple-soft); box-shadow:inset 0 0 0 1px var(--border); display:flex; align-items:center; justify-content:center; }
-.dd-kpi-val { font-size:2rem; font-weight:700; line-height:1; font-family:'Cormorant Garamond',serif; letter-spacing:-.03em; }
+.dd-kpi-val { font-size:2rem; font-weight:700; line-height:1; font-family:var(--font-ui); letter-spacing:-.03em; }
 .dd-kpi--g  .dd-kpi-val { color:var(--purple); }
 .dd-kpi--b  .dd-kpi-val { color:var(--teal); }
 .dd-kpi--gr .dd-kpi-val { color:var(--green); }
@@ -565,10 +566,10 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
 .dd-row3 { grid-template-columns:1.5fr 0.85fr 1fr; }
 .dd-row2 { grid-template-columns:1.7fr 1fr; }
 .dd-panel { background:var(--card); border:1px solid var(--border); border-radius:var(--r-lg); padding:24px 26px; box-shadow:var(--sh); transition:border-color var(--tr), box-shadow var(--tr); }
-.dd-panel:hover { border-color:var(--purple); box-shadow:0 8px 32px rgba(15,27,45,.10); }
+.dd-panel:hover { border-color:var(--purple); box-shadow:0 8px 32px rgba(67,10,98,.10); }
 .dd-ph { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:var(--ink-mute); margin-bottom:20px; font-family:var(--font-ui); display:flex; align-items:center; justify-content:space-between; }
 .dd-big-lbl { font-size:10px; color:var(--ink-mute); text-align:center; text-transform:uppercase; letter-spacing:.8px; font-family:var(--font-ui); margin-bottom:10px; }
-.dd-big-num { font-size:36px; font-weight:700; color:var(--purple); font-family:'Cormorant Garamond',serif; line-height:1; text-align:center; letter-spacing:-.03em; }
+.dd-big-num { font-size:36px; font-weight:700; color:var(--purple); font-family:var(--font-ui); line-height:1; text-align:center; letter-spacing:-.03em; }
 .dd-divider { height:1px; background:var(--border); margin:18px 0; }
 .dd-stat-list { display:flex; flex-direction:column; gap:12px; }
 .dd-stat-row { display:flex; align-items:center; gap:10px; }
@@ -651,7 +652,7 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
 
   <div class="login-stage">
     <div class="login-hero">
-      <div class="login-eyebrow">CRM · Scandia Travel</div>
+      <div class="login-eyebrow">CRM · Specialle Viagens</div>
       <h1 class="login-title">Cada jornada<br><em>começa aqui.</em></h1>
       <p class="login-lead">Leads, propostas, clientes e resultados da sua agência reunidos em um só painel — com o cuidado de quem planeja grandes viagens.</p>
     </div>
@@ -662,12 +663,12 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
       </div>
       <div class="login-kicker">Área restrita</div>
       <h2 class="login-welcome">Boas-vindas.</h2>
-      <p class="login-welcome-sub">Insira sua chave de acesso para entrar no painel da Scandia.</p>
+      <p class="login-welcome-sub">Insira sua chave de acesso para entrar no painel da Specialle.</p>
       <label class="login-lbl" for="lkey">Chave de acesso</label>
       <input type="password" id="lkey" placeholder="Insira sua chave de acesso">
       <button onclick="doLogin()">Entrar no painel <span aria-hidden="true">→</span></button>
       <div class="login-err" id="lerr"></div>
-      <div class="login-foot">Acesso exclusivo · Scandia Travel</div>
+      <div class="login-foot">Acesso exclusivo · Specialle Viagens</div>
     </div>
   </div>
 
@@ -679,12 +680,13 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
 /* rotação do background do login — paisagens espetaculares (Unsplash), troca a cada 3s */
 (function () {
   var IMGS = [
-    'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1920&q=80&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1920&q=80&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1920&q=80&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920&q=80&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=1920&q=80&auto=format&fit=crop'
+    // destinos que a Specialle opera — mesmas fotos da página de captação
+    'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1920&q=80&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1589083130544-0d6a2926e519?w=1920&q=80&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1554254648-2d58a1bc3fd5?w=1920&q=80&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1920&q=80&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1585208798174-6cedd86e019a?w=1920&q=80&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1784253622017-dfa7b8857eac?w=1920&q=80&auto=format&fit=crop'
   ];
   var bg = document.getElementById('login-bg');
   var dots = document.getElementById('login-dots');
@@ -761,7 +763,7 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
         <span class="icon">⏻</span> Sair
       </div>
     </div>
-    <div class="sb-footer">Scandia Travel © 2026</div>
+    <div class="sb-footer">Specialle Viagens © 2026</div>
   </nav>
 
   <div class="main">
@@ -1843,7 +1845,7 @@ async function renderDash(el) {
     .sort((a, b) => a.followup.localeCompare(b.followup))
     .slice(0, 8);
 
-  const FCOLS = { novo:'#a06bff', contato:'#3aa0ff', proposta:'#ff8a3d', fechado:'#22e0a3', perdido:'#ff5d8f' };
+  const FCOLS = { novo:'#9B6FBD', contato:'#3aa0ff', proposta:'#ff8a3d', fechado:'#22e0a3', perdido:'#ff5d8f' };
   const FLAB  = { novo:'Novo', contato:'Em Contato', proposta:'Proposta', fechado:'Fechado', perdido:'Perdido' };
   const total  = Math.max(1, Object.values(funil).reduce((a, b) => a + b, 0));
   const MESES  = ['','Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
@@ -1897,7 +1899,7 @@ async function renderDash(el) {
 
   // "mostrando 12 de 14" — as listas vêm limitadas, os totais não
   function parcHeader(titulo, qtd, total, mostrados, cls) {
-    const extra = qtd > mostrados ? ` <span style="color:#4A6278">(${mostrados} de ${qtd})</span>` : '';
+    const extra = qtd > mostrados ? ` <span style="color:#6E3B96">(${mostrados} de ${qtd})</span>` : '';
     return `<div class="dd-ph">
       <span>${titulo}${extra}</span>
       ${qtd > 0 ? `<span class="${cls}">${qtd} · ${fmtR(total)}</span>` : ''}
@@ -1979,7 +1981,7 @@ async function renderDash(el) {
           ${Object.entries(funil).filter(([,v])=>v>0).map(([k,v])=>`
             <div style="display:flex;align-items:center;gap:8px">
               <div style="width:8px;height:8px;border-radius:50%;background:${FCOLS[k]};flex-shrink:0"></div>
-              <div style="font-size:12px;color:#8497AC;flex:1">${FLAB[k]}</div>
+              <div style="font-size:12px;color:#8A7E94;flex:1">${FLAB[k]}</div>
               <div style="font-size:13px;font-weight:700;color:#D2DBE3">${v}</div>
             </div>
           `).join('')}
@@ -2056,7 +2058,7 @@ async function renderDash(el) {
     if (S.mod !== 'dashboard') return;
     const CHART_DEFAULTS = {
       tooltip: {
-        backgroundColor: '#14181D',
+        backgroundColor: '#231F20',
         titleColor: '#fff',
         bodyColor: 'rgba(255,255,255,.8)',
         borderColor: 'rgba(255,255,255,.08)',
@@ -2070,7 +2072,7 @@ async function renderDash(el) {
       id: 'neonGlow',
       beforeDatasetDraw(chart, args) {
         const bc = chart.data.datasets[args.index].borderColor;
-        chart.ctx.shadowColor = Array.isArray(bc) ? (bc[0] || '#a06bff') : (bc || '#a06bff');
+        chart.ctx.shadowColor = Array.isArray(bc) ? (bc[0] || '#9B6FBD') : (bc || '#9B6FBD');
         chart.ctx.shadowBlur = 14;
       },
       afterDatasetDraw(chart) { chart.ctx.shadowBlur = 0; },
@@ -2102,7 +2104,7 @@ async function renderDash(el) {
           },
           scales: {
             x: {
-              grid: { color: 'rgba(15,27,45,.08)' },
+              grid: { color: 'rgba(67,10,98,.08)' },
               ticks: { color: '#8a8a8a', font: { size: 11 } },
               border: { color: 'rgba(0,0,0,.06)' }
             },
@@ -2605,7 +2607,7 @@ async function faturaPagarDash(id) {
 // ── RECEITA POR CLIENTE ───────────────────────────────────────────────────────
 // Consolida tudo que cada pessoa já gerou, atravessando meses e fontes. A aba
 // Faturas responde "o que entra neste mês"; esta responde "quanto vale o cliente".
-const CAT_CORES = ['#0F1B2D','#2d6eb5','#0f7d55','#d97706','#c0392b','#4A6278','#8a8a8a'];
+const CAT_CORES = ['#430A62','#2d6eb5','#0f7d55','#d97706','#c0392b','#6E3B96','#8a8a8a'];
 function catCor(nome) {
   const i = CATEGORIAS_RECEITA.indexOf(nome);
   return CAT_CORES[(i >= 0 ? i : String(nome||'').length) % CAT_CORES.length];
@@ -2706,7 +2708,7 @@ function buildHistoricoView(d) {
     ? `<div class="hist-cats">${cats.map(c => `
         <div class="hist-cat">
           <div class="hist-cat-dot" style="background:${catCor(c.categoria)};color:${catCor(c.categoria)}"></div>
-          <div class="hist-cat-lbl">${esc(c.categoria)} <span style="color:#4A6278">· ${c.lancamentos}×</span></div>
+          <div class="hist-cat-lbl">${esc(c.categoria)} <span style="color:#6E3B96">· ${c.lancamentos}×</span></div>
           <div class="hist-cat-val">${fmtR(c.bruto)}</div>
         </div>`).join('')}</div>`
     : '';

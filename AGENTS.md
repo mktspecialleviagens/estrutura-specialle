@@ -2,7 +2,7 @@
 
 - Clone da matriz Scandia Travel personalizado para a Specialle Viagens. Leia `README.md`, `BRANDING.md` e `DEPLOY.md`.
 - Captação em `src/`; CRM, dashboard, loja e blog estático em `public/`; APIs em `functions/`.
-- A landing page (`src/`, `index.html`, `public/brand/`) já está com a identidade Specialle. CRM, dashboard, loja e blog ainda estão com textos e cores da Scandia.
+- A landing page (`src/`, `index.html`, `public/brand/`) e o CRM (`public/crm/`) já estão com a identidade Specialle. Dashboard, loja e blog ainda estão com textos e cores da Scandia.
 - `public/lp/` não faz parte desta base.
 - Não copie fotos, vídeos, telefone, IDs de pixels, GA4, domínios ou credenciais de outro cliente.
 - As fotos em `src/assets/` são de banco de imagens e provisórias; veja `PHOTO_CREDITS.md`.

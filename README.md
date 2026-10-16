@@ -6,7 +6,7 @@ Clone da matriz Scandia Travel para a Specialle Viagens (Fortaleza, desde 1997):
 |---|---|
 | `src/`, `index.html` | Página de captação React (Specialle) |
 | `public/brand/` | Logos, configuração pública e tracking |
-| `public/crm/` | CRM e pipeline (ainda com identidade Scandia) |
+| `public/crm/` | CRM e pipeline (Specialle) |
 | `public/dash/` | Dashboard (ainda com identidade Scandia) |
 | `public/loja/` | Loja estática de guias e blog (ainda com identidade Scandia) |
 | `functions/` | APIs, artigos e propostas públicas |
