@@ -61,7 +61,8 @@ const StepForm = () => {
           whatsapp: phoneIntl,
           destino: answers[0],
           datas: answers[1],
-          observacoes: `Pessoas: ${answers[2]}\nPassagem: ${answers[3]}\nFaixa de investimento: ${answers[4]}`,
+          orcamento: answers[4],
+          observacoes: `Pessoas: ${answers[2]}\nPassagem: ${answers[3]}`,
           origem: "Landing Page Specialle Viagens",
         }),
       });

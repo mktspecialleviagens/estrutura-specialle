@@ -45,7 +45,8 @@ describe("formulário de captação", () => {
       whatsapp: "5585999999999",
       destino: "Europa",
       datas: "Entre 6 e 12 meses",
-      observacoes: "Pessoas: 2 pessoas\nPassagem: Já comprei\nFaixa de investimento: De R$ 20 mil a R$ 40 mil",
+      orcamento: "De R$ 20 mil a R$ 40 mil",
+      observacoes: "Pessoas: 2 pessoas\nPassagem: Já comprei",
       origem: "Landing Page Specialle Viagens",
     });
     expect(await screen.findByRole("alert")).toHaveTextContent("Não foi possível registrar");

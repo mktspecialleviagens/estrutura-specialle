@@ -14,7 +14,8 @@ describe("captura pública no CRM", () => {
         whatsapp: "5585999999999",
         destino: "Europa",
         datas: "Entre 6 e 12 meses",
-        observacoes: "Pessoas: 2 pessoas\nPassagem: Já comprei\nFaixa de investimento: De R$ 20 mil a R$ 40 mil",
+        orcamento: "De R$ 20 mil a R$ 40 mil",
+        observacoes: "Pessoas: 2 pessoas\nPassagem: Já comprei",
         origem: "Landing Page Specialle Viagens",
       }),
     });
@@ -25,7 +26,7 @@ describe("captura pública no CRM", () => {
     expect(bind.mock.calls[0][1]).toBe("Ana Exemplo");
     expect(bind.mock.calls[0][2]).toBe("Europa");
     expect(bind.mock.calls[0][3]).toBe("5585999999999");
-    expect(bind.mock.calls[0][4]).toContain("Faixa de investimento");
+    expect(bind.mock.calls[0][4]).toContain("Orçamento: De R$ 20 mil a R$ 40 mil");
     expect(run).toHaveBeenCalledOnce();
   });
 });
