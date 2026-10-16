@@ -41,8 +41,10 @@ vetorial real dos PDFs da cliente e substituir os dois arquivos. Os PNGs da Scan
    `ga4MeasurementId` em `config.js`, só então ligar `trackingEnabled`. Segredos nunca nesse arquivo.
 6. **Cloudflare Pages + D1** — criar o projeto na conta da cliente, aplicar as migrations de
    `migrations/` e configurar `DB`, `DASH_KEY` e demais secrets. Ver `DEPLOY.md`.
-7. **Dashboard, loja e blog** — `public/dash/`, `public/loja/` e `functions/loja/` ainda estão
-   com a identidade e os textos da Scandia. A landing page (`src/`, `index.html`,
-   `public/brand/`) e o CRM (`public/crm/`) já estão com a identidade Specialle.
+7. **Artigos do blog** — a identidade visual de todas as áreas já é Specialle, mas o conteúdo
+   editorial em `content/editorial-articles.js` continua sendo os três artigos sobre Islândia,
+   Noruega e Lapônia herdados da matriz, servidos ao vivo em `/loja/blog/`. As seis fotos em
+   `public/loja/blog/images/` pertencem a esses artigos. Decidir entre reescrever para os
+   destinos da Specialle ou remover até haver conteúdo próprio.
 8. **Remoto do Git** — o `origin` ainda aponta para o repositório da matriz. Trocar pelo
    repositório próprio da Specialle antes de qualquer push.

@@ -3,7 +3,7 @@ import { editorialArticles } from "../../content/editorial-articles.js";
 import { onRequestGet as listArticles } from "../../functions/loja/api/articles.js";
 import { onRequest as renderArticle } from "../../functions/loja/blog/[slug].js";
 
-describe("artigos editoriais da Scandia", () => {
+describe("artigos editoriais da loja", () => {
   it("lista os três artigos mesmo sem conexão com D1", async () => {
     const response = await listArticles({ env: {}, request: new Request("https://example.com/loja/api/articles?limit=3") });
     const articles = await response.json();

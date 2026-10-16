@@ -1,14 +1,14 @@
 # Specialle Viagens — estrutura de captação
 
-Clone da matriz Scandia Travel para a Specialle Viagens (Fortaleza, desde 1997): página de captação, CRM, dashboard, loja de guias, blog, propostas e APIs Cloudflare Pages + D1. A identidade da landing page já é a da Specialle; o que falta para publicar está em [BRANDING.md](BRANDING.md).
+Clone da matriz Scandia Travel para a Specialle Viagens (Fortaleza, desde 1997): página de captação, CRM, dashboard, loja de guias, blog, propostas e APIs Cloudflare Pages + D1. A identidade visual de todas as áreas já é a da Specialle; o que falta para publicar está em [BRANDING.md](BRANDING.md).
 
 | Caminho | Conteúdo |
 |---|---|
 | `src/`, `index.html` | Página de captação React (Specialle) |
 | `public/brand/` | Logos, configuração pública e tracking |
 | `public/crm/` | CRM e pipeline (Specialle) |
-| `public/dash/` | Dashboard (ainda com identidade Scandia) |
-| `public/loja/` | Loja estática de guias e blog (ainda com identidade Scandia) |
+| `public/dash/` | Dashboard (Specialle) |
+| `public/loja/` | Loja estática de guias e blog (Specialle) |
 | `functions/` | APIs, artigos e propostas públicas |
 | `migrations/` | Esquema D1, aplicado explicitamente |
 | `dist/` | Saída do build, ignorada pelo Git |

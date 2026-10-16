@@ -51,8 +51,8 @@ export async function onRequest({ params, env, request }) {
     image: cover,
     datePublished: article.published_at,
     dateModified: article.updated_at || article.published_at,
-    author: { '@type': 'Person', name: 'Equipe Scandia Travel', url: `${origin}/loja/#Scandia` },
-    publisher: { '@type': 'Organization', name: 'Scandia Travel', logo: { '@type': 'ImageObject', url: `${origin}/brand/logo-roxo.svg` } },
+    author: { '@type': 'Person', name: 'Equipe Specialle Viagens', url: `${origin}/loja/#Specialle` },
+    publisher: { '@type': 'Organization', name: 'Specialle Viagens', logo: { '@type': 'ImageObject', url: `${origin}/brand/logo-roxo.svg` } },
   });
 
   const galleryHtml = galleryImages.length ? `
@@ -103,25 +103,25 @@ export async function onRequest({ params, env, request }) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>${esc(article.title)} | Scandia Travel</title>
+  <title>${esc(article.title)} | Specialle Viagens</title>
   <meta name="description" content="${esc(meta)}">
   <link rel="canonical" href="${esc(canonical)}">
   <meta property="og:title" content="${esc(article.title)}">
   <meta property="og:description" content="${esc(meta)}">
   <meta property="og:image" content="${esc(cover)}">
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="Scandia Travel">
+  <meta property="og:site_name" content="Specialle Viagens">
   ${article.published_at ? `<meta property="article:published_time" content="${esc(article.published_at)}">` : ''}
   <meta name="twitter:card" content="summary_large_image">
   <script type="application/ld+json">${schema}</script>
   <link rel="icon" href="/brand/logo-roxo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--amber:#0F1B2D;--teal:#4A6278;--dark:#14181D;--gray:#5A5A5A;--light:#FFFFFF;--border:#E8E0F0}
-    body{font-family:'Lato',sans-serif;color:var(--dark);background:#fff;line-height:1.6}
+    :root{--amber:#430A62;--teal:#6E3B96;--dark:#231F20;--gray:#5A5A5A;--light:#FFFFFF;--border:#E8E0F0}
+    body{font-family:'Montserrat',sans-serif;color:var(--dark);background:#fff;line-height:1.6}
     a{color:inherit;text-decoration:none}
     img{max-width:100%;height:auto;display:block}
 
@@ -143,7 +143,7 @@ export async function onRequest({ params, env, request }) {
     .hero-breadcrumb{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;opacity:.7;margin-bottom:1rem}
     .hero-breadcrumb a:hover{color:var(--amber)}
     .hero-breadcrumb span{margin:0 .5rem;opacity:.5}
-    .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.75rem,5vw,3rem);font-weight:700;line-height:1.2;margin-bottom:1rem}
+    .hero-title{font-family:'Montserrat',serif;font-size:clamp(1.75rem,5vw,3rem);font-weight:700;line-height:1.2;margin-bottom:1rem}
     .hero-meta{display:flex;align-items:center;gap:1.5rem;font-size:.75rem;opacity:.8;flex-wrap:wrap}
     .hero-meta-item{display:flex;align-items:center;gap:.375rem}
 
@@ -151,8 +151,8 @@ export async function onRequest({ params, env, request }) {
     .article-wrap{max-width:740px;margin:0 auto;padding:3.5rem 1.5rem 2rem}
     .article-excerpt{font-size:1.125rem;color:var(--gray);line-height:1.75;border-left:3px solid var(--amber);padding-left:1.25rem;margin-bottom:2.5rem;font-style:italic}
     .article-content{font-size:1.0625rem;line-height:1.85;color:#2A2A2A}
-    .article-content h2{font-family:'Cormorant Garamond',serif;font-size:1.625rem;color:var(--dark);margin:2.5rem 0 1rem;font-weight:700}
-    .article-content h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--dark);margin:2rem 0 .75rem;font-weight:600}
+    .article-content h2{font-family:'Montserrat',serif;font-size:1.625rem;color:var(--dark);margin:2.5rem 0 1rem;font-weight:700}
+    .article-content h3{font-family:'Montserrat',serif;font-size:1.25rem;color:var(--dark);margin:2rem 0 .75rem;font-weight:600}
     .article-content p{margin-bottom:1.5rem}
     .article-content strong{font-weight:700;color:var(--dark)}
     .article-content em{font-style:italic}
@@ -183,17 +183,17 @@ export async function onRequest({ params, env, request }) {
 
     /* LEAD CTA */
     .lead-cta{max-width:1100px;margin:3rem auto;padding:0 1.5rem}
-    .lead-cta-inner{background:linear-gradient(135deg,#0F1B2D 0%,#3D1F5C 60%,#1A3A3B 100%);border-radius:1rem;padding:2.5rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;border-left:5px solid var(--teal)}
+    .lead-cta-inner{background:linear-gradient(135deg,#430A62 0%,#3D1F5C 60%,#33184A 100%);border-radius:1rem;padding:2.5rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;border-left:5px solid var(--teal)}
     .lead-cta-eyebrow{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:.5rem}
-    .lead-cta-title{font-family:'Cormorant Garamond',serif;font-size:1.625rem;color:#fff;line-height:1.25;margin-bottom:.75rem}
+    .lead-cta-title{font-family:'Montserrat',serif;font-size:1.625rem;color:#fff;line-height:1.25;margin-bottom:.75rem}
     .lead-cta-sub{font-size:.875rem;color:rgba(255,255,255,.65);line-height:1.7;max-width:480px}
     .lead-cta-btn{flex-shrink:0;display:inline-block;background:var(--amber);color:#fff;font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;padding:.875rem 2rem;border-radius:.5rem;transition:background .2s;white-space:nowrap}
-    .lead-cta-btn:hover{background:#0F1B2D}
+    .lead-cta-btn:hover{background:#430A62}
     @media(max-width:640px){.lead-cta-inner{flex-direction:column}.lead-cta-btn{width:100%;text-align:center}}
 
     /* RELATED */
     .related{max-width:1100px;margin:4rem auto;padding:0 1.5rem}
-    .related-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;margin-bottom:2rem;color:var(--dark)}
+    .related-title{font-family:'Montserrat',serif;font-size:1.5rem;margin-bottom:2rem;color:var(--dark)}
     .related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem}
     .related-card{display:block;border-radius:.75rem;overflow:hidden;border:1px solid var(--border);transition:box-shadow .2s;background:#fff}
     .related-card:hover{box-shadow:0 8px 32px rgba(0,0,0,.08)}
@@ -202,10 +202,10 @@ export async function onRequest({ params, env, request }) {
     .related-card:hover .related-img-wrap img{transform:scale(1.05)}
     .related-info{padding:1rem 1.25rem}
     .related-time{font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);font-weight:600;display:block;margin-bottom:.375rem}
-    .related-info h3{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--dark);line-height:1.4}
+    .related-info h3{font-family:'Montserrat',serif;font-size:1rem;color:var(--dark);line-height:1.4}
 
     /* FOOTER */
-    .footer{background:linear-gradient(135deg,#0F1B2D 0%,#1A3A3B 100%);color:rgba(255,255,255,.45);padding:3rem 1.5rem;text-align:center;margin-top:4rem}
+    .footer{background:linear-gradient(135deg,#430A62 0%,#33184A 100%);color:rgba(255,255,255,.45);padding:3rem 1.5rem;text-align:center;margin-top:4rem}
     .footer img{height:44px;filter:none;opacity:.7;margin:0 auto 1rem}
     .footer p{font-size:.8rem}
     .footer a{color:var(--amber);margin:0 .75rem}
@@ -239,7 +239,7 @@ export async function onRequest({ params, env, request }) {
             <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
             ${fmtDate(article.published_at)}
           </span>` : ''}
-          <span class="hero-meta-item">Por equipe Scandia Travel</span>
+          <span class="hero-meta-item">Por equipe Specialle Viagens</span>
         </div>
       </div>
     </div>
@@ -257,7 +257,7 @@ export async function onRequest({ params, env, request }) {
 
   <footer class="footer">
     <img src="/brand/logo-roxo.svg" alt="Specialle Viagens">
-    <p>&copy; ${new Date().getFullYear()} Scandia Travel &nbsp;&middot;&nbsp; <a href="/loja/blog">Blog</a><a href="/">Consultoria</a></p>
+    <p>&copy; ${new Date().getFullYear()} Specialle Viagens &nbsp;&middot;&nbsp; <a href="/loja/blog">Blog</a><a href="/">Consultoria</a></p>
   </footer>
 
   <script>
@@ -306,10 +306,10 @@ export async function onRequest({ params, env, request }) {
 }
 
 function notFoundHtml() {
-  return `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Artigo n&atilde;o encontrado | Scandia Travel</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Lato:wght@400;600&display=swap" rel="stylesheet">
-  <style>body{font-family:Lato,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;background:#F4F1EC}
-  .box{text-align:center}.box h1{font-family:'Cormorant Garamond',serif;font-size:2rem;margin-bottom:1rem;color:#0F1B2D}
-  .box a{color:#0F1B2D;font-weight:600}</style></head>
+  return `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Artigo n&atilde;o encontrado | Specialle Viagens</title>
+  <link href="https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>body{font-family:Montserrat,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;background:#F4F0F7}
+  .box{text-align:center}.box h1{font-family:'Montserrat',serif;font-size:2rem;margin-bottom:1rem;color:#430A62}
+  .box a{color:#430A62;font-weight:600}</style></head>
   <body><div class="box"><h1>Artigo n&atilde;o encontrado</h1><p><a href="/loja/blog">&larr; Voltar ao Blog</a></p></div></body></html>`;
 }

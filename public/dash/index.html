@@ -3,30 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Scandia · Dashboard de Tracking</title>
+<title>Specialle · Dashboard de Tracking</title>
 <link rel="icon" href="/brand/logo-roxo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Lato:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
 <style>
   :root {
-    --purple:      #0F1B2D;
-    --purple-dark: #0F1B2D;
-    --purple-soft: #F4F1EC;
-    --teal:        #4A6278;
-    --teal-dark:   #364B5E;
-    --teal-soft:   #E8EDF1;
-    --cream:       #F4F1EC;
-    --cream-soft:  #F4F1EC;
-    --ink:         #14181D;
-    --ink-soft:    #4a4a4a;
-    --ink-mute:    #8a8a8a;
-    --border:      #DEDAD3;
+    /* paleta Specialle, extraída do logo oficial */
+    --purple:      #430A62;
+    --purple-dark: #2C0640;
+    --purple-soft: #F4F0F7;
+    --teal:        #6E3B96;
+    --teal-dark:   #552C75;
+    --teal-soft:   #EDE3F4;
+    --cream:       #C9A6E0;
+    --cream-soft:  #FAF7FC;
+    --ink:         #231F20;
+    --ink-soft:    #4a4546;
+    --ink-mute:    #8a8589;
+    --border:      #E2D9EA;
     --surface:     #ffffff;
-    --bg:          #F4F1EC;
-    --grad:        linear-gradient(135deg, #0F1B2D 0%, #4A6278 100%);
-    --grad-h:      linear-gradient(135deg, #0F1B2D 0%, #364B5E 100%);
+    --bg:          #F4F0F7;
+    --grad:        linear-gradient(135deg, #430A62 0%, #6E3B96 100%);
+    --grad-h:      linear-gradient(135deg, #430A62 0%, #552C75 100%);
     --green:       #0f7d55;
     --green-soft:  #e6f7f0;
     --amber:       #d97706;
@@ -37,21 +38,21 @@
     margin: 0; padding: 0;
     background: var(--bg);
     color: var(--ink);
-    font-family: 'Lato', system-ui, sans-serif;
+    font-family: 'Montserrat', system-ui, sans-serif;
     font-size: 15px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
-  h1,h2,h3,h4 { font-family: 'Cormorant Garamond', Georgia, serif; letter-spacing: -0.01em; }
+  h1,h2,h3,h4 { font-family: 'Montserrat', system-ui, sans-serif; letter-spacing: -0.01em; }
 
   /* Cards */
   .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
   .card-hover { transition: box-shadow .2s, transform .2s; }
-  .card-hover:hover { box-shadow: 0 8px 32px rgba(15,27,45,.10); transform: translateY(-1px); }
+  .card-hover:hover { box-shadow: 0 8px 32px rgba(67,10,98,.10); transform: translateY(-1px); }
 
   /* KPI */
   .kpi-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-mute); }
-  .kpi-value { font-size: 2rem; font-weight: 700; letter-spacing: -.03em; font-family: 'Cormorant Garamond', serif; line-height: 1; }
+  .kpi-value { font-size: 2rem; font-weight: 700; letter-spacing: -.03em; font-family: 'Montserrat', serif; line-height: 1; }
   .kpi-sub   { font-size: .75rem; margin-top: .375rem; color: var(--ink-mute); }
 
   /* Tabs */
@@ -129,7 +130,7 @@
 
   /* Section separator */
   .section-title {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: .9375rem;
     font-weight: 700;
     color: var(--ink);
@@ -154,7 +155,7 @@
   <div class="login-shade"></div>
   <div class="login-layout">
     <div class="login-brand"><img src="/brand/logo-branco.svg" alt="Specialle Viagens"><span class="eyebrow">Viagens com significado</span></div>
-    <div class="login-story"><div class="eyebrow">Um novo olhar para cada jornada</div><h1>Grandes viagens.<br><em>Novas perspectivas.</em></h1><p>Cada conexão é o começo de uma nova história. Acompanhe os caminhos que levam até a Scandia.</p></div>
+    <div class="login-story"><div class="eyebrow">Um novo olhar para cada jornada</div><h1>Grandes viagens.<br><em>Novas perspectivas.</em></h1><p>Cada conexão é o começo de uma nova história. Acompanhe os caminhos que levam até a Specialle.</p></div>
     <div class="login-panel fade-in">
       <div class="login-symbol" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="5" y="10" width="14" height="11" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
       <div class="eyebrow">Seu espaço de acompanhamento</div><h2>Boas-vindas.</h2><p>Acesse uma visão completa das visitas, conexões e resultados da sua marca.</p>
@@ -162,7 +163,7 @@
       <input id="auth-input" type="password" placeholder="Insira sua chave de acesso" autocomplete="current-password" class="w-full border rounded-xl px-4 py-3 outline-none" style="border-color:var(--border);" aria-describedby="auth-error">
       <button id="auth-submit" class="w-full text-white font-bold text-sm">Entrar no dashboard <span aria-hidden="true">↗</span></button>
       <div id="auth-error" role="alert" class="text-center text-sm mt-3 hidden" style="color:#c0392b;">Chave inválida. Verifique e tente novamente.</div>
-      <div class="login-security">Acesso exclusivo · Scandia Travel</div>
+      <div class="login-security">Acesso exclusivo · Specialle Viagens</div>
     </div>
     <div class="login-footer">
       <div class="photo-caption"><strong>Dolomitas, Itália</strong><a id="photo-credit" href="https://unsplash.com/photos/T7K4aEPoGGk" target="_blank" rel="noopener noreferrer">Pietro De Grandi / Unsplash</a></div>
@@ -177,15 +178,15 @@
   <!-- Header -->
   <header class="sticky z-40">
     <div class="topbar">
-      <div class="brand"><img src="/brand/logo-roxo.svg" alt="Specialle Viagens"><div class="brand-caption"><strong>Scandia Travel</strong>Dashboard de resultados</div></div>
+      <div class="brand"><img src="/brand/logo-roxo.svg" alt="Specialle Viagens"><div class="brand-caption"><strong>Specialle Viagens</strong>Dashboard de resultados</div></div>
       <nav class="dashboard-nav" aria-label="Navegação do dashboard"><a href="#overview" class="active" aria-current="location">Visão geral</a><a href="#origins">Origens</a><a href="#leads-section">Leads</a></nav>
-      <div class="profile"><span class="avatar" aria-hidden="true">ST</span><span>Scandia Travel</span><button id="dash-logout" class="dash-logout" type="button" title="Sair" aria-label="Sair">⏻ Sair</button></div>
+      <div class="profile"><span class="avatar" aria-hidden="true">ST</span><span>Specialle Viagens</span><button id="dash-logout" class="dash-logout" type="button" title="Sair" aria-label="Sair">⏻ Sair</button></div>
     </div>
   </header>
 
   <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-6">
 
-    <div class="welcome" id="overview"><div><div class="eyebrow">Scandia · Visão de resultados</div><h1>Olá, equipe Scandia.</h1><p>Uma nova perspectiva sobre cada conexão com a sua marca.</p></div><div class="welcome-note">Os próximos destinos começam<br>com boas conexões.</div></div>
+    <div class="welcome" id="overview"><div><div class="eyebrow">Specialle · Visão de resultados</div><h1>Olá, equipe Specialle.</h1><p>Uma nova perspectiva sobre cada conexão com a sua marca.</p></div><div class="welcome-note">Os próximos destinos começam<br>com boas conexões.</div></div>
     <div class="filters"><span class="filter-label">Período de análise</span><div class="filter-controls">
       <div class="flex items-center" id="range-picker"><button class="range-btn" data-days="7">7 dias</button><button class="range-btn active" data-days="30">30 dias</button><button class="range-btn" data-days="90">90 dias</button></div>
       <div class="flex items-center" id="custom-range"><input type="date" id="date-from" class="date-input" aria-label="Data inicial"><span>até</span><input type="date" id="date-to" class="date-input" aria-label="Data final"><button class="range-btn" id="date-apply">Aplicar</button></div>
@@ -256,20 +257,20 @@
         <div class="grid grid-cols-2 gap-4">
           <div class="rounded-xl p-4" style="background:var(--amber-soft);">
             <div class="kpi-label" style="color:var(--amber);">Gasto Meta Ads</div>
-            <div class="text-2xl font-bold mt-1" style="color:var(--amber);font-family:'Cormorant Garamond',serif;" id="spend-total">—</div>
+            <div class="text-2xl font-bold mt-1" style="color:var(--amber);font-family:'Montserrat',serif;" id="spend-total">—</div>
           </div>
           <div class="rounded-xl p-4" style="background:var(--purple-soft);">
             <div class="kpi-label" style="color:var(--purple);">CPL · Meta</div>
-            <div class="text-2xl font-bold mt-1" style="color:var(--purple);font-family:'Cormorant Garamond',serif;" id="spend-cpl">—</div>
+            <div class="text-2xl font-bold mt-1" style="color:var(--purple);font-family:'Montserrat',serif;" id="spend-cpl">—</div>
           </div>
           <div class="rounded-xl p-4" style="background:var(--teal-soft);">
             <div class="kpi-label" style="color:var(--teal-dark);">Leads atribuídos</div>
-            <div class="text-2xl font-bold mt-1" style="color:var(--teal);font-family:'Cormorant Garamond',serif;" id="spend-leads-meta">—</div>
+            <div class="text-2xl font-bold mt-1" style="color:var(--teal);font-family:'Montserrat',serif;" id="spend-leads-meta">—</div>
             <div class="text-xs mt-0.5" style="color:var(--teal-dark);">via fbclid</div>
           </div>
           <div class="rounded-xl p-4" style="background:var(--cream-soft);">
             <div class="kpi-label" style="color:var(--purple);">Custo / Visita</div>
-            <div class="text-2xl font-bold mt-1" style="color:var(--purple);font-family:'Cormorant Garamond',serif;" id="spend-cpv">—</div>
+            <div class="text-2xl font-bold mt-1" style="color:var(--purple);font-family:'Montserrat',serif;" id="spend-cpv">—</div>
           </div>
         </div>
 
@@ -363,7 +364,7 @@
     </section>
 
     <footer class="pt-2 pb-10 text-xs text-center" style="color:var(--ink-mute);">
-      Scandia Travel · Cada conexão, uma nova possibilidade.
+      Specialle Viagens · Cada conexão, uma nova possibilidade.
     </footer>
   </main>
 </div>
@@ -568,31 +569,31 @@
     const ctx = qs('#chart-dual').getContext('2d');
     if (dualChart) dualChart.destroy();
 
-    const neonGlow = {
-      id: 'neonGlow',
+    const softGlow = {
+      id: 'softGlow',
       beforeDatasetDraw(chart, args) {
         const ds = chart.data.datasets[args.index];
-        chart.ctx.shadowColor = (typeof ds.borderColor === 'string' ? ds.borderColor : '#b14dff');
-        chart.ctx.shadowBlur = 16;
+        chart.ctx.shadowColor = (typeof ds.borderColor === 'string' ? ds.borderColor : '#430A62');
+        chart.ctx.shadowBlur = 8;
       },
       afterDatasetDraw(chart) { chart.ctx.shadowBlur = 0; },
     };
 
     dualChart = new Chart(ctx, {
       type: 'line',
-      plugins: [neonGlow],
+      plugins: [softGlow],
       data: {
         labels,
         datasets: [
           {
             label: 'Visitas',
             data: visitCounts,
-            borderColor: '#1ff2e0',
-            backgroundColor: 'rgba(31,242,224,.10)',
+            borderColor: '#0E9AA7',
+            backgroundColor: 'rgba(14,154,167,.10)',
             fill: true,
             tension: 0.4,
             pointRadius: visitCounts.map(v => v > 0 ? 3 : 0),
-            pointBackgroundColor: '#1ff2e0',
+            pointBackgroundColor: '#0E9AA7',
             pointBorderColor: '#fff',
             pointBorderWidth: 2,
             borderWidth: 2.5,
@@ -601,12 +602,12 @@
           {
             label: 'Leads',
             data: leadCounts,
-            borderColor: '#b14dff',
-            backgroundColor: 'rgba(177,77,255,.12)',
+            borderColor: '#430A62',
+            backgroundColor: 'rgba(67,10,98,.12)',
             fill: true,
             tension: 0.4,
             pointRadius: leadCounts.map(v => v > 0 ? 4 : 0),
-            pointBackgroundColor: '#b14dff',
+            pointBackgroundColor: '#430A62',
             pointBorderColor: '#fff',
             pointBorderWidth: 2,
             borderWidth: 2.5,
@@ -621,7 +622,7 @@
         plugins: {
           legend: { display: false },
           tooltip: {
-            backgroundColor: '#14181D',
+            backgroundColor: '#231F20',
             titleColor: '#fff',
             bodyColor: 'rgba(255,255,255,.8)',
             padding: 12,
@@ -634,20 +635,20 @@
         scales: {
           x: {
             grid: { display: false },
-            ticks: { color: '#8a8a8a', font: { size: 11, family: 'Lato' }, maxTicksLimit: dates.length <= 14 ? dates.length : 10 },
+            ticks: { color: '#8a8a8a', font: { size: 11, family: 'Montserrat' }, maxTicksLimit: dates.length <= 14 ? dates.length : 10 },
             border: { display: false },
           },
           yVisits: {
             position: 'left',
             grid: { color: 'rgba(74,98,120,.10)' },
-            ticks: { color: '#0f9b93', font: { size: 11, family: 'Lato' }, precision: 0 },
+            ticks: { color: '#0f9b93', font: { size: 11, family: 'Montserrat' }, precision: 0 },
             border: { display: false },
             beginAtZero: true,
           },
           yLeads: {
             position: 'right',
             grid: { drawOnChartArea: false },
-            ticks: { color: '#8a4bb0', font: { size: 11, family: 'Lato' }, precision: 0, stepSize: 1 },
+            ticks: { color: '#8a4bb0', font: { size: 11, family: 'Montserrat' }, precision: 0, stepSize: 1 },
             border: { display: false },
             beginAtZero: true,
           },
@@ -663,7 +664,7 @@
 
     qs('#funnel-container').innerHTML = `
       <div>
-        <div class="funnel-bar" style="width:100%;background:linear-gradient(90deg,#1ff2e0,#22d3ee);box-shadow:0 0 20px rgba(31,242,224,.45);">
+        <div class="funnel-bar" style="width:100%;background:linear-gradient(90deg,#0E9AA7,#22B8C4);box-shadow:0 8px 20px rgba(14,154,167,.3);">
           <span style="font-size:.8125rem;">Visitas à página</span>
           <span style="font-size:1.25rem;">${fmtInt(totalVisits)}</span>
         </div>
@@ -676,7 +677,7 @@
         <span style="color:var(--ink-mute);font-weight:400;">${totalLeads > 0 ? `1 lead a cada ${Math.round(totalVisits/totalLeads)} visitas` : ''}</span>
       </div>
       <div>
-        <div class="funnel-bar" style="width:${Math.round(leadPct*100)}%;min-width:120px;max-width:100%;background:linear-gradient(90deg,#b14dff,#c65cff);box-shadow:0 0 20px rgba(177,77,255,.45);">
+        <div class="funnel-bar" style="width:${Math.round(leadPct*100)}%;min-width:120px;max-width:100%;background:linear-gradient(90deg,#430A62,#6E3B96);box-shadow:0 8px 20px rgba(67,10,98,.32);">
           <span style="font-size:.8125rem;">Leads captados</span>
           <span style="font-size:1.25rem;">${fmtInt(totalLeads)}</span>
         </div>
@@ -768,7 +769,7 @@
 
   function renderUtmDonut(rows, totalVisits) {
     const top6 = rows.slice(0, 6);
-    const palette = ['#b14dff','#1ff2e0','#ff5db1','#7cff6b','#ffd54d','#4d9bff'];
+    const palette = ['#6E3B96','#0E9AA7','#C9A6E0','#4F9D69','#D9962B','#3C6FB5'];
     const ctx = qs('#chart-utm-donut').getContext('2d');
     if (donutChart) donutChart.destroy();
     if (top6.length === 0) return;
@@ -799,7 +800,7 @@
         plugins: {
           legend: {
             position: 'bottom',
-            labels: { font: { size: 11, family: 'Lato' }, boxWidth: 10, padding: 12 },
+            labels: { font: { size: 11, family: 'Montserrat' }, boxWidth: 10, padding: 12 },
           },
           tooltip: {
             callbacks: {
@@ -809,7 +810,7 @@
                 return ` ${ctx.raw} visitas (${pct}%) · ${row.leads} leads`;
               },
             },
-            backgroundColor: '#14181D',
+            backgroundColor: '#231F20',
             padding: 10,
             cornerRadius: 8,
           },
