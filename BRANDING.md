@@ -44,7 +44,7 @@ vetorial real dos PDFs da cliente e substituir os dois arquivos. Os PNGs da Scan
 7. **Artigos do blog** — os três artigos em `content/editorial-articles.js` foram reescritos para
    Europa, Flórida e cruzeiros, com fatos conferidos em fontes oficiais citadas no rodapé de cada
    texto. Revalidar as fontes antes de alterar qualquer dado: as regras de entrada na Europa e os
-   horários da Brightline mudam. A assinatura do autor ainda não aparece nos artigos; definir se
-   os textos saem em nome da agência ou de alguém da equipe.
+   horários da Brightline mudam. Os artigos saem assinados como "Por equipe Specialle Viagens",
+   assinatura que vem do template em `functions/loja/blog/[slug].js`.
 8. **Remoto do Git** — o `origin` ainda aponta para o repositório da matriz. Trocar pelo
    repositório próprio da Specialle antes de qualquer push.
