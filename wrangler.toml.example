@@ -1,0 +1,11 @@
+# Modelo local. Copie para wrangler.toml (ignorado pelo Git).
+# Produção continua configurada no painel Pages. Antes de versionar uma
+# configuração Wrangler, baixe e confira as configurações remotas existentes.
+name = "scandia-tracking"
+compatibility_date = "2025-03-01"
+pages_build_output_dir = "dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "scandia-tracking-db"
+database_id = "__REPLACE_ME_DB_ID__"

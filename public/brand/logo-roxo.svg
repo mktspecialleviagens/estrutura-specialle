@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120" role="img" aria-label="Specialle Viagens">
+  <title>Specialle Viagens</title>
+  <text x="210" y="68" text-anchor="middle" fill="#430A62"
+        font-family="Corinthia, 'Brush Script MT', cursive" font-size="86" font-weight="700">Specialle</text>
+  <line x1="118" y1="86" x2="302" y2="86" stroke="#6E3B96" stroke-width="1.5" />
+  <text x="210" y="108" text-anchor="middle" fill="#6E3B96"
+        font-family="Montserrat, system-ui, sans-serif" font-size="17" font-weight="600" letter-spacing="9">VIAGENS</text>
+</svg>
