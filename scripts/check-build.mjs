@@ -2,11 +2,25 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { resolve, join, relative } from 'node:path';
 import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
+import { editorialArticles } from '../content/editorial-articles.js';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const dist = resolve(root, 'dist');
-for (const file of ['index.html', 'crm/index.html', 'dash/index.html', 'dash/design.css', 'dash/design.js', 'loja/index.html', 'loja/blog/index.html', 'loja/assets/blog-editorial.css', 'loja/assets/article-editorial.css', 'loja/blog/images/islandia-aurora.jpg', 'loja/blog/images/islandia-cascata.jpg', 'loja/blog/images/noruega-geiranger.jpg', 'loja/blog/images/noruega-lofoten.jpg', 'loja/blog/images/finlandia-oulanka.jpg', 'loja/blog/images/laponia-inverno.jpg']) {
+for (const file of ['index.html', 'crm/index.html', 'dash/index.html', 'dash/design.css', 'dash/design.js', 'loja/index.html', 'loja/blog/index.html', 'loja/assets/blog-editorial.css', 'loja/assets/article-editorial.css']) {
   assert(existsSync(join(dist, file)), `Arquivo ausente no build: ${file}`);
+}
+// As imagens dos artigos saem do próprio conteúdo editorial, para o check acompanhar
+// qualquer troca de pauta sem depender de uma lista escrita à mão.
+const imagensDeArtigos = new Set();
+for (const article of editorialArticles) {
+  if (article.cover_image?.startsWith('/')) imagensDeArtigos.add(article.cover_image.slice(1));
+  for (const [, src] of (article.content ?? '').matchAll(/<img[^>]+src="\/([^"?#]+)"/g)) imagensDeArtigos.add(src);
+}
+for (const imagem of imagensDeArtigos) {
+  assert(existsSync(join(dist, imagem)), `Imagem de artigo ausente no build: ${imagem}`);
+}
+for (const [, src] of readFileSync(join(root, 'public/loja/assets/blog-editorial.css'), 'utf8').matchAll(/url\('\/([^']+)'\)/g)) {
+  assert(existsSync(join(dist, src)), `Imagem do blog ausente no build: ${src}`);
 }
 function inspect(directory) {
   for (const entry of readdirSync(directory, { withFileTypes: true })) {

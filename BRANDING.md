@@ -41,10 +41,10 @@ vetorial real dos PDFs da cliente e substituir os dois arquivos. Os PNGs da Scan
    `ga4MeasurementId` em `config.js`, só então ligar `trackingEnabled`. Segredos nunca nesse arquivo.
 6. **Cloudflare Pages + D1** — criar o projeto na conta da cliente, aplicar as migrations de
    `migrations/` e configurar `DB`, `DASH_KEY` e demais secrets. Ver `DEPLOY.md`.
-7. **Artigos do blog** — a identidade visual de todas as áreas já é Specialle, mas o conteúdo
-   editorial em `content/editorial-articles.js` continua sendo os três artigos sobre Islândia,
-   Noruega e Lapônia herdados da matriz, servidos ao vivo em `/loja/blog/`. As seis fotos em
-   `public/loja/blog/images/` pertencem a esses artigos. Decidir entre reescrever para os
-   destinos da Specialle ou remover até haver conteúdo próprio.
+7. **Artigos do blog** — os três artigos em `content/editorial-articles.js` foram reescritos para
+   Europa, Flórida e cruzeiros, com fatos conferidos em fontes oficiais citadas no rodapé de cada
+   texto. Revalidar as fontes antes de alterar qualquer dado: as regras de entrada na Europa e os
+   horários da Brightline mudam. A assinatura do autor ainda não aparece nos artigos; definir se
+   os textos saem em nome da agência ou de alguém da equipe.
 8. **Remoto do Git** — o `origin` ainda aponta para o repositório da matriz. Trocar pelo
    repositório próprio da Specialle antes de qualquer push.

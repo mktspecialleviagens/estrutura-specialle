@@ -16,6 +16,24 @@ e dos clientes assim que possível.
 | Sobre | `src/assets/sobre-specialle.jpg` | Mapa, passaporte e câmera | https://images.unsplash.com/photo-1524850011238-e3d235c7d4c9 |
 | Chamada final | `src/assets/cta-lisboa.jpg` | Bonde amarelo em Lisboa | https://images.unsplash.com/photo-1585208798174-6cedd86e019a |
 
+## Loja, blog e artigos
+
+Mesma origem e mesma condição de provisoriedade.
+
+| Uso | Arquivo | Conteúdo | Fonte |
+| --- | --- | --- | --- |
+| Hero do blog | `public/loja/blog/images/europa-hero.jpg` | Torre Eiffel, Paris | https://images.unsplash.com/photo-1502602898657-3e91760cbb34 |
+| Artigo Europa, capa | `public/loja/blog/images/europa-lisboa.jpg` | Bonde amarelo em Lisboa | https://images.unsplash.com/photo-1585208798174-6cedd86e019a |
+| Artigo Europa, interna | `public/loja/blog/images/europa-estacao.jpg` | Estação de trem europeia | https://images.unsplash.com/photo-1744659959812-3197b751f71d |
+| Artigo Flórida, capa | `public/loja/blog/images/eua-orlando.jpg` | Montanha-russa em Orlando | https://images.unsplash.com/photo-1621473909625-6a62ef5bedf7 |
+| Artigo Flórida, interna | `public/loja/blog/images/eua-miami.jpg` | Orla de Miami Beach | https://images.unsplash.com/photo-1589083130544-0d6a2926e519 |
+| Artigo Cruzeiros, capa | `public/loja/blog/images/cruzeiro-navio.jpg` | Navio em mar aberto | https://images.unsplash.com/photo-1613483381938-dedf64f2adbb |
+| Artigo Cruzeiros, interna | `public/loja/blog/images/cruzeiro-varandas.jpg` | Fileiras de varandas | https://images.unsplash.com/photo-1772292192270-862979c924c8 |
+| Seção "Equipe" da loja | hotlink no bundle | Coliseu, Roma | https://images.unsplash.com/photo-1552832230-c0197dd311b5 |
+| Login do CRM | hotlink, 6 fotos | Destinos que a agência opera | ver `public/crm/index.html` |
+
+As seis fotos nórdicas herdadas da matriz foram removidas junto com os artigos antigos.
+
 ## Substituições pendentes
 
 - **Bloco Sobre** — trocar `sobre-specialle.jpg` pelas fotos do escritório na Washington Soares
