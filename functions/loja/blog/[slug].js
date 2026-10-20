@@ -52,7 +52,7 @@ export async function onRequest({ params, env, request }) {
     datePublished: article.published_at,
     dateModified: article.updated_at || article.published_at,
     author: { '@type': 'Person', name: 'Equipe Specialle Viagens', url: `${origin}/loja/#Specialle` },
-    publisher: { '@type': 'Organization', name: 'Specialle Viagens', logo: { '@type': 'ImageObject', url: `${origin}/brand/logo-roxo.svg` } },
+    publisher: { '@type': 'Organization', name: 'Specialle Viagens', logo: { '@type': 'ImageObject', url: `${origin}/brand/logo.webp` } },
   });
 
   const galleryHtml = galleryImages.length ? `
@@ -114,10 +114,10 @@ export async function onRequest({ params, env, request }) {
   ${article.published_at ? `<meta property="article:published_time" content="${esc(article.published_at)}">` : ''}
   <meta name="twitter:card" content="summary_large_image">
   <script type="application/ld+json">${schema}</script>
-  <link rel="icon" href="/brand/logo-roxo.svg">
+  <link rel="icon" href="/brand/logo.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{--amber:#430A62;--teal:#6E3B96;--dark:#231F20;--gray:#5A5A5A;--light:#FFFFFF;--border:#E8E0F0}
@@ -215,7 +215,7 @@ export async function onRequest({ params, env, request }) {
 <body>
   <div class="reading-progress" aria-hidden="true"><span id="reading-progress-bar"></span></div>
   <nav class="nav">
-    <a href="/"><img src="/brand/logo-roxo.svg" alt="Specialle Viagens" class="nav-logo"></a>
+    <a href="/"><img src="/brand/logo.webp" alt="Specialle Viagens" class="nav-logo" style="filter:brightness(0) invert(1)"> </a>
     <div class="nav-links">
       <a href="/loja/blog">Blog</a>
       <a href="/#formulario" class="nav-cta">Planejar viagem</a>
@@ -256,7 +256,7 @@ export async function onRequest({ params, env, request }) {
   ${relatedHtml}
 
   <footer class="footer">
-    <img src="/brand/logo-roxo.svg" alt="Specialle Viagens">
+    <img src="/brand/logo.webp" alt="Specialle Viagens" style="filter:brightness(0) invert(1)"> 
     <p>&copy; ${new Date().getFullYear()} Specialle Viagens &nbsp;&middot;&nbsp; <a href="/loja/blog">Blog</a><a href="/">Consultoria</a></p>
   </footer>
 
@@ -307,7 +307,7 @@ export async function onRequest({ params, env, request }) {
 
 function notFoundHtml() {
   return `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Artigo n&atilde;o encontrado | Specialle Viagens</title>
-  <link href="https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <style>body{font-family:Montserrat,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;background:#F4F0F7}
   .box{text-align:center}.box h1{font-family:'Montserrat',serif;font-size:2rem;margin-bottom:1rem;color:#430A62}
   .box a{color:#430A62;font-weight:600}</style></head>

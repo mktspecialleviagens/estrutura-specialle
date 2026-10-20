@@ -304,10 +304,10 @@ function renderPage(p, { destinations, hotels, flights, activities, coverImages,
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>${esc(p.title)} · Specialle Viagens</title>
   <meta name="robots" content="noindex,nofollow">
-  <link rel="icon" href="/brand/logo-roxo.svg">
+  <link rel="icon" href="/brand/logo.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{--amber:#C9A6E0;--dark:#1C042A;--surface:#2A1038;--surface2:#361546;--border:#432058;--text:#F0EAF4;--muted:#A08FAE}
@@ -490,7 +490,7 @@ function renderPage(p, { destinations, hotels, flights, activities, coverImages,
 ${p.expires_at ? `<div class="validity-bar">Proposta Nº ${propNum} · válida até <strong>${fmtDate(p.expires_at)}</strong> · valores sujeitos a disponibilidade</div>` : `<div class="validity-bar">Proposta Nº ${propNum} · valores sujeitos a disponibilidade</div>`}
 
 <nav class="nav" style="top:2.2rem">
-  <a href="/consultoria"><img src="/brand/logo-roxo.svg" alt="Specialle Viagens" class="nav-logo"></a>
+  <a href="/consultoria"><img src="/brand/logo.webp" alt="Specialle Viagens" class="nav-logo" style="filter:brightness(0) invert(1)"> </a>
 </nav>
 
 <div class="hero" ${hero ? `style="background-image:url('${esc(hero)}')"` : ''}>
@@ -533,7 +533,7 @@ ${hasMobileCta ? `
 </div>` : ''}
 
 <footer class="footer">
-  <img src="/brand/logo-roxo.svg" alt="Specialle Viagens">
+  <img src="/brand/logo.webp" alt="Specialle Viagens" style="filter:brightness(0) invert(1)"> 
   <p>Proposta preparada por Specialle Viagens &nbsp;·&nbsp; <a href="/#formulario" style="color:var(--amber)">Fale conosco</a></p>
 </footer>
 
@@ -559,7 +559,7 @@ ${hasMobileCta ? `
 }
 
 function expiredHtml(p) {
-  return `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Proposta expirada · Specialle Viagens</title><link rel="icon" href="/brand/logo-roxo.svg"><style>body{font-family:sans-serif;background:#1C042A;color:#fff;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:2rem}h1{font-size:1.5rem;margin-bottom:.75rem}p{opacity:.6;font-size:.9rem}</style></head><body><div><h1>Esta proposta expirou</h1><p>O prazo de validade desta proposta foi encerrado.</p><p style="margin-top:1rem"><a href="/consultoria" style="color:#C9A6E0">Fale com a Specialle Viagens →</a></p></div></body></html>`;
+  return `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Proposta expirada · Specialle Viagens</title><link rel="icon" href="/brand/logo.webp"><style>body{font-family:sans-serif;background:#1C042A;color:#fff;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:2rem}h1{font-size:1.5rem;margin-bottom:.75rem}p{opacity:.6;font-size:.9rem}</style></head><body><div><h1>Esta proposta expirou</h1><p>O prazo de validade desta proposta foi encerrado.</p><p style="margin-top:1rem"><a href="/consultoria" style="color:#C9A6E0">Fale com a Specialle Viagens →</a></p></div></body></html>`;
 }
 
 export async function onRequest({ params, env }) {

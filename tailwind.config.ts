@@ -17,7 +17,6 @@ export default {
         sans: ['"Montserrat"', "system-ui", "sans-serif"],
         serif: ['"Montserrat"', "system-ui", "sans-serif"],
         display: ['"Montserrat"', "system-ui", "sans-serif"],
-        script: ['"Corinthia"', "cursive"],
       },
       colors: {
         border: "hsl(var(--border))",

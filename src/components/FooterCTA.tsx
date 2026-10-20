@@ -4,10 +4,15 @@ const FooterCTA = () => {
   return (
     <footer style={{ background: "#2C0640" }}>
       <div className="container flex flex-col md:flex-row items-center justify-between gap-5 py-10">
-        <div className="flex flex-col items-center leading-none md:items-start">
-          <span className="script text-offwhite text-[38px] -mb-1">Specialle</span>
-          <span className="text-[8px] font-semibold tracking-[0.42em] text-specialle-lilac">VIAGENS</span>
-        </div>
+        <img
+          src="/brand/logo.webp"
+          alt="Specialle Viagens"
+          width={2000}
+          height={667}
+          loading="lazy"
+          className="h-11 w-auto"
+          style={{ filter: "brightness(0) invert(1)" }}
+        />
         <p className="text-center text-[13px] text-specialle-lilac md:text-right">
           Avenida Washington Soares, Fortaleza · Atendimento com hora marcada
           <span className="mt-1 block text-white/55">

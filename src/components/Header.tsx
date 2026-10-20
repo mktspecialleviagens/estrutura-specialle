@@ -35,9 +35,15 @@ const Header = () => {
       }}
     >
       <div className="container flex items-center justify-between gap-5">
-        <button onClick={() => scrollTo("hero")} aria-label="Specialle Viagens" className="flex flex-col items-start leading-none">
-          <span className="script text-offwhite text-[40px] md:text-[48px] -mb-1">Specialle</span>
-          <span className="font-sans text-[8px] md:text-[9px] font-semibold tracking-[0.42em] text-specialle-lilac">VIAGENS</span>
+        <button onClick={() => scrollTo("hero")} aria-label="Specialle Viagens" className="flex items-center">
+          <img
+            src="/brand/logo.webp"
+            alt="Specialle Viagens"
+            width={2000}
+            height={667}
+            className="h-10 w-auto md:h-12"
+            style={{ filter: "brightness(0) invert(1)" }}
+          />
         </button>
 
         <nav className="hidden lg:flex items-center gap-6 xl:gap-10">

@@ -21,19 +21,29 @@ Definidos em `src/index.css` e expostos no Tailwind em `tailwind.config.ts`.
 
 - **Montserrat** em tudo (títulos e corpo), carregada do Google Fonts. A cliente já usa a fonte
   no material impresso (`Montserrat-Regular.ttf` na pasta do projeto).
-- **Corinthia** apenas na assinatura manuscrita "Specialle" do logo, via classe `.script`.
 
 ## Logo
 
-`public/brand/logo-roxo.svg` (fundo claro) e `public/brand/logo-branco.svg` (fundo escuro) são
-wordmarks montados em SVG a partir da paleta e das fontes da marca. **Pendente:** exportar o logo
-vetorial real dos PDFs da cliente e substituir os dois arquivos. Os PNGs da Scandia foram removidos.
+`public/brand/logo.webp` é o logo oficial entregue pela cliente: 2000x667, com canal alpha e
+fundo transparente. É o único arquivo de logo do projeto.
+
+Nos fundos escuros o logo é invertido para branco por CSS, com
+`style="filter:brightness(0) invert(1)"` na própria tag `<img>`. Isso evita manter um segundo
+arquivo e garante que uma troca futura do logo valha para todas as áreas de uma vez. Os pontos
+que usam o filtro são o topo e o rodapé da landing, a barra lateral do CRM, a tela de acesso do
+dashboard, o topo e o rodapé da loja e do blog, e a página pública de proposta. O único ponto
+sem filtro é a barra superior do dashboard, que tem fundo claro.
+
+A tinta do logo é `#280046`, mais escura que o roxo `#430A62` da paleta, que veio dos PDFs
+vetoriais. A interface segue na paleta; se a cliente quiser alinhar os dois, o ajuste é em
+`src/index.css`, `tailwind.config.ts` e nos tokens equivalentes do CRM e do dashboard.
 
 ## O que ainda falta para publicar
 
 1. **WhatsApp** — `public/brand/config.js` está com `5585999625722`, assumido a partir de
    "+55 85 9962-5722". Confirmar o número antes de subir; sem WhatsApp válido o formulário não envia lead.
-2. **Logo real** — substituir os dois SVGs pelo arquivo oficial.
+2. **Favicon** — hoje aponta para `logo.webp`. Um favicon dedicado, quadrado e em `.png` ou
+   `.ico`, renderiza melhor na aba e em atalhos de celular.
 3. **Fotos** — ver `PHOTO_CREDITS.md`. Escritório e depoimentos estão com placeholder marcado.
 4. **Faixas de investimento** — as opções da etapa 5 do formulário (`src/components/StepForm.tsx`)
    são provisórias. Confirmar com a Anastacia.
