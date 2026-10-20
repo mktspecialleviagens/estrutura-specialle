@@ -8,8 +8,8 @@ Extraída do logo oficial (`Versões RGB do Logo.pdf` e `Adesivo.pdf` entregues 
 
 | Token | Hex | Uso |
 | --- | --- | --- |
-| `--specialle-purple` | `#430A62` | Cor principal: títulos, botões, faixa de destinos |
-| `--specialle-purple-dark` | `#2C0640` | Fundos escuros: hero, header, formulário, rodapé |
+| `--specialle-purple` | `#280046` | Cor principal: títulos, botões, faixa de destinos |
+| `--specialle-purple-dark` | `#1A002E` | Fundos escuros: hero, header, formulário, rodapé |
 | `--specialle-violet` | `#6E3B96` | Tom médio: hovers, ícones, destaques de texto |
 | `--specialle-lilac` | `#C9A6E0` | Acento sobre fundo escuro: eyebrows, CTA do hero |
 | `--secondary` | `#F4F0F7` | Creme lilás para fundos de seção |
@@ -34,9 +34,10 @@ que usam o filtro são o topo e o rodapé da landing, a barra lateral do CRM, a 
 dashboard, o topo e o rodapé da loja e do blog, e a página pública de proposta. O único ponto
 sem filtro é a barra superior do dashboard, que tem fundo claro.
 
-A tinta do logo é `#280046`, mais escura que o roxo `#430A62` da paleta, que veio dos PDFs
-vetoriais. A interface segue na paleta; se a cliente quiser alinhar os dois, o ajuste é em
-`src/index.css`, `tailwind.config.ts` e nos tokens equivalentes do CRM e do dashboard.
+A paleta é ancorada na tinta do próprio logo, `#280046`, medida no arquivo entregue pela cliente.
+Os PDFs vetoriais traziam `#430A62`, um roxo mais claro, que foi descartado em favor do arquivo
+final. A rampa escura desce a partir do logo: `#280046` para a cor principal, `#1A002E` para os
+fundos escuros e `#120020` para os overlays mais profundos.
 
 ## O que ainda falta para publicar
 

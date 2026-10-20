@@ -120,13 +120,13 @@ export async function onRequest({ params, env, request }) {
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--amber:#430A62;--teal:#6E3B96;--dark:#231F20;--gray:#5A5A5A;--light:#FFFFFF;--border:#E8E0F0}
+    :root{--amber:#280046;--teal:#6E3B96;--dark:#231F20;--gray:#5A5A5A;--light:#FFFFFF;--border:#E8E0F0}
     body{font-family:'Montserrat',sans-serif;color:var(--dark);background:#fff;line-height:1.6}
     a{color:inherit;text-decoration:none}
     img{max-width:100%;height:auto;display:block}
 
     /* NAV */
-    .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(42,26,62,.97);backdrop-filter:blur(8px)}
+    .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(34,9,58,.97);backdrop-filter:blur(8px)}
     .nav-logo{height:40px;width:auto;object-fit:contain;filter:none}
     .nav-links{display:flex;align-items:center;gap:2rem}
     .nav-links a{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#fff;opacity:.8;transition:opacity .2s}
@@ -138,7 +138,7 @@ export async function onRequest({ params, env, request }) {
     /* HERO */
     .hero{position:relative;height:70vh;min-height:480px;display:flex;align-items:flex-end;padding-bottom:3rem}
     .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-    .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(42,26,62,.92) 0%,rgba(42,26,62,.35) 55%,rgba(42,26,62,.1) 100%)}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(34,9,58,.92) 0%,rgba(34,9,58,.35) 55%,rgba(34,9,58,.1) 100%)}
     .hero-content{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:0 1.5rem;width:100%;color:#fff}
     .hero-breadcrumb{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;opacity:.7;margin-bottom:1rem}
     .hero-breadcrumb a:hover{color:var(--amber)}
@@ -183,12 +183,12 @@ export async function onRequest({ params, env, request }) {
 
     /* LEAD CTA */
     .lead-cta{max-width:1100px;margin:3rem auto;padding:0 1.5rem}
-    .lead-cta-inner{background:linear-gradient(135deg,#430A62 0%,#3D1F5C 60%,#33184A 100%);border-radius:1rem;padding:2.5rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;border-left:5px solid var(--teal)}
+    .lead-cta-inner{background:linear-gradient(135deg,#280046 0%,#3D1F5C 60%,#2B0D44 100%);border-radius:1rem;padding:2.5rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;border-left:5px solid var(--teal)}
     .lead-cta-eyebrow{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:.5rem}
     .lead-cta-title{font-family:'Montserrat',serif;font-size:1.625rem;color:#fff;line-height:1.25;margin-bottom:.75rem}
     .lead-cta-sub{font-size:.875rem;color:rgba(255,255,255,.65);line-height:1.7;max-width:480px}
     .lead-cta-btn{flex-shrink:0;display:inline-block;background:var(--amber);color:#fff;font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;padding:.875rem 2rem;border-radius:.5rem;transition:background .2s;white-space:nowrap}
-    .lead-cta-btn:hover{background:#430A62}
+    .lead-cta-btn:hover{background:#280046}
     @media(max-width:640px){.lead-cta-inner{flex-direction:column}.lead-cta-btn{width:100%;text-align:center}}
 
     /* RELATED */
@@ -205,7 +205,7 @@ export async function onRequest({ params, env, request }) {
     .related-info h3{font-family:'Montserrat',serif;font-size:1rem;color:var(--dark);line-height:1.4}
 
     /* FOOTER */
-    .footer{background:linear-gradient(135deg,#430A62 0%,#33184A 100%);color:rgba(255,255,255,.45);padding:3rem 1.5rem;text-align:center;margin-top:4rem}
+    .footer{background:linear-gradient(135deg,#280046 0%,#2B0D44 100%);color:rgba(255,255,255,.45);padding:3rem 1.5rem;text-align:center;margin-top:4rem}
     .footer img{height:44px;filter:none;opacity:.7;margin:0 auto 1rem}
     .footer p{font-size:.8rem}
     .footer a{color:var(--amber);margin:0 .75rem}
@@ -309,7 +309,7 @@ function notFoundHtml() {
   return `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Artigo n&atilde;o encontrado | Specialle Viagens</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <style>body{font-family:Montserrat,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;background:#F4F0F7}
-  .box{text-align:center}.box h1{font-family:'Montserrat',serif;font-size:2rem;margin-bottom:1rem;color:#430A62}
-  .box a{color:#430A62;font-weight:600}</style></head>
+  .box{text-align:center}.box h1{font-family:'Montserrat',serif;font-size:2rem;margin-bottom:1rem;color:#280046}
+  .box a{color:#280046;font-weight:600}</style></head>
   <body><div class="box"><h1>Artigo n&atilde;o encontrado</h1><p><a href="/loja/blog">&larr; Voltar ao Blog</a></p></div></body></html>`;
 }

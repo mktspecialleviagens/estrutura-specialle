@@ -17,7 +17,7 @@ const HowItWorksSection = () => {
       <div className="container max-w-[1100px]">
         <div className="max-w-[820px] mb-10">
           <span className="eyebrow text-specialle-purple mb-5 block">O processo</span>
-          <h2 className="leading-[1.1] mb-4 text-[#430A62]" style={{ fontSize: "clamp(26px, 4.5vw, 52px)", fontWeight: 600 }}>
+          <h2 className="leading-[1.1] mb-4 text-[#280046]" style={{ fontSize: "clamp(26px, 4.5vw, 52px)", fontWeight: 600 }}>
             Como a gente <span className="font-light text-specialle-violet">trabalha</span>
           </h2>
           <p className="font-light text-foreground/72" style={{ fontSize: "17px", lineHeight: 1.7 }}>
@@ -40,7 +40,7 @@ const StepCard = ({ step, index }: { step: typeof steps[number]; index: number }
       ref={ref}
       className={`reveal ${visible ? "is-visible" : ""} relative p-8 md:p-10 group transition-all duration-300 overflow-hidden`}
       style={{
-        background: "linear-gradient(160deg, #430A62 0%, #6E3B96 100%)",
+        background: "linear-gradient(160deg, #280046 0%, #6E3B96 100%)",
         transitionDelay: `${index * 100}ms`,
       }}
     >

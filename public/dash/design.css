@@ -8,7 +8,7 @@ button,a { touch-action:manipulation; }
 .hidden { display:none!important; }
 .eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; }
 #app { padding:24px; max-width:1600px; margin:auto; }
-#app header { top:16px; background:rgba(255,255,255,.94); border:1px solid #fff; border-radius:24px; box-shadow:0 8px 32px #430A6208; backdrop-filter:blur(18px); }
+#app header { top:16px; background:rgba(255,255,255,.94); border:1px solid #fff; border-radius:24px; box-shadow:0 8px 32px #28004608; backdrop-filter:blur(18px); }
 .topbar { min-height:80px; display:flex; align-items:center; justify-content:space-between; gap:24px; padding:16px 26px; }
 .brand { display:flex; align-items:center; gap:18px; }
 .brand img { width:108px; height:44px; object-fit:contain; filter:none; }
@@ -16,7 +16,7 @@ button,a { touch-action:manipulation; }
 .brand-caption strong { display:block; color:var(--ink-soft); font-size:13px; }
 .dashboard-nav { display:flex; padding:5px; gap:4px; background:var(--bg); border-radius:999px; }
 .dashboard-nav a { padding:10px 20px; border-radius:999px; font-size:13px; font-weight:700; color:var(--ink-soft); text-decoration:none; }
-.dashboard-nav a.active { background:var(--purple); color:#fff; box-shadow:0 4px 12px #430A6224; }
+.dashboard-nav a.active { background:var(--purple); color:#fff; box-shadow:0 4px 12px #28004624; }
 .dashboard-nav a:hover:not(.active) { background:var(--purple-soft); color:var(--purple); }
 .profile { display:flex; align-items:center; gap:10px; font-size:12px; color:var(--ink-mute); }
 .avatar { width:40px; height:40px; display:grid; place-items:center; background:var(--cream-soft); color:var(--purple); border:1px solid var(--cream); border-radius:50%; font-weight:700; }
@@ -38,8 +38,8 @@ button,a { touch-action:manipulation; }
 .date-input { color:var(--ink-soft); background:white; border:1px solid var(--border); color-scheme:light; min-height:42px; width:145px; border-radius:12px; padding:8px 10px; font-size:12px; }
 .date-input::-webkit-calendar-picker-indicator { filter:none; }
 #date-apply { background:var(--purple); color:white; border-radius:12px; }
-.card { border-radius:24px; border:1px solid #E2D9EA80; box-shadow:0 4px 24px #430A6203; min-width:0; }
-.card-hover:hover { box-shadow:0 12px 32px #430A620d; transform:translateY(-3px); }
+.card { border-radius:24px; border:1px solid #E2D9EA80; box-shadow:0 4px 24px #28004603; min-width:0; }
+.card-hover:hover { box-shadow:0 12px 32px #2800460d; transform:translateY(-3px); }
 .metrics { gap:16px; }
 .metrics .card { border-top:0!important; padding:24px; position:relative; overflow:hidden; }
 .metrics .card::before { content:''; display:block; width:26px; height:4px; border-radius:9px; background:var(--teal); margin-bottom:22px; }
@@ -63,7 +63,7 @@ button,a { touch-action:manipulation; }
 .funnel-connector { flex-wrap:wrap; padding:20px 8px; font-size:12px; }
 #utm-tabs { border:0; margin:0 0 24px; padding:5px; background:var(--bg); border-radius:14px; width:fit-content; max-width:100%; gap:4px; }
 .tab { border:0; border-radius:10px; padding:9px 18px; min-height:40px; }
-.tab.active { background:white; color:var(--purple); box-shadow:0 2px 8px #430A620a; }
+.tab.active { background:white; color:var(--purple); box-shadow:0 2px 8px #2800460a; }
 table { border-collapse:collapse; }
 th { font-size:10px!important; letter-spacing:.08em!important; white-space:nowrap; }
 td { border-bottom:1px solid #f3eff5; max-width:260px; overflow-wrap:anywhere; }
@@ -116,8 +116,8 @@ td { border-bottom:1px solid #f3eff5; max-width:260px; overflow-wrap:anywhere; }
 .dash-logout { margin-left:12px; padding:8px 15px; border-radius:999px; border:1px solid var(--border);
   background:#fff; color:var(--purple); font-size:12px; font-weight:700; font-family:'Montserrat',sans-serif;
   cursor:pointer; white-space:nowrap; transition:background .2s,color .2s,border-color .2s,box-shadow .2s; }
-.dash-logout:hover { background:var(--purple); color:#fff; border-color:var(--purple); box-shadow:0 6px 16px rgba(67,10,98,.28); }
+.dash-logout:hover { background:var(--purple); color:#fff; border-color:var(--purple); box-shadow:0 6px 16px rgba(40,0,70,.28); }
 
 /* ── legenda do gráfico dual ── */
 .dot-teal   { background:#0E9AA7!important; }
-.dot-purple { background:#430A62!important; }
+.dot-purple { background:#280046!important; }

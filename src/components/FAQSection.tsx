@@ -28,13 +28,13 @@ const FAQSection = () => (
     <div className="container max-w-[1000px] grid md:grid-cols-[0.8fr_1.2fr] gap-10 md:gap-20">
       <div>
         <span className="eyebrow text-specialle-violet block mb-4">Antes de falar com a gente</span>
-        <h2 className="text-[#430A62] text-[clamp(1.9rem,4vw,3.2rem)] leading-[1.1]" style={{ fontWeight: 600 }}>Dúvidas frequentes</h2>
+        <h2 className="text-[#280046] text-[clamp(1.9rem,4vw,3.2rem)] leading-[1.1]" style={{ fontWeight: 600 }}>Dúvidas frequentes</h2>
         <p className="text-[#231F20]/70 font-light leading-relaxed mt-5">O que mais perguntam para a nossa equipe antes de fechar uma viagem.</p>
       </div>
-      <div className="border-t border-[#430A62]/15">
+      <div className="border-t border-[#280046]/15">
         {questions.map(({ question, answer }) => (
-          <details key={question} className="group border-b border-[#430A62]/15">
-            <summary className="flex items-center justify-between gap-4 py-5 cursor-pointer text-[#430A62] list-none [&::-webkit-details-marker]:hidden">
+          <details key={question} className="group border-b border-[#280046]/15">
+            <summary className="flex items-center justify-between gap-4 py-5 cursor-pointer text-[#280046] list-none [&::-webkit-details-marker]:hidden">
               <span className="text-[16px] md:text-[17px] font-semibold leading-snug">{question}</span>
               <Plus size={19} className="shrink-0 text-specialle-violet transition-transform group-open:rotate-45" aria-hidden="true" />
             </summary>

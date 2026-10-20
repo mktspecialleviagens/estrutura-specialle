@@ -25,7 +25,7 @@ const HeroSection = () => {
   const scrollToDestinations = () => document.getElementById("destinos")?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <section id="hero" className="relative isolate flex min-h-[760px] flex-col justify-end overflow-hidden bg-[#2C0640] text-white lg:min-h-screen">
+    <section id="hero" className="relative isolate flex min-h-[760px] flex-col justify-end overflow-hidden bg-[#1A002E] text-white lg:min-h-screen">
       <div className="absolute inset-0" aria-hidden="true">
         {scenes.map((scene, index) => (
           <img
@@ -38,8 +38,8 @@ const HeroSection = () => {
             className={`hero-scene absolute inset-0 h-full w-full object-cover ${active === index ? "is-active" : ""}`}
           />
         ))}
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(28,4,42,.9)_0%,rgba(28,4,42,.6)_48%,rgba(28,4,42,.2)_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(28,4,42,.8)_0%,transparent_31%,transparent_68%,rgba(28,4,42,.26)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(18,0,32,.9)_0%,rgba(18,0,32,.6)_48%,rgba(18,0,32,.2)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(18,0,32,.8)_0%,transparent_31%,transparent_68%,rgba(18,0,32,.26)_100%)]" />
         <div className="hero-grain absolute inset-0 opacity-[.13]" />
       </div>
 
@@ -58,7 +58,7 @@ const HeroSection = () => {
               Há 29 anos a Specialle organiza viagens internacionais para quem quer aproveitar e <strong className="font-semibold text-white">não quer administrar nada.</strong> Passagem, hospedagem, traslados, passeios, guia que fala português e acompanhamento direto com a nossa equipe enquanto você estiver fora.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-5">
-              <button onClick={scrollToForm} className="group inline-flex min-h-14 items-center justify-center gap-5 rounded-md bg-[#C9A6E0] px-6 py-4 text-[12px] font-bold uppercase tracking-[.13em] text-[#2C0640] transition-colors hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
+              <button onClick={scrollToForm} className="group inline-flex min-h-14 items-center justify-center gap-5 rounded-md bg-[#C9A6E0] px-6 py-4 text-[12px] font-bold uppercase tracking-[.13em] text-[#1A002E] transition-colors hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
                 Quero falar sobre a minha viagem
                 <ArrowUpRight size={19} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
               </button>

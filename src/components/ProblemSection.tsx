@@ -12,7 +12,7 @@ const ProblemSection = () => {
       <div className="container max-w-[1100px]">
         <div className="max-w-[860px]">
           <span className="eyebrow text-specialle-purple mb-5 block">Antes de começar</span>
-          <h2 className="leading-[1.1] mb-7 text-[#430A62]" style={{ fontSize: "clamp(26px, 4.5vw, 52px)", fontWeight: 600 }}>
+          <h2 className="leading-[1.1] mb-7 text-[#280046]" style={{ fontSize: "clamp(26px, 4.5vw, 52px)", fontWeight: 600 }}>
             Planejar uma viagem internacional dá{" "}
             <span className="font-light text-specialle-violet">mais trabalho do que parece</span>
           </h2>
@@ -32,7 +32,7 @@ const ProblemSection = () => {
 
           <div
             className="p-8 md:p-10 rounded-lg"
-            style={{ background: "linear-gradient(135deg, #430A62, #6E3B96)", border: "1px solid rgba(201,166,224,0.22)" }}
+            style={{ background: "linear-gradient(135deg, #280046, #6E3B96)", border: "1px solid rgba(201,166,224,0.22)" }}
           >
             <div className="h-[2px] w-10 mb-5" style={{ background: "#C9A6E0" }} />
             <p className="text-white font-light" style={{ fontSize: "clamp(18px, 2.6vw, 24px)", lineHeight: 1.5 }}>

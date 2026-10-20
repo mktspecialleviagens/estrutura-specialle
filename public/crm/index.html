@@ -19,19 +19,19 @@
 
 :root {
   /* ── paleta Specialle, extraída do logo oficial ── */
-  --purple:      #430A62;
-  --purple-dark: #2C0640;
+  --purple:      #280046;
+  --purple-dark: #1A002E;
   --purple-soft: #F4F0F7;
   --teal:        #6E3B96;
-  --teal-dark:   #552C75;
+  --teal-dark:   #4E2375;
   --teal-soft:   #EDE3F4;
   --cream:       #F4F0F7;
   --cream-soft:  #FAF7FC;
   --ink:         #231F20;
   --ink-soft:    #4a4546;
   --ink-mute:    #8a8589;
-  --grad:        linear-gradient(135deg, #430A62 0%, #6E3B96 100%);
-  --grad-h:      linear-gradient(135deg, #430A62 0%, #552C75 100%);
+  --grad:        linear-gradient(135deg, #280046 0%, #6E3B96 100%);
+  --grad-h:      linear-gradient(135deg, #280046 0%, #4E2375 100%);
   --green:       #0f7d55;
   --green-soft:  #e6f7f0;
   --amber-col:   #d97706;
@@ -41,11 +41,11 @@
   --blue-col:    #2d6eb5;
 
   /* ── aliases usados no HTML existente ── */
-  --primary:     #430A62;
-  --primary-d:   #2C0640;
+  --primary:     #280046;
+  --primary-d:   #1A002E;
   --primary-l:   #9B6FBD;
-  --accent:      #430A62;
-  --accent-d:    #2C0640;
+  --accent:      #280046;
+  --accent-d:    #1A002E;
   --bg:          #F4F0F7;
   --card:        #ffffff;
   --card-2:      #FAF7FC;
@@ -54,7 +54,7 @@
   --border:      #E2D9EA;
   --line:        #E2D9EA;
   --line-strong: #CFC0DC;
-  --surface-hi:  rgba(67,10,98,.05);
+  --surface-hi:  rgba(40,0,70,.05);
   --green:       #0f7d55;
   --amber:       #6E3B96;
   --red:         #c0392b;
@@ -70,11 +70,11 @@
   --r-full: 999px;
 
   /* ── sombras (light) ── */
-  --sh:    0 1px 3px rgba(67,10,98,.08), 0 4px 16px rgba(67,10,98,.06);
-  --sh-md: 0 2px 8px rgba(67,10,98,.10), 0 10px 32px rgba(67,10,98,.08);
-  --sh-lg: 0 8px 24px rgba(67,10,98,.14), 0 24px 64px rgba(67,10,98,.10);
-  --ring:  0 0 0 3px rgba(67,10,98,.20);
-  --glow:  0 0 24px rgba(67,10,98,.10);
+  --sh:    0 1px 3px rgba(40,0,70,.08), 0 4px 16px rgba(40,0,70,.06);
+  --sh-md: 0 2px 8px rgba(40,0,70,.10), 0 10px 32px rgba(40,0,70,.08);
+  --sh-lg: 0 8px 24px rgba(40,0,70,.14), 0 24px 64px rgba(40,0,70,.10);
+  --ring:  0 0 0 3px rgba(40,0,70,.20);
+  --glow:  0 0 24px rgba(40,0,70,.10);
 
   /* ── motion ── */
   --tr-fast: .14s cubic-bezier(.4,0,.2,1);
@@ -95,7 +95,7 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 999px; }
 ::-webkit-scrollbar-thumb:hover { background: #c8bede; }
 
-::selection { background: rgba(67,10,98,.20); }
+::selection { background: rgba(40,0,70,.20); }
 
 .hidden { display: none; }
 
@@ -116,8 +116,8 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 /* scrim para legibilidade — leve tom da marca */
 .login-scrim { position:absolute; inset:0; z-index:1; pointer-events:none;
   background:
-    linear-gradient(100deg, rgba(28,4,42,.82) 0%, rgba(28,4,42,.50) 42%, rgba(67,10,98,.26) 100%),
-    linear-gradient(0deg, rgba(28,4,42,.58) 0%, rgba(28,4,42,0) 34%); }
+    linear-gradient(100deg, rgba(18,0,32,.82) 0%, rgba(18,0,32,.50) 42%, rgba(40,0,70,.26) 100%),
+    linear-gradient(0deg, rgba(18,0,32,.58) 0%, rgba(18,0,32,0) 34%); }
 
 /* palco */
 .login-stage { position:relative; z-index:2; height:100%; width:100%;
@@ -157,10 +157,10 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 .login-card input:focus { border-color:var(--purple); box-shadow:var(--ring); }
 .login-card button { margin-top:16px; width:100%; padding:16px; background:var(--grad); color:#fff;
   border:none; border-radius:14px; font-size:14.5px; font-weight:700; cursor:pointer;
-  font-family:var(--font-ui); letter-spacing:.4px; box-shadow:0 10px 26px rgba(67,10,98,.32);
+  font-family:var(--font-ui); letter-spacing:.4px; box-shadow:0 10px 26px rgba(40,0,70,.32);
   transition:filter var(--tr-fast), transform var(--tr-fast), box-shadow var(--tr-fast);
   display:inline-flex; align-items:center; justify-content:center; gap:8px; }
-.login-card button:hover { filter:brightness(1.06); box-shadow:0 14px 32px rgba(67,10,98,.4); transform:translateY(-1px); }
+.login-card button:hover { filter:brightness(1.06); box-shadow:0 14px 32px rgba(40,0,70,.4); transform:translateY(-1px); }
 .login-card button:active { transform:translateY(0); }
 .login-err { min-height:18px; font-size:12.5px; color:var(--red-col); margin-top:12px; text-align:center; }
 .login-foot { margin-top:22px; padding-top:20px; border-top:1px solid var(--border);
@@ -189,7 +189,7 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 /* ── sidebar ────────────────────────────────────────────────────────────────── */
 .sidebar { width:var(--sidebar); background:var(--grad); color:#fff;
   display:flex; flex-direction:column; position:fixed; top:0; left:0; height:100vh; z-index:10; overflow:hidden;
-  box-shadow:2px 0 24px rgba(67,10,98,.25); }
+  box-shadow:2px 0 24px rgba(40,0,70,.25); }
 .sb-logo { padding:24px 16px 20px; border-bottom:1px solid rgba(255,255,255,.18); display:flex; flex-direction:column; align-items:center; gap:0; }
 .sb-logo-img { width:112px; display:block; transition:opacity var(--tr); }
 .sb-logo .tag { font-size:9.5px; color:rgba(255,255,255,.65); margin-top:8px; font-family:var(--font-ui); letter-spacing:2.2px; text-transform:uppercase; text-align:center; }
@@ -224,7 +224,7 @@ body.sb-off .main    { margin-left:0; }
 body.sb-sobreposta .main { margin-left:0; }
 
 .sb-backdrop { display:none; position:fixed; inset:0; z-index:9;
-  background:rgba(67,10,98,.45); -webkit-backdrop-filter:blur(2px); backdrop-filter:blur(2px); }
+  background:rgba(40,0,70,.45); -webkit-backdrop-filter:blur(2px); backdrop-filter:blur(2px); }
 body.sb-sobreposta:not(.sb-off) .sb-backdrop { display:block; animation:fadein var(--tr) both; }
 
 .sb-toggle { flex-shrink:0; width:34px; height:34px; display:inline-flex; align-items:center; justify-content:center;
@@ -249,7 +249,7 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
 .main { margin-left:var(--sidebar); flex:1; display:flex; flex-direction:column; min-width:0;
   transition:margin-left var(--tr); }
 .topbar { background:rgba(255,255,255,.85); -webkit-backdrop-filter:saturate(1.15) blur(14px); backdrop-filter:saturate(1.15) blur(14px);
-  border-bottom:1px solid var(--border); box-shadow:0 1px 24px rgba(67,10,98,.05);
+  border-bottom:1px solid var(--border); box-shadow:0 1px 24px rgba(40,0,70,.05);
   padding:20px 36px; display:flex; align-items:center; justify-content:space-between; gap:16px;
   position:sticky; top:0; z-index:5; }
 /* margin-right:auto agrupa botão + título à esquerda e manda as ações pra direita */
@@ -263,8 +263,8 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
   font-family:var(--font-ui); white-space:nowrap; letter-spacing:.25px; }
 .btn:focus-visible { outline:none; box-shadow:var(--ring); }
 .btn:disabled { opacity:.45; cursor:not-allowed; pointer-events:none; }
-.btn-primary { background:var(--grad); color:#fff; box-shadow:0 2px 10px rgba(67,10,98,.28); }
-.btn-primary:hover { filter:brightness(1.06); box-shadow:0 4px 16px rgba(67,10,98,.35); }
+.btn-primary { background:var(--grad); color:#fff; box-shadow:0 2px 10px rgba(40,0,70,.28); }
+.btn-primary:hover { filter:brightness(1.06); box-shadow:0 4px 16px rgba(40,0,70,.35); }
 .btn-primary:active { transform:translateY(1px); filter:brightness(.97); }
 .btn-sm { padding:5px 11px; font-size:11.5px; border-radius:7px; }
 .btn-ghost { background:#fff; color:var(--ink-soft); border:1.5px solid var(--border); font-family:var(--font-body); font-weight:600; }
@@ -277,7 +277,7 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
 /* ── cards ──────────────────────────────────────────────────────────────────── */
 .card { background:var(--card); border:1px solid var(--border);
   border-radius:var(--r); box-shadow:var(--sh); transition:border-color var(--tr), box-shadow var(--tr); }
-.card:hover { border-color:var(--purple); box-shadow:0 8px 32px rgba(67,10,98,.10); }
+.card:hover { border-color:var(--purple); box-shadow:0 8px 32px rgba(40,0,70,.10); }
 .card-p { padding:26px; }
 
 /* ── kpi grid ───────────────────────────────────────────────────────────────── */
@@ -403,7 +403,7 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
 /* auto-fit em vez de 3 colunas fixas: o financeiro passou a ter 4 KPIs */
 .fin-kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(172px,1fr)); gap:14px; margin-bottom:24px; }
 .fin-kpi { background:var(--card); border:1px solid var(--border); border-radius:var(--r); padding:20px 22px; box-shadow:var(--sh); transition:border-color var(--tr), box-shadow var(--tr); }
-.fin-kpi:hover { border-color:var(--purple); box-shadow:0 8px 32px rgba(67,10,98,.10); }
+.fin-kpi:hover { border-color:var(--purple); box-shadow:0 8px 32px rgba(40,0,70,.10); }
 .fin-kpi-label { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.9px; color:var(--ink-mute); font-family:var(--font-ui); margin-bottom:10px; }
 .fin-kpi-value { font-size:26px; font-weight:700; line-height:1; font-family:var(--font-ui); letter-spacing:-.4px; color:var(--ink); }
 .month-nav { display:flex; align-items:center; gap:12px; margin-bottom:18px; }
@@ -457,7 +457,7 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
 .prop-pane { display:none; }
 .prop-pane.active { display:flex; flex-direction:column; gap:13px; animation:rise var(--tr) both; }
 .prop-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
-.prop-tag { display:flex; align-items:center; gap:5px; background:var(--purple-soft); color:var(--purple); border:1px solid rgba(67,10,98,.2); border-radius:var(--r-full); padding:4px 12px; font-size:12px; font-weight:600; }
+.prop-tag { display:flex; align-items:center; gap:5px; background:var(--purple-soft); color:var(--purple); border:1px solid rgba(40,0,70,.2); border-radius:var(--r-full); padding:4px 12px; font-size:12px; font-weight:600; }
 .prop-tag button { background:none; border:none; color:var(--purple); cursor:pointer; font-size:15px; line-height:1; padding:0; opacity:.7; transition:opacity var(--tr-fast); }
 .prop-tag button:hover { opacity:1; }
 .hotel-card, .flight-card, .activity-card, .day-card { background:var(--bg); border-radius:var(--r); border:1px solid var(--border); padding:16px; margin-bottom:10px; display:flex; flex-direction:column; gap:11px; transition:border-color var(--tr); }
@@ -478,7 +478,7 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
 .filter-bar { display:flex; align-items:center; gap:8px; margin-bottom:24px; flex-wrap:wrap; }
 .filter-btn { padding:6px 15px; border-radius:var(--r-full); border:1.5px solid var(--border); background:#fff; color:var(--ink-mute); font-size:12.5px; font-weight:600; cursor:pointer; transition:border-color var(--tr-fast), color var(--tr-fast), background var(--tr-fast); font-family:var(--font-ui); }
 .filter-btn:hover { border-color:var(--purple); color:var(--purple); background:var(--purple-soft); }
-.filter-btn.active { background:var(--grad); border-color:transparent; color:#fff; box-shadow:0 2px 10px rgba(67,10,98,.28); }
+.filter-btn.active { background:var(--grad); border-color:transparent; color:#fff; box-shadow:0 2px 10px rgba(40,0,70,.28); }
 .filter-count { margin-left:auto; font-size:12px; color:var(--ink-mute); font-family:var(--font-ui); }
 /* vencimento + nº de parcelas + valor da parcela cabem em três colunas */
 .row2.row3 { grid-template-columns:1fr 1fr 1fr; }
@@ -492,7 +492,7 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
 .c-card.ativo   { border-top-color:var(--teal); }
 .c-card.inativo { border-top-color:var(--ink-mute); }
 .c-head { display:flex; align-items:center; gap:13px; }
-.c-av { width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:800; color:#fff; flex-shrink:0; font-family:var(--font-ui); box-shadow:0 2px 8px rgba(67,10,98,.3); }
+.c-av { width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:800; color:#fff; flex-shrink:0; font-family:var(--font-ui); box-shadow:0 2px 8px rgba(40,0,70,.3); }
 .c-name-wrap { flex:1; min-width:0; }
 .c-name { font-size:14.5px; font-weight:700; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .c-empresa { font-size:12px; color:var(--ink-mute); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
@@ -565,7 +565,7 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
 .dd-row3 { grid-template-columns:1.5fr 0.85fr 1fr; }
 .dd-row2 { grid-template-columns:1.7fr 1fr; }
 .dd-panel { background:var(--card); border:1px solid var(--border); border-radius:var(--r-lg); padding:24px 26px; box-shadow:var(--sh); transition:border-color var(--tr), box-shadow var(--tr); }
-.dd-panel:hover { border-color:var(--purple); box-shadow:0 8px 32px rgba(67,10,98,.10); }
+.dd-panel:hover { border-color:var(--purple); box-shadow:0 8px 32px rgba(40,0,70,.10); }
 .dd-ph { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:var(--ink-mute); margin-bottom:20px; font-family:var(--font-ui); display:flex; align-items:center; justify-content:space-between; }
 .dd-big-lbl { font-size:10px; color:var(--ink-mute); text-align:center; text-transform:uppercase; letter-spacing:.8px; font-family:var(--font-ui); margin-bottom:10px; }
 .dd-big-num { font-size:36px; font-weight:700; color:var(--purple); font-family:var(--font-ui); line-height:1; text-align:center; letter-spacing:-.03em; }
@@ -2103,7 +2103,7 @@ async function renderDash(el) {
           },
           scales: {
             x: {
-              grid: { color: 'rgba(67,10,98,.08)' },
+              grid: { color: 'rgba(40,0,70,.08)' },
               ticks: { color: '#8a8a8a', font: { size: 11 } },
               border: { color: 'rgba(0,0,0,.06)' }
             },
@@ -2606,7 +2606,7 @@ async function faturaPagarDash(id) {
 // ── RECEITA POR CLIENTE ───────────────────────────────────────────────────────
 // Consolida tudo que cada pessoa já gerou, atravessando meses e fontes. A aba
 // Faturas responde "o que entra neste mês"; esta responde "quanto vale o cliente".
-const CAT_CORES = ['#430A62','#2d6eb5','#0f7d55','#d97706','#c0392b','#6E3B96','#8a8a8a'];
+const CAT_CORES = ['#280046','#2d6eb5','#0f7d55','#d97706','#c0392b','#6E3B96','#8a8a8a'];
 function catCor(nome) {
   const i = CATEGORIAS_RECEITA.indexOf(nome);
   return CAT_CORES[(i >= 0 ? i : String(nome||'').length) % CAT_CORES.length];

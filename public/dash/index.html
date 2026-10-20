@@ -12,11 +12,11 @@
 <style>
   :root {
     /* paleta Specialle, extraída do logo oficial */
-    --purple:      #430A62;
-    --purple-dark: #2C0640;
+    --purple:      #280046;
+    --purple-dark: #1A002E;
     --purple-soft: #F4F0F7;
     --teal:        #6E3B96;
-    --teal-dark:   #552C75;
+    --teal-dark:   #4E2375;
     --teal-soft:   #EDE3F4;
     --cream:       #C9A6E0;
     --cream-soft:  #FAF7FC;
@@ -26,8 +26,8 @@
     --border:      #E2D9EA;
     --surface:     #ffffff;
     --bg:          #F4F0F7;
-    --grad:        linear-gradient(135deg, #430A62 0%, #6E3B96 100%);
-    --grad-h:      linear-gradient(135deg, #430A62 0%, #552C75 100%);
+    --grad:        linear-gradient(135deg, #280046 0%, #6E3B96 100%);
+    --grad-h:      linear-gradient(135deg, #280046 0%, #4E2375 100%);
     --green:       #0f7d55;
     --green-soft:  #e6f7f0;
     --amber:       #d97706;
@@ -48,7 +48,7 @@
   /* Cards */
   .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
   .card-hover { transition: box-shadow .2s, transform .2s; }
-  .card-hover:hover { box-shadow: 0 8px 32px rgba(67,10,98,.10); transform: translateY(-1px); }
+  .card-hover:hover { box-shadow: 0 8px 32px rgba(40,0,70,.10); transform: translateY(-1px); }
 
   /* KPI */
   .kpi-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-mute); }
@@ -573,7 +573,7 @@
       id: 'softGlow',
       beforeDatasetDraw(chart, args) {
         const ds = chart.data.datasets[args.index];
-        chart.ctx.shadowColor = (typeof ds.borderColor === 'string' ? ds.borderColor : '#430A62');
+        chart.ctx.shadowColor = (typeof ds.borderColor === 'string' ? ds.borderColor : '#280046');
         chart.ctx.shadowBlur = 8;
       },
       afterDatasetDraw(chart) { chart.ctx.shadowBlur = 0; },
@@ -602,12 +602,12 @@
           {
             label: 'Leads',
             data: leadCounts,
-            borderColor: '#430A62',
-            backgroundColor: 'rgba(67,10,98,.12)',
+            borderColor: '#280046',
+            backgroundColor: 'rgba(40,0,70,.12)',
             fill: true,
             tension: 0.4,
             pointRadius: leadCounts.map(v => v > 0 ? 4 : 0),
-            pointBackgroundColor: '#430A62',
+            pointBackgroundColor: '#280046',
             pointBorderColor: '#fff',
             pointBorderWidth: 2,
             borderWidth: 2.5,
@@ -677,7 +677,7 @@
         <span style="color:var(--ink-mute);font-weight:400;">${totalLeads > 0 ? `1 lead a cada ${Math.round(totalVisits/totalLeads)} visitas` : ''}</span>
       </div>
       <div>
-        <div class="funnel-bar" style="width:${Math.round(leadPct*100)}%;min-width:120px;max-width:100%;background:linear-gradient(90deg,#430A62,#6E3B96);box-shadow:0 8px 20px rgba(67,10,98,.32);">
+        <div class="funnel-bar" style="width:${Math.round(leadPct*100)}%;min-width:120px;max-width:100%;background:linear-gradient(90deg,#280046,#6E3B96);box-shadow:0 8px 20px rgba(40,0,70,.32);">
           <span style="font-size:.8125rem;">Leads captados</span>
           <span style="font-size:1.25rem;">${fmtInt(totalLeads)}</span>
         </div>

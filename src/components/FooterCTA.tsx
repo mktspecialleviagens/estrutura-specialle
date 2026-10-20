@@ -2,7 +2,7 @@ const CONTACT_LINK = "/#formulario";
 
 const FooterCTA = () => {
   return (
-    <footer style={{ background: "#2C0640" }}>
+    <footer style={{ background: "#1A002E" }}>
       <div className="container flex flex-col md:flex-row items-center justify-between gap-5 py-10">
         <img
           src="/brand/logo.webp"

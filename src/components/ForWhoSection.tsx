@@ -19,7 +19,7 @@ const ForWhoSection = () => {
       <div className="container max-w-[1100px]">
         <div className="mb-10 max-w-[760px] md:mb-14">
           <span className="eyebrow text-specialle-purple mb-5 block">O filtro</span>
-          <h2 className="leading-[1.1] text-[#430A62]" style={{ fontSize: "clamp(26px, 4.5vw, 52px)", fontWeight: 600 }}>
+          <h2 className="leading-[1.1] text-[#280046]" style={{ fontSize: "clamp(26px, 4.5vw, 52px)", fontWeight: 600 }}>
             Para quem a Specialle <span className="font-light text-specialle-violet">funciona</span>
           </h2>
         </div>
@@ -31,7 +31,7 @@ const ForWhoSection = () => {
               {forYou.map((t) => (
                 <li key={t} className="flex gap-3 items-start">
                   <span className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5"
-                        style={{ background: "linear-gradient(135deg, #430A62, #6E3B96)" }}>
+                        style={{ background: "linear-gradient(135deg, #280046, #6E3B96)" }}>
                     <Check size={14} className="text-white" strokeWidth={3} />
                   </span>
                   <span className="text-[16px] text-foreground/85 leading-relaxed">{t}</span>

@@ -21,11 +21,11 @@ const TestimonialsSection = () => {
       <div className="container max-w-[1200px]">
         <div className="max-w-[760px] mb-12 md:mb-16">
           <span className="eyebrow text-specialle-purple mb-5 block">Quem já viajou com a gente</span>
-          <h2 className="leading-[1.1] text-[#430A62]" style={{ fontSize: "clamp(26px, 4.5vw, 52px)", fontWeight: 600 }}>
+          <h2 className="leading-[1.1] text-[#280046]" style={{ fontSize: "clamp(26px, 4.5vw, 52px)", fontWeight: 600 }}>
             O que dizem os <span className="font-light text-specialle-violet">nossos clientes</span>
           </h2>
           {pending && (
-            <p className="mt-6 rounded-md border border-dashed border-specialle-violet/50 bg-white px-5 py-4 text-[14px] leading-relaxed text-[#430A62]">
+            <p className="mt-6 rounded-md border border-dashed border-specialle-violet/50 bg-white px-5 py-4 text-[14px] leading-relaxed text-[#280046]">
               <strong className="font-semibold">Bloco pendente.</strong> Substituir pelos três depoimentos
               reais, com nome, destino, ano e autorização para publicar. Fotos dos clientes no destino são opcionais.
             </p>
@@ -53,7 +53,7 @@ const TestimonialCard = ({ depoimento, index }: { depoimento: typeof depoimentos
         {depoimento.texto}
       </blockquote>
       <figcaption className="mt-7 border-t border-border pt-5">
-        <span className={`block text-[15px] font-semibold ${pending ? "text-foreground/45" : "text-[#430A62]"}`}>{depoimento.nome}</span>
+        <span className={`block text-[15px] font-semibold ${pending ? "text-foreground/45" : "text-[#280046]"}`}>{depoimento.nome}</span>
         <span className="mt-1 block text-[13px] text-foreground/60">{depoimento.destino} · {depoimento.ano}</span>
       </figcaption>
     </figure>

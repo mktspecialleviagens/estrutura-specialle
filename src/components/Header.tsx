@@ -29,7 +29,7 @@ const Header = () => {
         scrolled ? "py-3 shadow-lg" : "py-5"
       }`}
       style={{
-        background: scrolled ? "rgba(44,6,64, 0.9)" : "rgba(44,6,64, 0.55)",
+        background: scrolled ? "rgba(26,0,46, 0.9)" : "rgba(26,0,46, 0.55)",
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
       }}

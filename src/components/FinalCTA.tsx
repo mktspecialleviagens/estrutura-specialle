@@ -3,7 +3,7 @@ import ctaImg from "@/assets/cta-lisboa.jpg";
 const FinalCTA = () => {
   const scrollToForm = () => document.getElementById("formulario")?.scrollIntoView({ behavior: "smooth" });
   return (
-    <section className="relative overflow-hidden section-padding bg-[#2C0640]">
+    <section className="relative overflow-hidden section-padding bg-[#1A002E]">
       <img
         src={ctaImg}
         alt=""
@@ -13,7 +13,7 @@ const FinalCTA = () => {
       />
       <div
         className="absolute inset-0"
-        style={{ background: "linear-gradient(90deg, rgba(44,6,64,0.88), rgba(67,10,98,0.74))" }}
+        style={{ background: "linear-gradient(90deg, rgba(26,0,46,0.88), rgba(40,0,70,0.74))" }}
       />
       {/* Decorative concentric circles */}
       <div className="absolute -top-32 -right-32 pointer-events-none" aria-hidden>

@@ -11,7 +11,7 @@ const AboutSection = () => (
           className="w-full aspect-[4/4.2] object-cover rounded-[5px] md:aspect-[4/5]"
           loading="lazy"
         />
-        <span className="absolute left-4 top-4 rounded-sm bg-[#430A62] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-white">
+        <span className="absolute left-4 top-4 rounded-sm bg-[#280046] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-white">
           Foto provisória
         </span>
         <figcaption className="text-xs tracking-[0.12em] uppercase text-foreground/60 mt-4">
@@ -20,7 +20,7 @@ const AboutSection = () => (
       </figure>
       <div className="min-w-0">
         <span className="eyebrow text-specialle-violet mb-6 block">Quem está por trás</span>
-        <h2 className="max-w-[560px] leading-[1.06] text-[#430A62] [text-wrap:balance]" style={{ fontSize: "clamp(28px, 4.5vw, 54px)", fontWeight: 600 }}>
+        <h2 className="max-w-[560px] leading-[1.06] text-[#280046] [text-wrap:balance]" style={{ fontSize: "clamp(28px, 4.5vw, 54px)", fontWeight: 600 }}>
           29 anos <span className="font-light text-specialle-violet">organizando viagens</span>
         </h2>
         <div className="mt-8 space-y-5 border-l border-specialle-lilac pl-5 text-[16px] font-light leading-[1.8] text-foreground/80 md:pl-7">

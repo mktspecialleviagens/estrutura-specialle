@@ -32,7 +32,7 @@ const SolutionSection = () => {
         <div className="mb-12 grid items-end gap-6 md:mb-16 md:grid-cols-[minmax(0,1fr)_minmax(0,330px)] md:gap-12">
           <div>
             <span className="eyebrow text-specialle-purple mb-5 block">Como a Specialle resolve</span>
-            <h2 className="max-w-[820px] leading-[1.08] text-[#430A62] [text-wrap:balance]" style={{ fontSize: "clamp(26px, 4.2vw, 48px)", fontWeight: 600 }}>
+            <h2 className="max-w-[820px] leading-[1.08] text-[#280046] [text-wrap:balance]" style={{ fontSize: "clamp(26px, 4.2vw, 48px)", fontWeight: 600 }}>
               A Specialle organiza a viagem inteira e{" "}
               <span className="font-light text-specialle-violet">continua do seu lado enquanto você estiver fora</span>
             </h2>
@@ -46,14 +46,14 @@ const SolutionSection = () => {
           {items.map(({ icon: Icon, title, text }, index) => (
             <li
               key={title}
-              className="flex min-w-0 flex-col gap-7 rounded-[5px] border border-[#430A62]/10 bg-white p-6 transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_-28px_rgba(67,10,98,.5)] md:min-h-[280px]"
+              className="flex min-w-0 flex-col gap-7 rounded-[5px] border border-[#280046]/10 bg-white p-6 transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_-28px_rgba(40,0,70,.5)] md:min-h-[280px]"
             >
               <div className="flex items-start justify-between gap-4">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#430A62]/20 text-[#430A62]" aria-hidden="true"><Icon size={21} strokeWidth={1.6} /></span>
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#280046]/20 text-[#280046]" aria-hidden="true"><Icon size={21} strokeWidth={1.6} /></span>
                 <span className="text-[11px] font-bold tracking-[.17em] text-specialle-violet">0{index + 1}</span>
               </div>
               <div>
-                <h3 className="text-[19px] font-semibold leading-snug text-[#430A62]">{title}</h3>
+                <h3 className="text-[19px] font-semibold leading-snug text-[#280046]">{title}</h3>
                 <p className="mt-3 text-[15px] font-light leading-[1.65] text-[#231F20]/75">{text}</p>
               </div>
             </li>
@@ -64,7 +64,7 @@ const SolutionSection = () => {
           <button onClick={scrollToForm} className="btn-brand">
             Quero falar sobre a minha viagem →
           </button>
-          <p className="mt-3 text-[13px] tracking-wide" style={{ color: "#430A62" }}>
+          <p className="mt-3 text-[13px] tracking-wide" style={{ color: "#280046" }}>
             Atendimento por WhatsApp ou presencial, na Washington Soares.
           </p>
         </div>

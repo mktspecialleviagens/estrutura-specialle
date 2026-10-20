@@ -29,7 +29,7 @@ const destinations = [
 ];
 
 const DestinationsGrid = () => (
-  <section id="destinos" className="section-padding overflow-hidden bg-[#2C0640] text-white">
+  <section id="destinos" className="section-padding overflow-hidden bg-[#1A002E] text-white">
     <div className="container max-w-[1200px]">
       <div className="mb-10 grid items-end gap-6 md:mb-14 md:grid-cols-[minmax(0,1fr)_minmax(0,340px)] md:gap-12">
         <div>
@@ -68,7 +68,7 @@ const DestinationCard = ({ destination, index }: { destination: typeof destinati
       style={{ transitionDelay: `${index * 75}ms` }}
     >
       <img src={destination.img} alt={destination.alt} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-[transform,filter] duration-700 ease-out group-hover:scale-[1.055] group-hover:saturate-[1.15] motion-reduce:transition-none" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#1C042A]/92 via-[#1C042A]/25 to-[#1C042A]/5 transition-colors duration-500 group-hover:from-[#1C042A]/95" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#120020]/92 via-[#120020]/25 to-[#120020]/5 transition-colors duration-500 group-hover:from-[#120020]/95" />
       <div className="absolute inset-4 border border-white/25 transition-all duration-500 group-hover:inset-5 group-hover:border-[#C9A6E0]/70 motion-reduce:transition-none" aria-hidden="true" />
       <div className="absolute left-8 top-8 flex items-center gap-2 text-[11px] font-bold tracking-[.16em] text-white/85">
         <span className="text-[#D9BCEC]">0{index + 1}</span>
@@ -80,7 +80,7 @@ const DestinationCard = ({ destination, index }: { destination: typeof destinati
           <h3 className="text-[clamp(1.6rem,2.4vw,2.4rem)] font-semibold leading-tight text-white">{destination.name}</h3>
           <p className="mt-2 max-w-[420px] text-[13px] font-light leading-relaxed text-white/85">{destination.detail}</p>
         </div>
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/60 text-white transition-colors group-hover:border-[#C9A6E0] group-hover:bg-[#C9A6E0] group-hover:text-[#2C0640]" aria-hidden="true">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/60 text-white transition-colors group-hover:border-[#C9A6E0] group-hover:bg-[#C9A6E0] group-hover:text-[#1A002E]" aria-hidden="true">
           <ArrowUpRight size={18} />
         </span>
       </div>
