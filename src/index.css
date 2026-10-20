@@ -92,6 +92,15 @@
 @layer components {
   .section-padding { @apply px-5 py-20 md:px-8 md:py-28 lg:px-16 lg:py-32; }
 
+  /* O gutter horizontal é responsabilidade da seção. Sem esta regra o .container do
+     Tailwind soma os próprios 20px e o conteúdo fica a 40px da borda, o dobro do
+     respiro do topo e do rodapé, que não usam .section-padding. */
+  .section-padding .container,
+  #formulario .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   .hero-scene {
     opacity: 0;
     transform: scale(1.055);
@@ -144,6 +153,8 @@
     font-size: 13px;
     letter-spacing: 0.08em;
     font-family: 'Montserrat', system-ui, sans-serif;
+    max-width: 100%;
+    text-align: center;
   }
   .btn-brand:hover {
     background-color: #6E3B96;
@@ -159,10 +170,22 @@
     padding: 18px 28px;
     font-size: 13px;
     letter-spacing: 0.08em;
-    white-space: nowrap;
     font-family: 'Montserrat', system-ui, sans-serif;
+    max-width: 100%;
+    text-align: center;
   }
   .btn-on-gradient:hover { background: #F4F0F7; color: #280046; }
+
+  /* Em telas estreitas os botões ocupam a largura do gutter em vez de estourar a margem. */
+  @media (max-width: 480px) {
+    .btn-brand,
+    .btn-on-gradient {
+      width: 100%;
+      padding-left: 20px;
+      padding-right: 20px;
+      letter-spacing: 0.05em;
+    }
+  }
 
   .glass-card {
     background: rgba(255, 255, 255, 0.04);

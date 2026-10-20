@@ -22,10 +22,10 @@ const FooterCTA = () => {
       </div>
 
       <div
-        className="border-t border-white/10 py-4"
+        className="border-t border-white/10 px-5 py-4"
         style={{ background: "rgba(0,0,0,.18)" }}
       >
-        <p className="text-center text-[12px]" style={{ color: "rgba(255,255,255,.55)" }}>
+        <p className="text-center text-[12px] leading-relaxed" style={{ color: "rgba(255,255,255,.55)" }}>
           Viagens internacionais desde 1997 ·{" "}
           <a
             href={CONTACT_LINK}
