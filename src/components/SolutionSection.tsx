@@ -11,7 +11,7 @@ const items = [
   {
     icon: CalendarCheck,
     title: "Tudo reservado antes de você sair",
-    text: "Voo, hospedagem, traslado, passeio e ingresso. A viagem começa resolvida.",
+    text: "Voo, hospedagem, traslado, passeio e ingresso. Cuidamos também do visto e da autorização eletrônica de viagem, a ETA, quando o destino exige. A viagem começa resolvida.",
   },
   {
     icon: Headset,
