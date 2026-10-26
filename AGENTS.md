@@ -10,6 +10,6 @@
 - Build em `dist/`. Nunca versionar `dist/`, `node_modules/`, `.dev.vars`, `.env*` ou `wrangler.toml` local.
 - D1 remoto tem binding `DB`. Não executar migrations nem gravar em banco para testar aparência.
 - Antes do push: `npm test`, `npm run build`, `npm run check:build` e revisão de referências de cliente.
-- O `origin` ainda aponta para a matriz. Trocar pelo repositório da Specialle antes de qualquer push.
+- O `origin` é o repositório da Specialle. Push em `main` publica no Pages na hora.
 - Após deploy: confirmar status do Pages e rotas públicas.
 - A loja de guias é bundle estático recebido da origem; evitar edições amplas no arquivo minificado sem sua fonte.

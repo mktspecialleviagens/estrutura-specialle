@@ -589,7 +589,82 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
 .dd-badge-blue  { display:inline-block;padding:3px 11px;border-radius:999px;font-size:11px;font-weight:700;background:rgba(45,110,181,.10);color:var(--blue-col); }
 .dd-badge-gray  { display:inline-block;padding:3px 11px;border-radius:999px;font-size:11px;font-weight:700;background:#f1f1f3;color:#888; }
 .dd-empty { text-align:center;padding:30px;color:var(--ink-mute);font-size:13px; }
+
+/* ── aniversariantes ──────────────────────────────────────────────────────── */
+/* O painel passava batido entre os outros: título de 10px em cinza claro e o
+   prazo num badge #888 sobre #f1f1f3, que nem chega ao AA. Aqui ele ganha a
+   roxa da marca na borda e no título, e todo texto fica acima de 4.5:1. */
+.dd-panel--aniv { border-color:var(--line-strong); border-top:3px solid var(--teal); }
+.dd-panel--aniv .dd-ph { color:var(--teal-dark); font-size:11px; }
+.aniv-conta { background:var(--teal-soft); color:var(--teal-dark); padding:3px 11px;
+              border-radius:999px; font-size:11px; font-weight:700; letter-spacing:0;
+              text-transform:none; white-space:nowrap; }
+/* substitui o dd-badge-gray na contagem de dias */
+.aniv-badge { display:inline-block; padding:3px 11px; border-radius:999px; font-size:11px;
+              font-weight:700; background:var(--teal-soft); color:var(--teal-dark); }
+
+/* Faixa de quem faz aniversário hoje. Fora da tabela, com a gradiente da marca:
+   é a única linha do painel que pede ação no mesmo dia. */
+.aniv-hoje { display:flex; align-items:center; gap:14px; padding:14px 16px; margin-bottom:14px;
+             background:var(--grad); border-radius:var(--r); box-shadow:var(--sh-md); }
+.aniv-hoje-ico  { font-size:28px; line-height:1; flex-shrink:0; }
+.aniv-hoje-txt  { flex:1; min-width:0; }
+.aniv-hoje-nome { font-size:16px; font-weight:700; color:#fff; line-height:1.3;
+                  overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.aniv-hoje-sub  { font-size:12px; color:rgba(255,255,255,.82); margin-top:2px; }
+/* o botão da faixa fica claro sobre a gradiente, invertendo o btn-primary */
+.aniv-hoje .btn-primary { background:#fff; color:var(--purple); border-color:#fff; flex-shrink:0; }
+.aniv-hoje .btn-primary:hover { background:var(--cream); color:var(--purple-dark); }
+.aniv-wa { text-decoration:none; }
+
+@media (max-width: 560px) {
+  .aniv-hoje { flex-wrap:wrap; }
+  .aniv-hoje .btn-primary { width:100%; justify-content:center; }
+}
+
+/* ── dashboard no celular ─────────────────────────────────────────────────── */
+/* A 375px o padding de 26px dos cartões deixava 303px úteis e as tabelas de
+   quatro e cinco colunas empurravam a página inteira para o lado: o dashboard
+   abria com rolagem horizontal e os números dos KPIs saíam cortados.
+   Aqui o respiro diminui e cada tabela rola dentro do seu painel, em vez de
+   arrastar o resto junto. */
+@media (max-width: 560px) {
+  .dd-wrap  { margin:-32px -16px -48px; padding:32px 16px 48px; }
+  .dd-kpis  { grid-template-columns:1fr 1fr; gap:12px; }
+  .dd-kpi   { padding:16px 14px; }
+  .dd-kpi-ico { width:34px; height:34px; font-size:17px; margin-bottom:10px; }
+  .dd-kpi-val { font-size:1.5rem; }
+  .dd-row   { gap:12px; margin-bottom:12px; }
+  .dd-panel { padding:18px 14px; overflow-x:auto; }
+  .dd-table th, .dd-table td { padding:9px 8px; }
+  /* título e contador em linhas separadas: lado a lado o título quebrava no meio */
+  .dd-ph { flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+}
 .dd-row2eq { grid-template-columns:1fr 1fr; }
+
+/* ── configurações ────────────────────────────────────────────────────────── */
+/* Uma coluna com largura de leitura: são listas curtas, não tabelas. */
+.cfg-wrap   { max-width: 720px; display: flex; flex-direction: column; gap: 16px; }
+.cfg-intro  { font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
+.cfg-card   { padding: 18px; }
+.cfg-hd     { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+.cfg-hd > div:first-child { flex: 1; min-width: 0; }
+.cfg-titulo { font-weight: 700; font-size: 14.5px; color: var(--text); }
+.cfg-ajuda  { font-size: 12.5px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
+/* monospace para as linhas ficarem alinhadas e a pessoa ver que é um item por linha */
+.cfg-ta     { width: 100%; min-height: 132px; resize: vertical; padding: 10px 12px;
+              border: 1px solid var(--border); border-radius: var(--r-sm); background: var(--card-2);
+              font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px;
+              line-height: 1.7; color: var(--text); }
+.cfg-ta:focus { outline: none; border-color: var(--accent); box-shadow: var(--ring); }
+.cfg-ft     { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
+
+/* 375px: o cabeçalho empilha para o contador não espremer o título */
+@media (max-width: 560px) {
+  .cfg-hd  { flex-direction: column; gap: 6px; }
+  .cfg-ft  { flex-direction: column-reverse; }
+  .cfg-ft .btn { width: 100%; justify-content: center; }
+}
 
 /* ── parcelas da proposta ─────────────────────────────────────────────────── */
 .parc-grid { display:grid; grid-template-columns:34px 1fr 1fr 1.5fr 32px; gap:9px; align-items:center; }
@@ -744,6 +819,9 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
       <div class="nav-item" data-m="guias" onclick="go('guias')">
         <span class="icon">📚</span> Guias
       </div>
+      <div class="nav-item" data-m="config" onclick="go('config')">
+        <span class="icon">⚙️</span> Configurações
+      </div>
 
       <!-- Saem do CRM: abrem em nova aba. "Ver loja" só aparece para quem tem
            guias cadastrados — ver atualizarLinksExternos(). -->
@@ -797,11 +875,8 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
       <div class="row2">
         <div class="field">
           <label>Tipo de serviço</label>
-          <select id="m-tipo">
-            <option value="">Selecione</option>
-            <option>Roteiro Personalizado</option>
-            <option>Guia Online</option>
-          </select>
+          <!-- opções vêm de CFG.tipos_servico, editáveis em Configurações -->
+          <select id="m-tipo"></select>
         </div>
         <div class="field">
           <label>Status</label>
@@ -861,15 +936,8 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
 
       <div class="field">
         <label>Como chegou até nós</label>
-        <select id="m-nicho">
-          <option value="">Selecione</option>
-          <option>Google Ads</option>
-          <option>Instagram</option>
-          <option>Feiras</option>
-          <option>Parceiros</option>
-          <option>Indicação</option>
-          <option>Outro</option>
-        </select>
+        <!-- opções vêm de CFG.origens_lead, editáveis em Configurações -->
+        <select id="m-nicho"></select>
       </div>
 
       <div class="field">
@@ -916,7 +984,7 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
           </div>
           <div class="field">
             <label>Categoria</label>
-            <!-- opções vêm de CATEGORIAS_RECEITA (populadas em openFinModal) -->
+            <!-- opções vêm de CFG.categorias_receita (populadas em openFinModal) -->
             <select id="ff-categoria"></select>
           </div>
         </div>
@@ -933,7 +1001,7 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
         <div class="row2">
           <div class="field">
             <label>Forma de pagamento</label>
-            <!-- opções vêm de FORMAS_PAGAMENTO (populadas em openFinModal) -->
+            <!-- opções vêm de CFG.formas_pagamento (populadas em openFinModal) -->
             <select id="ff-forma"></select>
           </div>
           <div class="field">
@@ -1112,6 +1180,15 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
         </div>
       </div>
 
+      <!-- Lead e cliente são listas diferentes: o lead só vira cliente quando
+           fecha. Uma tarefa de prospecção pertence ao lead. -->
+      <div class="field">
+        <label>Lead <span style="color:var(--ink-mute);font-weight:400">— para tarefa de quem ainda não é cliente</span></label>
+        <select id="tm-lead">
+          <option value="">Nenhum</option>
+        </select>
+      </div>
+
       <div class="row2">
         <div class="field">
           <label>Data início</label>
@@ -1197,15 +1274,8 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
       <div class="row2">
         <div class="field" style="grid-column:1/-1">
           <label>Como nos conheceu</label>
-          <select id="cm-como">
-            <option value="">Selecione</option>
-            <option>Google Ads</option>
-            <option>Instagram</option>
-            <option>Feiras</option>
-            <option>Parceiros</option>
-            <option>Indicação</option>
-            <option>Outro</option>
-          </select>
+          <!-- opções vêm de CFG.origens_lead, editáveis em Configurações -->
+          <select id="cm-como"></select>
         </div>
       </div>
 
@@ -1521,11 +1591,42 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
 'use strict';
 
 // ── configuração por cliente ───────────────────────────────────────────────────
-// Único ponto de edição do CRM na personalização white-label. O resto do arquivo
-// consome estas listas — não repita opções de pagamento ou categoria em nenhum
-// select solto.
-const FORMAS_PAGAMENTO  = ['Pix', 'Cartão de crédito', 'Cartão de débito'];
-const CATEGORIAS_RECEITA = ['Consultoria', 'Passeios', 'Hospedagem', 'Aéreo', 'Seguro', 'Outro'];
+// As listas de opções vivem no banco (crm_config) e o administrador as edita na
+// tela de Configurações, sem deploy. O resto do arquivo consome CFG — não repita
+// opções de serviço, pagamento, categoria ou origem em nenhum select solto.
+//
+// Os valores abaixo são só o que aparece antes de a API responder, no primeiro
+// carregamento. A fonte de verdade dos padrões é functions/api/crm/config.js.
+const CFG = {
+  tipos_servico:      ['Pacote regular', 'Roteiro personalizado', 'Cruzeiro', 'Visto', 'Guia'],
+  formas_pagamento:   ['Pix', 'Cartão de crédito', 'Cartão de débito'],
+  categorias_receita: ['Consultoria', 'Passeios', 'Hospedagem', 'Aéreo', 'Seguro', 'Outro'],
+  origens_lead:       ['Google Ads', 'Instagram', 'Feiras', 'Parceiros', 'Indicação', 'Outro'],
+};
+let CFG_PADROES = { ...CFG };
+
+// Carregado uma vez no login e depois de cada gravação na tela de Configurações.
+// Falha de rede não derruba o CRM: segue com o que já está em CFG.
+async function carregarConfig() {
+  try {
+    const r = await api('/api/crm/config');
+    if (r.config) Object.assign(CFG, r.config);
+    if (r.padroes) CFG_PADROES = r.padroes;
+  } catch (e) {
+    console.warn('[CRM] Configurações não carregadas, usando a lista local:', e.message);
+  }
+}
+
+// Monta as <option> de um select a partir de uma lista de CFG.
+// `atual` garante que um registro antigo não perca o valor só porque a opção
+// saiu da lista: ela volta ao fim, marcada, em vez de o select cair no vazio.
+function cfgOptions(lista, atual, vazio = 'Selecione') {
+  const itens = CFG[lista] || [];
+  const extra = atual && !itens.includes(atual) ? [atual] : [];
+  return `<option value="">${esc(vazio)}</option>`
+    + [...itens, ...extra].map(i =>
+        `<option value="${esc(i)}"${i === atual ? ' selected' : ''}>${esc(i)}</option>`).join('');
+}
 
 // ── state ──────────────────────────────────────────────────────────────────────
 const S = {
@@ -1539,7 +1640,7 @@ const S = {
 let _loadGen = 0;
 
 // ── router ─────────────────────────────────────────────────────────────────────
-const TITLES   = { dashboard: 'Dashboard', pipeline: 'Pipeline de Leads', clientes: 'Clientes', tarefas: 'Tarefas', financeiro: 'Financeiro', propostas: 'Propostas', artigos: 'Artigos do Blog', guias: 'Guias de Viagem' };
+const TITLES   = { dashboard: 'Dashboard', pipeline: 'Pipeline de Leads', clientes: 'Clientes', tarefas: 'Tarefas', financeiro: 'Financeiro', propostas: 'Propostas', artigos: 'Artigos do Blog', guias: 'Guias de Viagem', config: 'Configurações' };
 const ACTIONS  = {
   pipeline:   '<button class="btn btn-primary btn-sm" onclick="openModal()">+ Novo Lead</button>',
   clientes:   '<button class="btn btn-primary btn-sm" onclick="openClienteModal()">+ Novo Cliente</button>',
@@ -1588,6 +1689,8 @@ function showApp() {
   document.getElementById('login').classList.add('hidden');
   document.getElementById('app').classList.remove('hidden');
   initSidebar();
+  // As listas de opções precisam estar em memória antes de qualquer modal abrir
+  carregarConfig();
   go('dashboard');
   atualizarLinksExternos();
   setInterval(function() { load(S.mod); }, 60000);
@@ -1628,6 +1731,7 @@ async function load(mod) {
     if (mod === 'propostas')  await renderPropostas(safeEl);
     if (mod === 'artigos')    await renderArtigos(safeEl);
     if (mod === 'guias')      await renderGuias(safeEl);
+    if (mod === 'config')     await renderConfig(safeEl);
   } catch (e) {
     if (_loadGen !== myGen) return;
     console.error('[CRM] Erro ao renderizar módulo:', mod, e);
@@ -1905,25 +2009,43 @@ async function renderDash(el) {
     </div>`;
   }
 
-  const bRows = aniversariantes.length
-    ? aniversariantes.map(c => {
-        const [mm, dd] = c.mmdd.split('-');
-        const badge = c.dias === 0
-          ? `<span class="dd-badge-red">Hoje!</span>`
-          : c.dias === 1
-          ? `<span class="dd-badge-amber">Amanhã</span>`
-          : `<span class="dd-badge-gray">${c.dias}d</span>`;
-        const wa = c.telefone
-          ? `<a href="https://wa.me/${c.telefone.replace(/\D/g,'')}" target="_blank" class="btn btn-ghost btn-sm" style="color:#4ADE80;border-color:#262220;font-size:11px">WA</a>`
-          : '';
-        return `<tr>
-          <td><strong>${esc(c.nome)}</strong></td>
-          <td>${dd} ${MESES[parseInt(mm)]}</td>
-          <td>${badge}</td>
-          <td>${wa}</td>
-        </tr>`;
-      }).join('')
-    : `<tr><td colspan="4" class="dd-empty">Nenhum aniversário nos próximos 15 dias</td></tr>`;
+  // ── aniversariantes ─────────────────────────────────────────────────────────
+  // O bloco passava batido: a agência não achava quem fazia aniversário. Agora a
+  // contagem vem no topo, quem é do dia sai da tabela e ganha uma faixa própria,
+  // e o resto fica numa tabela com a cor da marca em vez de cinza.
+  // A lista já chega do backend ordenada por `dias`, então os do dia vêm antes.
+  const anivHoje  = aniversariantes.filter(c => c.dias === 0);
+  const anivDepois = aniversariantes.filter(c => c.dias > 0);
+
+  const anivData = (c) => { const [mm, dd] = c.mmdd.split('-'); return `${dd} ${MESES[parseInt(mm)]}`; };
+  const anivWa = (c, grande) => c.telefone
+    ? `<a href="https://wa.me/${c.telefone.replace(/\D/g,'')}" target="_blank"
+          class="btn ${grande ? 'btn-primary' : 'btn-ghost'} btn-sm aniv-wa">
+         ${grande ? '📱 Parabenizar' : 'WA'}</a>`
+    : '';
+
+  // Faixa de quem é do dia. Fora da tabela porque é a única linha que pede ação
+  // hoje, e dentro dela virava mais uma entre quinze.
+  const anivDestaque = anivHoje.map(c => `
+    <div class="aniv-hoje">
+      <div class="aniv-hoje-ico" aria-hidden="true">🎂</div>
+      <div class="aniv-hoje-txt">
+        <div class="aniv-hoje-nome">${esc(c.nome)}</div>
+        <div class="aniv-hoje-sub">Faz aniversário hoje · ${anivData(c)}</div>
+      </div>
+      ${anivWa(c, true)}
+    </div>`).join('');
+
+  const bRows = anivDepois.length
+    ? anivDepois.map(c => `<tr>
+        <td><strong>${esc(c.nome)}</strong></td>
+        <td>${anivData(c)}</td>
+        <td>${c.dias === 1 ? `<span class="dd-badge-amber">Amanhã</span>` : `<span class="aniv-badge">${c.dias}d</span>`}</td>
+        <td>${anivWa(c, false)}</td>
+      </tr>`).join('')
+    : `<tr><td colspan="4" class="dd-empty">${
+        anivHoje.length ? 'Mais nenhum nos próximos 15 dias' : 'Nenhum aniversário nos próximos 15 dias'
+      }</td></tr>`;
 
   if (S.mod !== 'dashboard') return;
   el.innerHTML = `
@@ -2040,8 +2162,14 @@ async function renderDash(el) {
           <tbody>${riskRows}</tbody>
         </table>
       </div>
-      <div class="dd-panel">
-        <div class="dd-ph">Aniversários · 15 dias</div>
+      <div class="dd-panel dd-panel--aniv">
+        <div class="dd-ph">
+          <span>🎂 Aniversários · 15 dias</span>
+          ${aniversariantes.length
+            ? `<span class="aniv-conta">${aniversariantes.length} ${aniversariantes.length === 1 ? 'cliente' : 'clientes'}${anivHoje.length ? ' · ' + anivHoje.length + ' hoje' : ''}</span>`
+            : ''}
+        </div>
+        ${anivDestaque}
         <table class="dd-table">
           <thead><tr><th>Cliente</th><th>Data</th><th>Prazo</th><th></th></tr></thead>
           <tbody>${bRows}</tbody>
@@ -2217,6 +2345,7 @@ function buildCard(l) {
       <div class="lc-actions">
         <button class="btn btn-ghost btn-sm" onclick="openModal('${l.id}')">✏️ Editar</button>
         <button class="btn btn-ghost btn-sm" title="Criar proposta para este lead" onclick="proposalFromLead('${l.id}')">📋</button>
+        <button class="btn btn-ghost btn-sm" title="Criar tarefa para este lead" onclick="openTarefaModal(null,'${l.id}')">✅</button>
         ${l.status === 'fechado' && !l.cliente_id ? `<button class="btn btn-primary btn-sm lc-convert" onclick="converterEmCliente('${l.id}')">⭐ Converter</button>` : ''}
         ${l.cliente_id ? `<span style="font-size:11px;color:var(--green)">✓ Cliente</span>` : ''}
       </div>
@@ -2267,7 +2396,10 @@ function openModal(id) {
   document.getElementById('m-title').textContent = l ? 'Editar Lead' : 'Novo Lead';
   document.getElementById('m-id').value       = l?.id         || '';
   document.getElementById('m-nome').value     = l?.nome       || '';
-  document.getElementById('m-tipo').value     = l?.tipo       || '';
+  // Listas vindas de Configurações. cfgOptions já marca o valor do lead, mesmo
+  // se o administrador tirou aquela opção da lista depois.
+  document.getElementById('m-tipo').innerHTML  = cfgOptions('tipos_servico', l?.tipo);
+  document.getElementById('m-nicho').innerHTML = cfgOptions('origens_lead', l?.nicho);
   document.getElementById('m-status').value   = l?.status     || 'novo';
   document.getElementById('m-destino').value  = l?.destino    || '';
   document.getElementById('m-tel').value      = l?.telefone   || '';
@@ -2275,7 +2407,6 @@ function openModal(id) {
   document.getElementById('m-followup').value = l?.followup   || '';
   document.getElementById('m-valor').value    = l?.valor_estimado || '';
   document.getElementById('m-moeda').value    = l?.moeda      || 'BRL';
-  document.getElementById('m-nicho').value    = l?.nicho      || '';
   document.getElementById('m-obs').value      = l?.obs        || '';
   document.getElementById('m-followup-tarefa').value = l?.followup_tarefa || '';
   toggleFollowupTarefa(!!l?.followup_tarefa);
@@ -2608,7 +2739,7 @@ async function faturaPagarDash(id) {
 // Faturas responde "o que entra neste mês"; esta responde "quanto vale o cliente".
 const CAT_CORES = ['#280046','#2d6eb5','#0f7d55','#d97706','#c0392b','#6E3B96','#8a8a8a'];
 function catCor(nome) {
-  const i = CATEGORIAS_RECEITA.indexOf(nome);
+  const i = (CFG.categorias_receita || []).indexOf(nome);
   return CAT_CORES[(i >= 0 ? i : String(nome||'').length) % CAT_CORES.length];
 }
 
@@ -2825,9 +2956,9 @@ async function openFinModal(type) {
   document.getElementById('ff-cliente').innerHTML = `<option value="">Selecione</option>${opts}`;
   // opções de pagamento e categoria vindas da config
   document.getElementById('ff-forma').innerHTML =
-    `<option value="">—</option>` + FORMAS_PAGAMENTO.map(f => `<option value="${esc(f)}">${esc(f)}</option>`).join('');
+    cfgOptions('formas_pagamento', null, '—');
   document.getElementById('ff-categoria').innerHTML =
-    `<option value="">—</option>` + CATEGORIAS_RECEITA.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join('');
+    cfgOptions('categorias_receita', null, '—');
   // defaults
   document.getElementById('ff-id').value       = '';
   document.getElementById('ff-cliente').disabled = false;
@@ -3343,19 +3474,35 @@ async function reabrirTarefa(id) {
   } catch (err) { toast('Erro: ' + err.message, 'err'); }
 }
 
-async function openTarefaModal(id) {
-  // carregar clientes para o select
-  const cr = await api('/api/crm/clientes?limit=500').catch(() => ({ clientes: [] }));
+async function openTarefaModal(id, prefillLeadId) {
+  // Clientes e leads nas duas listas. Sem período: a tarefa pode ser de um lead
+  // que entrou fora da janela que o pipeline está mostrando.
+  const [cr, lr] = await Promise.all([
+    api('/api/crm/clientes?limit=500').catch(() => ({ clientes: [] })),
+    api('/api/crm/leads?limit=500').catch(() => ({ leads: [] })),
+  ]);
   const opts = (cr.clientes || []).map(c =>
     `<option value="${c.id}">${esc(c.nome)}</option>`).join('');
   document.getElementById('tm-cliente').innerHTML = `<option value="">Nenhum</option>${opts}`;
 
   const t = id ? _tarefasCache.find(x => x.id === id) : null;
+
+  // Lead já excluído, ou fora do limite, continua na lista: sem isso o select
+  // cairia em "Nenhum" e salvar apagaria o vínculo sem ninguém pedir.
+  const leads = (lr.leads || []).slice();
+  if (t?.lead_id && !leads.some(l => l.id === t.lead_id)) {
+    leads.unshift({ id: t.lead_id, nome: t.lead_nome || 'Lead removido', status: '' });
+  }
+  const leadOpts = leads.map(l =>
+    `<option value="${l.id}">${esc(l.nome)}${l.status ? ' · ' + sLabel(l.status) : ''}</option>`).join('');
+  document.getElementById('tm-lead').innerHTML = `<option value="">Nenhum</option>${leadOpts}`;
+
   document.getElementById('tm-title').textContent   = t ? 'Editar Tarefa' : 'Nova Tarefa';
   document.getElementById('tm-id').value            = t?.id          || '';
   document.getElementById('tm-titulo').value        = t?.titulo      || '';
   document.getElementById('tm-status').value        = t?.status      || 'a-fazer';
   document.getElementById('tm-cliente').value       = t?.cliente_id  || '';
+  document.getElementById('tm-lead').value          = t?.lead_id     || prefillLeadId || '';
   document.getElementById('tm-inicio').value        = t?.data_inicio || '';
   document.getElementById('tm-entrega').value       = t?.data_entrega|| '';
   document.getElementById('tm-obs').value           = t?.obs         || '';
@@ -3420,6 +3567,7 @@ async function saveTarefa() {
     titulo,
     status:       document.getElementById('tm-status').value,
     cliente_id:   document.getElementById('tm-cliente').value || null,
+    lead_id:      document.getElementById('tm-lead').value    || null,
     data_inicio:  document.getElementById('tm-inicio').value  || null,
     data_entrega: document.getElementById('tm-entrega').value || null,
     obs:          document.getElementById('tm-obs').value     || null,
@@ -3433,7 +3581,10 @@ async function saveTarefa() {
       await api('/api/crm/tarefas', { method: 'POST', body: JSON.stringify(payload) });
     }
     closeTarefaModal();
-    await load('tarefas');
+    // O modal também abre pelo card do lead, no pipeline. Recarregar 'tarefas'
+    // de lá limparia a tela e pararia no "Carregando…", porque renderTarefas
+    // desiste quando o módulo ativo é outro.
+    if (S.mod === 'tarefas') await load('tarefas');
     toast(id ? 'Tarefa atualizada ✓' : 'Tarefa criada ✓', 'ok');
   } catch (err) {
     toast('Erro: ' + err.message, 'err');
@@ -3539,7 +3690,7 @@ async function openClienteModal(id) {
   document.getElementById('cm-tel').value           = c?.telefone   || '';
   document.getElementById('cm-ig').value            = c?.instagram    || '';
   document.getElementById('cm-aniv').value          = c?.aniversario  || '';
-  document.getElementById('cm-como').value          = c?.como_conheceu || '';
+  document.getElementById('cm-como').innerHTML      = cfgOptions('origens_lead', c?.como_conheceu);
   document.getElementById('cm-cidade').value        = c?.cidade     || '';
   document.getElementById('cm-estado').value        = c?.estado     || '';
   document.getElementById('cm-pais').value          = c?.pais       || 'Brasil';
@@ -4222,10 +4373,14 @@ async function openSyncModal(id) {
     document.getElementById('sy-cliente').value = existente ? existente.id : (nome ? '__novo__' : '');
 
     document.getElementById('sy-forma').innerHTML =
-      `<option value="">—</option>` + FORMAS_PAGAMENTO.map(f => `<option value="${esc(f)}">${esc(f)}</option>`).join('');
+      cfgOptions('formas_pagamento', null, '—');
+    // Sem opção vazia: lançar proposta no financeiro sempre tem categoria.
+    const cats = CFG.categorias_receita || [];
     document.getElementById('sy-categoria').innerHTML =
-      CATEGORIAS_RECEITA.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join('');
-    document.getElementById('sy-categoria').value = 'Consultoria';
+      cats.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join('');
+    // Consultoria é o caso comum, mas o administrador pode ter tirado da lista
+    document.getElementById('sy-categoria').value =
+      cats.includes('Consultoria') ? 'Consultoria' : (cats[0] || '');
 
     document.getElementById('sy-prop-id').value = p.id;
     document.getElementById('sy-desc').value = p.title || '';
@@ -4540,6 +4695,104 @@ async function deleteGuia(id) {
     load('guias');
     atualizarLinksExternos();   // excluir o último esconde "Ver loja"
   } catch(e) { toast('Erro: ' + e.message, 'err'); }
+}
+
+// ── configurações ─────────────────────────────────────────────────────────────
+// Onde o administrador edita as listas de opções do CRM. Existe porque a agência
+// ainda vai fechar a relação de serviços que vende, e trocar um item não pode
+// depender de publicar o site.
+//
+// Uma lista por bloco, cada item numa linha. Salva lista por lista, não tudo de
+// uma vez: quem mexeu só nos tipos de serviço não precisa revisar o resto.
+const CFG_BLOCOS = [
+  { chave: 'tipos_servico',      titulo: 'Tipos de serviço',      ajuda: 'Aparece no campo "Tipo de serviço" do lead.' },
+  { chave: 'origens_lead',       titulo: 'Como o cliente chegou', ajuda: 'Aparece em "Como chegou até nós", no lead e no cliente.' },
+  { chave: 'formas_pagamento',   titulo: 'Formas de pagamento',   ajuda: 'Aparece nos lançamentos do financeiro e das propostas.' },
+  { chave: 'categorias_receita', titulo: 'Categorias de receita', ajuda: 'Agrupa a receita no financeiro e nos gráficos.' },
+];
+
+async function renderConfig(el) {
+  await carregarConfig();
+  if (S.mod !== 'config') return;
+  el.innerHTML = `
+    <div class="cfg-wrap">
+      <div class="cfg-intro">
+        Estas listas alimentam os campos de seleção do CRM. Um item por linha.
+        Mudança vale na hora, sem publicar o site.
+      </div>
+      ${CFG_BLOCOS.map(b => `
+        <div class="card cfg-card">
+          <div class="cfg-hd">
+            <div>
+              <div class="cfg-titulo">${esc(b.titulo)}</div>
+              <div class="cfg-ajuda">${esc(b.ajuda)}</div>
+            </div>
+            <span class="badge bg-gray" id="cfg-qtd-${b.chave}">${(CFG[b.chave] || []).length} opções</span>
+          </div>
+          <textarea class="cfg-ta" id="cfg-ta-${b.chave}"
+                    oninput="cfgContar('${b.chave}')"
+                    spellcheck="false">${esc((CFG[b.chave] || []).join('\n'))}</textarea>
+          <div class="cfg-ft">
+            <button class="btn btn-ghost btn-sm" onclick="cfgRestaurar('${b.chave}')">Voltar ao padrão</button>
+            <button class="btn btn-primary btn-sm" onclick="cfgSalvar('${b.chave}', this)">Salvar</button>
+          </div>
+        </div>`).join('')}
+    </div>`;
+}
+
+// Contador ao lado do título, para a pessoa ver que a linha vazia não conta
+function cfgContar(chave) {
+  const itens = cfgLer(chave);
+  const badge = document.getElementById(`cfg-qtd-${chave}`);
+  if (badge) badge.textContent = `${itens.length} ${itens.length === 1 ? 'opção' : 'opções'}`;
+}
+
+// Uma linha por item, sem vazias e sem repetidas. A API repete esta limpeza:
+// aqui é para o contador bater com o que vai ser salvo.
+function cfgLer(chave) {
+  const ta = document.getElementById(`cfg-ta-${chave}`);
+  if (!ta) return [];
+  const vistos = new Set();
+  return ta.value.split('\n')
+    .map(l => l.trim())
+    .filter(l => {
+      if (!l || vistos.has(l.toLowerCase())) return false;
+      vistos.add(l.toLowerCase());
+      return true;
+    });
+}
+
+function cfgRestaurar(chave) {
+  const ta = document.getElementById(`cfg-ta-${chave}`);
+  if (!ta) return;
+  ta.value = (CFG_PADROES[chave] || []).join('\n');
+  cfgContar(chave);
+  toast('Lista restaurada. Clique em Salvar para valer.', 'ok');
+}
+
+async function cfgSalvar(chave, btn) {
+  const itens = cfgLer(chave);
+  if (!itens.length) { toast('A lista não pode ficar vazia', 'err'); return; }
+
+  const original = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Salvando…';
+  try {
+    const r = await api('/api/crm/config', {
+      method: 'PUT',
+      body: JSON.stringify({ chave, valor: itens }),
+    });
+    if (r.config) Object.assign(CFG, r.config);
+    // Reescreve o campo com o que o banco aceitou, para a tela não mostrar algo
+    // diferente do que foi gravado
+    const ta = document.getElementById(`cfg-ta-${chave}`);
+    if (ta) ta.value = (CFG[chave] || []).join('\n');
+    cfgContar(chave);
+    toast('Lista salva ✓', 'ok');
+  } catch (e) {
+    toast('Erro ao salvar: ' + e.message, 'err');
+  } finally {
+    btn.disabled = false; btn.textContent = original;
+  }
 }
 
 function addGalRow(url = '') {

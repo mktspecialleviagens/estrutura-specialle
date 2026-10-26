@@ -2,7 +2,18 @@
 // PUT    /api/crm/tarefas/:id?key=...  body: partial fields or { checklist: [...] }
 // DELETE /api/crm/tarefas/:id?key=...
 
-const UPDATABLE = ['titulo', 'cliente_id', 'obs', 'status', 'data_inicio', 'data_entrega'];
+// lead_id entra aqui para a tela de edição poder vincular a tarefa ao lead.
+// Sem isso o vínculo só existia na tarefa criada pelo follow-up, e uma tarefa
+// que nasceu solta ficava sem nome para sempre.
+const UPDATABLE = ['titulo', 'cliente_id', 'lead_id', 'obs', 'status', 'data_inicio', 'data_entrega'];
+
+// Mesmo SELECT da lista: a tela de edição precisa do nome do dono da tarefa,
+// não só do id.
+const SELECT_TAREFA = `
+  SELECT t.*, c.nome as cliente_nome, l.nome as lead_nome
+  FROM crm_tarefas t
+  LEFT JOIN crm_clientes c ON t.cliente_id = c.id
+  LEFT JOIN crm_leads    l ON t.lead_id    = l.id`;
 
 export async function onRequestGet(context) {
   const { request, env, params } = context;
@@ -10,7 +21,7 @@ export async function onRequestGet(context) {
   if (!auth(url, env)) return json({ error: 'Unauthorized' }, 401);
 
   try {
-    const row = await env.DB.prepare('SELECT * FROM crm_tarefas WHERE id = ?').bind(params.id).first();
+    const row = await env.DB.prepare(`${SELECT_TAREFA} WHERE t.id = ?`).bind(params.id).first();
     if (!row) return json({ error: 'Not found' }, 404);
     return json({ tarefa: parseChecklist(row) });
   } catch (err) {
@@ -47,7 +58,7 @@ export async function onRequestPut(context) {
     ).bind(...values, params.id).run();
 
     if (!result.meta.changes) return json({ error: 'Not found' }, 404);
-    const row = await env.DB.prepare('SELECT * FROM crm_tarefas WHERE id = ?').bind(params.id).first();
+    const row = await env.DB.prepare(`${SELECT_TAREFA} WHERE t.id = ?`).bind(params.id).first();
     return json({ tarefa: parseChecklist(row) });
   } catch (err) {
     return json({ error: err.message }, 500);

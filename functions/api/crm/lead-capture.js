@@ -13,6 +13,8 @@
 //   observacoes string  — desafio / situação
 //   origem      string  — identificador da landing page (ex: "Consultoria")
 
+import { syncTarefaFollowup } from './_followup.js';
+
 export async function onRequestPost(context) {
   const { request, env } = context;
 
@@ -75,6 +77,25 @@ export async function onRequestPost(context) {
       now,
       now, now,
     ).run();
+
+    // O lead da landing já nasce com data de follow-up, então a tarefa vem com
+    // ele. Antes a data aparecia no card e a lista de tarefas ficava vazia: a
+    // pessoa via um follow-up marcado e nada para fazer.
+    //
+    // Em try próprio: o lead já está gravado e é o que importa. Se a tarefa
+    // falhar, quem preencheu o formulário não pode ver erro nem mandar de novo,
+    // que é como se perde um lead e se ganha um duplicado.
+    try {
+      await syncTarefaFollowup(env, {
+        id,
+        status:   'novo',
+        followup,
+        destino:  destino?.trim() || null,
+        telefone: whatsapp?.trim() || null,
+      }, `Primeiro contato com ${nome.trim()}`);
+    } catch (err) {
+      console.error('lead-capture: tarefa de follow-up não criada:', err.message);
+    }
 
     return json({ ok: true, lead_id: id }, 201);
   } catch (err) {

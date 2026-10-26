@@ -1,7 +1,20 @@
-// GET  /api/crm/tarefas?key=...&status=a-fazer&cliente_id=...
+// GET  /api/crm/tarefas?key=...&status=a-fazer&cliente_id=...&lead_id=...
 // POST /api/crm/tarefas?key=...  body: tarefa fields
 //
 // checklist field: JSON string — [{item: string, done: boolean}]
+//
+// lead_id: tarefa de um lead que ainda não é cliente. Aceito aqui, e não só em
+// _followup.js, porque a tarefa criada à mão para um lead nascia com lead_id
+// nulo: o card ficava sem nome e editar não resolvia, já que o vínculo nunca
+// chegava ao banco.
+
+// Nome de quem a tarefa pertence, vindo do cliente ou do lead. Usado nas duas
+// respostas para a tela nunca receber uma tarefa sem o nome do dono.
+const SELECT_TAREFA = `
+  SELECT t.*, c.nome as cliente_nome, l.nome as lead_nome
+  FROM crm_tarefas t
+  LEFT JOIN crm_clientes c ON t.cliente_id = c.id
+  LEFT JOIN crm_leads    l ON t.lead_id    = l.id`;
 
 export async function onRequestGet(context) {
   const { request, env } = context;
@@ -10,6 +23,7 @@ export async function onRequestGet(context) {
 
   const status     = url.searchParams.get('status') || '';
   const cliente_id = url.searchParams.get('cliente_id') || '';
+  const lead_id    = url.searchParams.get('lead_id') || '';
   const limit      = clamp(url.searchParams.get('limit'), 200, 1, 500);
 
   try {
@@ -17,17 +31,15 @@ export async function onRequestGet(context) {
     const binds      = [];
     if (status)     { conditions.push('t.status = ?');     binds.push(status);     }
     if (cliente_id) { conditions.push('t.cliente_id = ?'); binds.push(cliente_id); }
+    if (lead_id)    { conditions.push('t.lead_id = ?');    binds.push(lead_id);    }
 
     const where = conditions.length ? 'WHERE ' + conditions.join(' AND ') : '';
     binds.push(limit);
 
-    // lead_nome dá contexto às tarefas de follow-up, que nascem sem cliente —
+    // lead_nome dá contexto às tarefas de follow-up, que nascem sem cliente:
     // o lead só vira cliente quando fecha
     const rows = await env.DB.prepare(`
-      SELECT t.*, c.nome as cliente_nome, l.nome as lead_nome
-      FROM crm_tarefas t
-      LEFT JOIN crm_clientes c ON t.cliente_id = c.id
-      LEFT JOIN crm_leads    l ON t.lead_id    = l.id
+      ${SELECT_TAREFA}
       ${where}
       ORDER BY t.data_entrega ASC, t.created_at DESC
       LIMIT ?
@@ -49,7 +61,7 @@ export async function onRequestPost(context) {
   let body;
   try { body = await request.json(); } catch { return json({ error: 'Invalid JSON' }, 400); }
 
-  const { titulo, cliente_id, obs, status = 'a-fazer', data_inicio, data_entrega, checklist } = body;
+  const { titulo, cliente_id, lead_id, obs, status = 'a-fazer', data_inicio, data_entrega, checklist } = body;
 
   if (!titulo?.trim()) return json({ error: 'titulo is required' }, 400);
 
@@ -60,16 +72,16 @@ export async function onRequestPost(context) {
   try {
     await env.DB.prepare(`
       INSERT INTO crm_tarefas
-        (id, cliente_id, titulo, obs, status, data_inicio, data_entrega, checklist, created_at, updated_at)
-      VALUES (?,?,?,?,?,?,?,?,?,?)
+        (id, cliente_id, lead_id, titulo, obs, status, data_inicio, data_entrega, checklist, created_at, updated_at)
+      VALUES (?,?,?,?,?,?,?,?,?,?,?)
     `).bind(
-      id, cliente_id || null, titulo.trim(),
+      id, cliente_id || null, lead_id || null, titulo.trim(),
       obs || null, status,
       data_inicio || null, data_entrega || null,
       checklistJson, now, now,
     ).run();
 
-    const row = await env.DB.prepare('SELECT * FROM crm_tarefas WHERE id = ?').bind(id).first();
+    const row = await env.DB.prepare(`${SELECT_TAREFA} WHERE t.id = ?`).bind(id).first();
     return json({ tarefa: parseChecklist(row) }, 201);
   } catch (err) {
     return json({ error: err.message }, 500);
