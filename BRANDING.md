@@ -1,6 +1,6 @@
 # Identidade — Specialle Viagens
 
-Clone da matriz Scandia Travel personalizado para a Specialle Viagens (Fortaleza, desde 1997).
+Clone da matriz Scandia Travel personalizado para a Specialle Viagens (Fortaleza, desde 1996).
 
 ## Paleta
 
@@ -45,22 +45,28 @@ fundos escuros e `#120020` para os overlays mais profundos.
    "+55 85 9962-5722". Confirmar o número antes de subir; sem WhatsApp válido o formulário não envia lead.
 2. **Favicon** — hoje aponta para `logo.webp`. Um favicon dedicado, quadrado e em `.png` ou
    `.ico`, renderiza melhor na aba e em atalhos de celular.
-3. **Fotos** — ver `PHOTO_CREDITS.md`. Escritório e depoimentos estão com placeholder marcado.
+3. **Fotos e vídeos** — ver `PHOTO_CREDITS.md`. A foto do escritório ainda é placeholder marcado.
+   Os depoimentos agora são vídeos verticais: colocar `depoimento-1.mp4` a `depoimento-4.mp4` em
+   `src/assets/depoimentos/`, com autorização do cliente. Instruções de formato, capa e legenda em
+   `src/assets/depoimentos/LEIA-ME.md`. Sem arquivo, o card não aparece e a seção mostra o aviso de
+   bloco pendente.
 4. **Regras de entrada** — a pergunta sobre visto e ETA no FAQ
    (`src/components/FAQSection.tsx`) traz dados conferidos em 20 de outubro de 2026 no GOV.UK,
    no Canada.ca, no travel.state.gov e nos portais da União Europeia. São regras voláteis:
    revalidar antes de qualquer campanha e sempre que a cliente apontar mudança. O ETIAS é o
    item com maior chance de mudar, porque ainda aguarda data oficial de início.
-5. **Faixas de investimento** — as opções da etapa 5 do formulário (`src/components/StepForm.tsx`)
-   são provisórias. Confirmar com a Anastacia.
-5. **Domínio e tracking** — definir `og:url` em `index.html` e preencher `metaPixelId` /
+5. **Ano de fundação** — a página passou a dizer "30 anos" e "desde 1996". O 1996 é dedução a
+   partir dos 30 anos; confirmar a data real com a Anastacia. Os pontos a corrigir, se mudar, são
+   `index.html` (description, og/twitter description e o JSON-LD), `HeroSection`, `AboutSection`,
+   `FooterCTA` e este arquivo.
+6. **Domínio e tracking** — definir `og:url` em `index.html` e preencher `metaPixelId` /
    `ga4MeasurementId` em `config.js`, só então ligar `trackingEnabled`. Segredos nunca nesse arquivo.
-6. **Cloudflare Pages + D1** — criar o projeto na conta da cliente, aplicar as migrations de
+7. **Cloudflare Pages + D1** — criar o projeto na conta da cliente, aplicar as migrations de
    `migrations/` e configurar `DB`, `DASH_KEY` e demais secrets. Ver `DEPLOY.md`.
-7. **Artigos do blog** — os três artigos em `content/editorial-articles.js` foram reescritos para
+8. **Artigos do blog** — os três artigos em `content/editorial-articles.js` foram reescritos para
    Europa, Flórida e cruzeiros, com fatos conferidos em fontes oficiais citadas no rodapé de cada
    texto. Revalidar as fontes antes de alterar qualquer dado: as regras de entrada na Europa e os
    horários da Brightline mudam. Os artigos saem assinados como "Por equipe Specialle Viagens",
    assinatura que vem do template em `functions/loja/blog/[slug].js`.
-8. **Remoto do Git** — o `origin` ainda aponta para o repositório da matriz. Trocar pelo
+9. **Remoto do Git** — o `origin` ainda aponta para o repositório da matriz. Trocar pelo
    repositório próprio da Specialle antes de qualquer push.

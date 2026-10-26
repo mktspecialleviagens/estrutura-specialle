@@ -9,13 +9,11 @@ declare global {
   }
 }
 
-// FAIXAS DE INVESTIMENTO: valores provisórios. Confirmar com a Anastacia e ajustar.
 const steps = [
   { label: "Destino", title: "Para onde você quer ir?", hint: "Pode ser um destino certo ou só uma ideia.", options: ["Estados Unidos", "Europa", "Cruzeiro", "Mais de um destino", "Ainda não decidi"] },
   { label: "Período", title: "Quando pretende viajar?", hint: "Uma previsão já ajuda a gente a trabalhar.", options: ["Nos próximos 3 meses", "Entre 3 e 6 meses", "Entre 6 e 12 meses", "Daqui a mais de 1 ano", "Ainda não defini"] },
   { label: "Pessoas", title: "Quantas pessoas vão?", hint: "Contando todos os viajantes, adultos e crianças.", options: ["1 pessoa", "2 pessoas", "3 ou 4 pessoas", "5 ou mais pessoas", "Ainda não sei"] },
   { label: "Passagem", title: "Você já comprou a passagem?", hint: "Isso muda a forma como a gente monta a proposta.", options: ["Já comprei", "Ainda não comprei", "Quero que a Specialle cuide disso"] },
-  { label: "Investimento", title: "Qual faixa de investimento você tem prevista para a viagem toda?", hint: "Somando todas as pessoas. Serve para a proposta já sair no seu orçamento.", options: ["Até R$ 20 mil", "De R$ 20 mil a R$ 40 mil", "De R$ 40 mil a R$ 70 mil", "Acima de R$ 70 mil", "Prefiro conversar antes"] },
 ] as const;
 
 const StepForm = () => {
@@ -61,7 +59,9 @@ const StepForm = () => {
           whatsapp: phoneIntl,
           destino: answers[0],
           datas: answers[1],
-          orcamento: answers[4],
+          // A etapa de faixa de investimento saiu do formulário. A chave continua
+          // sendo enviada para não mudar o contrato do CRM; vazia, a API ignora.
+          orcamento: "",
           observacoes: `Pessoas: ${answers[2]}\nPassagem: ${answers[3]}`,
           origem: "Landing Page Specialle Viagens",
         }),
@@ -98,7 +98,6 @@ const StepForm = () => {
         `Período: ${answers[1]}`,
         `Pessoas: ${answers[2]}`,
         `Passagem: ${answers[3]}`,
-        `Faixa de investimento: ${answers[4]}`,
       ].join("\n");
       window.location.assign(`https://wa.me/${config.whatsapp}?text=${encodeURIComponent(message)}`);
     } catch {
@@ -116,7 +115,7 @@ const StepForm = () => {
           <span className="eyebrow text-specialle-lilac block mb-5">Primeiro passo</span>
           <h2 className="text-[clamp(2rem,4.5vw,3.6rem)] leading-[1.08] max-w-[550px]" style={{ fontWeight: 600 }}>Conte sobre a sua viagem</h2>
           <p className="mt-6 max-w-[470px] text-[16px] font-light leading-relaxed text-white/85">
-            Cinco escolhas rápidas e os seus dados. Com isso a nossa equipe já chega na conversa sabendo do que você precisa.
+            Quatro escolhas rápidas e os seus dados. Com isso a nossa equipe já chega na conversa sabendo do que você precisa.
           </p>
           <p className="mt-8 hidden lg:block text-sm text-specialle-lilac">Estados Unidos · Europa · Cruzeiros</p>
         </div>

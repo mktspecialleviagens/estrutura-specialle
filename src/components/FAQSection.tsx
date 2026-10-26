@@ -9,12 +9,12 @@ type Question = {
 
 const questions: Question[] = [
   {
-    question: "Por que vocês não são os mais baratos?",
-    answer: "Porque a gente não vende só a reserva. Vende a viagem organizada, com fornecedor testado, guia que fala português e acompanhamento durante o período todo. Quem procura só o menor preço encontra na internet.",
+    question: "Como vocês montam a viagem?",
+    answer: "Trabalhamos com pacotes já montados e roteiros personalizados. No pacote pronto a estrutura já está fechada e você entra numa operação testada, com datas e serviços definidos. No roteiro personalizado a viagem é desenhada do zero, no seu ritmo e com as suas escolhas. Nos dois casos você tem fornecedor testado, guia que fala português e acompanhamento durante o período todo.",
   },
   {
     question: "Preciso ir até o escritório?",
-    answer: "Não. A gente atende por WhatsApp e por reunião online. Se você mora em Fortaleza e prefere conversar pessoalmente, o escritório está aberto com hora marcada.",
+    answer: "Não. A gente atende por WhatsApp e por reunião online. Se você mora em Fortaleza e prefere conversar pessoalmente, o escritório fica na Avenida Washington Soares e abre de segunda a sexta, das 9h às 18h, com horário marcado ou por ordem de chegada. Sábado e domingo o escritório fica fechado, e quem já está em viagem conta com o nosso plantão 24h no WhatsApp.",
   },
   {
     question: "Vocês já foram nos destinos que vendem?",

@@ -13,12 +13,17 @@ const FooterCTA = () => {
           className="h-11 w-auto"
           style={{ filter: "brightness(0) invert(1)" }}
         />
-        <p className="text-center text-[13px] text-specialle-lilac md:text-right">
-          Avenida Washington Soares, Fortaleza · Atendimento com hora marcada
-          <span className="mt-1 block text-white/55">
+        <div className="text-center text-[13px] leading-relaxed text-specialle-lilac md:text-right">
+          <p>Avenida Washington Soares, Fortaleza</p>
+          <p className="mt-2 text-white/80">
+            Escritório: segunda a sexta, das 9h às 18h. Atendimento presencial com horário marcado ou por ordem de chegada.
+          </p>
+          <p className="text-white/80">Sábado e domingo: escritório fechado.</p>
+          <p className="text-white/80">Plantão 24h no WhatsApp para clientes que estão em viagem.</p>
+          <p className="mt-3 text-white/55">
             © {new Date().getFullYear()} Specialle Viagens. Todos os direitos reservados.
-          </span>
-        </p>
+          </p>
+        </div>
       </div>
 
       <div
@@ -26,7 +31,7 @@ const FooterCTA = () => {
         style={{ background: "rgba(0,0,0,.18)" }}
       >
         <p className="text-center text-[12px] leading-relaxed" style={{ color: "rgba(255,255,255,.55)" }}>
-          Viagens internacionais desde 1997 ·{" "}
+          Viagens internacionais desde 1996 ·{" "}
           <a
             href={CONTACT_LINK}
             style={{ color: "rgba(255,255,255,.8)" }}

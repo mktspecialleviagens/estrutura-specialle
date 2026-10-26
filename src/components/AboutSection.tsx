@@ -21,12 +21,13 @@ const AboutSection = () => (
       <div className="min-w-0">
         <span className="eyebrow text-specialle-violet mb-6 block">Quem está por trás</span>
         <h2 className="max-w-[560px] leading-[1.06] text-[#280046] [text-wrap:balance]" style={{ fontSize: "clamp(28px, 4.5vw, 54px)", fontWeight: 600 }}>
-          29 anos <span className="font-light text-specialle-violet">organizando viagens</span>
+          30 anos <span className="font-light text-specialle-violet">organizando viagens</span>
         </h2>
         <div className="mt-8 space-y-5 border-l border-specialle-lilac pl-5 text-[16px] font-light leading-[1.8] text-foreground/80 md:pl-7">
           <p>A Specialle Viagens nasceu em Fortaleza e desde o começo trabalha com turismo internacional.</p>
-          <p>Nesses 29 anos foram milhares de viagens organizadas, clientes que voltam há mais de uma década e uma rede de parceiros construída destino por destino.</p>
-          <p>Nosso escritório fica na Avenida Washington Soares, ao lado do Centro de Eventos, e recebe clientes com hora marcada.</p>
+          <p>Quem atende é a <strong className="font-semibold text-[#280046]">Anastacia Ribeiro</strong>, à frente da Specialle há 30 anos, junto com a equipe. Quando você chamar no WhatsApp, é com ela e com o time dela que você vai falar.</p>
+          <p>Nesses 30 anos foram milhares de viagens organizadas, clientes que voltam há mais de uma década e uma rede de parceiros construída destino por destino.</p>
+          <p>Nosso escritório fica na Avenida Washington Soares, ao lado do Centro de Eventos, e recebe clientes de segunda a sexta, das 9h às 18h, com horário marcado ou por ordem de chegada.</p>
         </div>
       </div>
     </div>

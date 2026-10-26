@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Specialle Viagens — Viagens internacionais resolvidas do início ao fim</title>
-    <meta name="description" content="Há 29 anos em Fortaleza organizando viagens para a Europa, os Estados Unidos e cruzeiros. Passagem, hospedagem, traslados, passeios e acompanhamento durante a viagem.">
+    <meta name="description" content="Há 30 anos em Fortaleza organizando viagens para a Europa, os Estados Unidos e cruzeiros. Passagem, hospedagem, traslados, passeios e acompanhamento durante a viagem.">
     <meta name="robots" content="index, follow" />
 
     <link rel="icon" type="image/webp" href="/brand/logo.webp" />
@@ -15,10 +15,49 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:title" content="Specialle Viagens — Viagens internacionais resolvidas do início ao fim">
     <meta name="twitter:title" content="Specialle Viagens — Viagens internacionais resolvidas do início ao fim">
-    <meta property="og:description" content="Europa, Estados Unidos e cruzeiros organizados por quem está em Fortaleza desde 1997. Tudo reservado antes de você sair e equipe disponível enquanto você estiver fora.">
-    <meta name="twitter:description" content="Europa, Estados Unidos e cruzeiros organizados por quem está em Fortaleza desde 1997. Tudo reservado antes de você sair e equipe disponível enquanto você estiver fora.">
+    <meta property="og:description" content="Europa, Estados Unidos e cruzeiros organizados por quem está em Fortaleza desde 1996. Tudo reservado antes de você sair e equipe disponível enquanto você estiver fora.">
+    <meta name="twitter:description" content="Europa, Estados Unidos e cruzeiros organizados por quem está em Fortaleza desde 1996. Tudo reservado antes de você sair e equipe disponível enquanto você estiver fora.">
     <meta property="og:image" content="/brand/logo.webp">
     <meta name="twitter:image" content="/brand/logo.webp">
+
+    <!--
+      Dados estruturados da agência. O telefone repete o número de
+      public/brand/config.js: se corrigir o WhatsApp lá, corrija aqui também.
+      TODO: acrescentar "url" quando o domínio no Cloudflare Pages estiver definido.
+    -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TravelAgency",
+      "name": "Specialle Viagens",
+      "description": "Agência de viagens em Fortaleza especializada em Europa, Estados Unidos e cruzeiros.",
+      "logo": "/brand/logo.webp",
+      "image": "/brand/logo.webp",
+      "foundingDate": "1996",
+      "telephone": "+5585999625722",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Avenida Washington Soares",
+        "addressLocality": "Fortaleza",
+        "addressRegion": "CE",
+        "addressCountry": "BR"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Saturday", "Sunday"],
+          "opens": "00:00",
+          "closes": "00:00"
+        }
+      ]
+    }
+    </script>
 
   <script src="/brand/config.js"></script>
   <script defer src="/brand/tracking.js"></script>

@@ -16,7 +16,7 @@ describe("formulário de captação", () => {
 
   afterEach(() => vi.unstubAllGlobals());
 
-  it("pede cinco escolhas antes dos dados pessoais e monta o lead para a coluna Novo", async () => {
+  it("pede quatro escolhas antes dos dados pessoais e monta o lead para a coluna Novo", async () => {
     const fetchMock = vi.fn().mockResolvedValue({ ok: false });
     vi.stubGlobal("fetch", fetchMock);
     render(<StepForm />);
@@ -28,7 +28,7 @@ describe("formulário de captação", () => {
     expect(screen.getByRole("button", { name: "Estados Unidos" })).toHaveAttribute("aria-pressed", "true");
     fireEvent.click(screen.getByRole("button", { name: "Europa" }));
 
-    for (const option of ["Entre 6 e 12 meses", "2 pessoas", "Já comprei", "De R$ 20 mil a R$ 40 mil"]) {
+    for (const option of ["Entre 6 e 12 meses", "2 pessoas", "Já comprei"]) {
       fireEvent.click(screen.getByRole("button", { name: option }));
     }
 
@@ -45,7 +45,7 @@ describe("formulário de captação", () => {
       whatsapp: "5585999999999",
       destino: "Europa",
       datas: "Entre 6 e 12 meses",
-      orcamento: "De R$ 20 mil a R$ 40 mil",
+      orcamento: "",
       observacoes: "Pessoas: 2 pessoas\nPassagem: Já comprei",
       origem: "Landing Page Specialle Viagens",
     });

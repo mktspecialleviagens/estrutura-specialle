@@ -1,6 +1,6 @@
 # Specialle Viagens — estrutura de captação
 
-Clone da matriz Scandia Travel para a Specialle Viagens (Fortaleza, desde 1997): página de captação, CRM, dashboard, loja de guias, blog, propostas e APIs Cloudflare Pages + D1. A identidade visual de todas as áreas já é a da Specialle; o que falta para publicar está em [BRANDING.md](BRANDING.md).
+Clone da matriz Scandia Travel para a Specialle Viagens (Fortaleza, desde 1996): página de captação, CRM, dashboard, loja de guias, blog, propostas e APIs Cloudflare Pages + D1. A identidade visual de todas as áreas já é a da Specialle; o que falta para publicar está em [BRANDING.md](BRANDING.md).
 
 | Caminho | Conteúdo |
 |---|---|
@@ -26,9 +26,9 @@ Use Node 22 e npm: `npm ci`, `npm test`, `npm run build`, `npm run check:build`.
 5. `HowItWorksSection` — as quatro etapas do atendimento
 6. `DestinationsGrid` — Europa, Estados Unidos e cruzeiros
 7. `ForWhoSection` — para quem é e para quem não é
-8. `AboutSection` — 29 anos, escritório em Fortaleza
-9. `TestimonialsSection` — depoimentos (placeholder)
-10. `StepForm` — formulário em cinco etapas + contato
+8. `AboutSection` — 30 anos, Anastacia Ribeiro, escritório em Fortaleza
+9. `TestimonialsSection` — até quatro depoimentos em vídeo vertical (ver `src/assets/depoimentos/LEIA-ME.md`)
+10. `StepForm` — formulário em quatro etapas + contato
 11. `FAQSection` — dúvidas frequentes
 12. `FinalCTA` + `FooterCTA` — fechamento
 

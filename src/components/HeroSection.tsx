@@ -48,14 +48,14 @@ const HeroSection = () => {
           <div className="max-w-[790px]">
             <div className="mb-6 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.22em] text-[#D9BCEC] sm:text-[11px]">
               <span className="h-px w-8 shrink-0 bg-[#C9A6E0]" aria-hidden="true" />
-              Specialle Viagens · Fortaleza · desde 1997
+              Specialle Viagens · Fortaleza · desde 1996
             </div>
             <h1 className="text-[clamp(2rem,4.2vw,3.5rem)] font-semibold leading-[1.06] tracking-[-.03em] [text-wrap:balance]">
               Sua viagem para a Europa ou os Estados Unidos resolvida do início ao fim.
               <span className="mt-3 block text-[0.78em] font-light text-[#D9BCEC]">E com alguém do seu lado também durante a viagem.</span>
             </h1>
             <p className="mt-6 max-w-[640px] text-[16px] font-light leading-[1.7] text-white/88 sm:text-[17px]">
-              Há 29 anos a Specialle organiza viagens internacionais para quem quer aproveitar e <strong className="font-semibold text-white">não quer administrar nada.</strong> Passagem, hospedagem, traslados, passeios, guia que fala português e acompanhamento direto com a nossa equipe enquanto você estiver fora.
+              Há 30 anos a Specialle organiza viagens internacionais para quem quer aproveitar e <strong className="font-semibold text-white">não quer administrar nada.</strong> Passagem, hospedagem, traslados, passeios, guia que fala português e acompanhamento direto com a nossa equipe enquanto você estiver fora.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-5">
               <button onClick={scrollToForm} className="group inline-flex min-h-14 items-center justify-center gap-5 rounded-md bg-[#C9A6E0] px-6 py-4 text-[12px] font-bold uppercase tracking-[.13em] text-[#1A002E] transition-colors hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
