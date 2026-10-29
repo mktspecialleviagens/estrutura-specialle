@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Blog de Viagens | Specialle Viagens</title>
   <meta name="description" content="Ideias e orientações para quem vai viajar para a Europa, os Estados Unidos ou fazer um cruzeiro.">
-  <link rel="canonical" href="https://matrix-estrutura-reservas.pages.dev/loja/blog/">
+  <!-- Apontava para o domínio da matriz, herdado do clone, o que dizia ao Google
+       que a versão oficial deste blog era a do outro site. Esta página é estática
+       e não consegue montar o canonical pelo host da requisição, como fazem os
+       artigos em functions/loja/blog/[slug].js. Trocar ao ligar o domínio próprio. -->
+  <link rel="canonical" href="https://estrutura-specialle.pages.dev/loja/blog/">
   <link rel="icon" href="/brand/logo.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
