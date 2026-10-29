@@ -28,6 +28,7 @@ const AboutSection = () => (
           <p>Quem atende é a <strong className="font-semibold text-[#280046]">Anastacia Ribeiro</strong>, à frente da Specialle há 30 anos, junto com a equipe. Quando você chamar no WhatsApp, é com ela e com o time dela que você vai falar.</p>
           <p>Nesses 30 anos foram milhares de viagens organizadas, clientes que voltam há mais de uma década e uma rede de parceiros construída destino por destino.</p>
           <p>Nosso escritório fica na Avenida Washington Soares, ao lado do Centro de Eventos, e recebe clientes de segunda a sexta, das 9h às 18h, com horário marcado ou por ordem de chegada.</p>
+          <p>E quando a viagem começa o atendimento não para: <strong className="font-semibold text-[#280046]">quem viaja com a gente tem plantão 24h no WhatsApp</strong>, para resolver voo atrasado, troca de hotel ou qualquer imprevisto, a qualquer hora, em qualquer fuso.</p>
         </div>
       </div>
     </div>

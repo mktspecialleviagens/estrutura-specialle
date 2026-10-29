@@ -10,9 +10,32 @@
 // Gravar uma lista congela aquela chave para este cliente.
 
 const PADROES = {
-  // A agência ainda vai mandar a relação completa; estes são os serviços que ela
-  // já vende hoje.
-  tipos_servico:       ['Pacote regular', 'Roteiro personalizado', 'Cruzeiro', 'Visto', 'Guia'],
+  // Relação que a agência mandou em 29/10/2026, na arte "Nossos serviços"
+  // (nacionais e internacionais), na ordem em que aparece lá. Caixa
+  // normalizada para combinar com o resto dos selects do CRM.
+  //
+  // Os dois últimos não estão na arte: "Roteiro personalizado" é o que a
+  // landing promete e vende, e "Guia de viagem" é o que a loja entrega. Ficam
+  // aqui para o pipeline conseguir classificar esses dois casos; se a agência
+  // não quiser, saem pela tela de Configurações sem deploy.
+  tipos_servico: [
+    'Passagens aéreas',
+    'Pacotes e excursões',
+    'Cruzeiros marítimos',
+    'Turismo ferroviário',
+    'Roteiros lua de mel',
+    'Viagens de negócios',
+    'Viagens religiosas',
+    'Viagens ecológicas',
+    'Vistos consulares',
+    'Seguro de viagem',
+    'Reservas de hotéis',
+    'Locação de veículos',
+    'Congressos e eventos',
+    'Passeios e receptivos',
+    'Roteiro personalizado',
+    'Guia de viagem',
+  ],
   formas_pagamento:    ['Pix', 'Cartão de crédito', 'Cartão de débito'],
   categorias_receita:  ['Consultoria', 'Passeios', 'Hospedagem', 'Aéreo', 'Seguro', 'Outro'],
   origens_lead:        ['Google Ads', 'Instagram', 'Feiras', 'Parceiros', 'Indicação', 'Outro'],

@@ -41,8 +41,9 @@ fundos escuros e `#120020` para os overlays mais profundos.
 
 ## O que ainda falta para publicar
 
-1. **WhatsApp** — `public/brand/config.js` está com `5585999625722`, assumido a partir de
-   "+55 85 9962-5722". Confirmar o número antes de subir; sem WhatsApp válido o formulário não envia lead.
+1. ~~**WhatsApp**~~ — resolvido em 29/10/2026. A arte "Nossos serviços" da agência traz
+   (85) 9.9962-5722, que confirma o `5585999625722` já configurado. A mesma arte traz o fixo
+   (85) 3062-5722 e o Instagram `@specialleviagens`, que ainda não aparecem na página.
 2. **Favicon** — hoje aponta para `logo.webp`. Um favicon dedicado, quadrado e em `.png` ou
    `.ico`, renderiza melhor na aba e em atalhos de celular.
 3. **Fotos e vídeos** — ver `PHOTO_CREDITS.md`. A foto do escritório ainda é placeholder marcado.

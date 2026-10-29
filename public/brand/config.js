@@ -1,6 +1,7 @@
-// CONFERIR: o número informado foi "+55 85 9962-5722" (8 dígitos após o DDD).
-// Celular brasileiro hoje tem 9 dígitos, então assumimos 85 99962-5722.
-// Se o número correto for outro, corrija aqui — sem WhatsApp válido o formulário não envia lead.
+// Confirmado em 29/10/2026 pela arte "Nossos serviços" da própria agência, que
+// traz (85) 9.9962-5722 no ícone do WhatsApp. A arte traz também o fixo
+// (85) 3062-5722, que não entra aqui: este campo é só do WhatsApp.
+// Sem WhatsApp válido o formulário não envia lead.
 window.SPECIALLE_CONFIG = Object.freeze({
   agencyName: 'Specialle Viagens',
   whatsapp: '5585999625722',

@@ -19,7 +19,18 @@ const FooterCTA = () => {
             Escritório: segunda a sexta, das 9h às 18h. Atendimento presencial com horário marcado ou por ordem de chegada.
           </p>
           <p className="text-white/80">Sábado e domingo: escritório fechado.</p>
-          <p className="text-white/80">Plantão 24h no WhatsApp para clientes que estão em viagem.</p>
+          {/* O plantão é assistência a quem já está viajando, não canal de vendas
+              fora do horário. Em caixa destacada porque é o que tranquiliza quem
+              ainda está decidindo, e como linha solta passava despercebido. */}
+          <div className="mt-3 inline-flex items-start gap-2.5 rounded-xl border border-specialle-lilac/40 bg-white/[.07] px-4 py-3 text-left">
+            <span aria-hidden="true" className="text-base leading-none">🛟</span>
+            <span className="text-[12.5px] leading-relaxed">
+              <strong className="font-semibold text-specialle-lilac">Plantão 24h no WhatsApp</strong>
+              <span className="block text-white/80">
+                Assistência a quem já está em viagem, sete dias por semana, inclusive feriados.
+              </span>
+            </span>
+          </div>
           <p className="mt-3 text-white/55">
             © {new Date().getFullYear()} Specialle Viagens. Todos os direitos reservados.
           </p>

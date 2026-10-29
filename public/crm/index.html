@@ -1598,7 +1598,12 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
 // Os valores abaixo são só o que aparece antes de a API responder, no primeiro
 // carregamento. A fonte de verdade dos padrões é functions/api/crm/config.js.
 const CFG = {
-  tipos_servico:      ['Pacote regular', 'Roteiro personalizado', 'Cruzeiro', 'Visto', 'Guia'],
+  tipos_servico:      ['Passagens aéreas', 'Pacotes e excursões', 'Cruzeiros marítimos',
+                       'Turismo ferroviário', 'Roteiros lua de mel', 'Viagens de negócios',
+                       'Viagens religiosas', 'Viagens ecológicas', 'Vistos consulares',
+                       'Seguro de viagem', 'Reservas de hotéis', 'Locação de veículos',
+                       'Congressos e eventos', 'Passeios e receptivos',
+                       'Roteiro personalizado', 'Guia de viagem'],
   formas_pagamento:   ['Pix', 'Cartão de crédito', 'Cartão de débito'],
   categorias_receita: ['Consultoria', 'Passeios', 'Hospedagem', 'Aéreo', 'Seguro', 'Outro'],
   origens_lead:       ['Google Ads', 'Instagram', 'Feiras', 'Parceiros', 'Indicação', 'Outro'],
