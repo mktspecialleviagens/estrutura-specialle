@@ -3834,29 +3834,17 @@ function sBadge(s)     { return {novo:'bg-gray',contato:'bg-blue',proposta:'bg-a
 
 // ── toast ──────────────────────────────────────────────────────────────────────
 // ── propostas ─────────────────────────────────────────────────────────────────
-let _propostasAba = 'trevis';
 let _trevisLeads = [];
 let _trevisClientes = [];
 
 async function renderPropostas(el) {
-  el.innerHTML = `
-    <div class="fin-tabs" style="margin-bottom:18px">
-      <span class="fin-tab ${_propostasAba === 'trevis' ? 'active' : ''}" onclick="trocarAbaPropostas('trevis')">Trevis</span>
-      <span class="fin-tab ${_propostasAba === 'legado' ? 'active' : ''}" onclick="trocarAbaPropostas('legado')">Propostas internas antigas</span>
-    </div>
-    <div id="propostas-body" class="loading">Carregando…</div>`;
+  el.innerHTML = `<div id="propostas-body" class="loading">Carregando…</div>`;
   const body = document.getElementById('propostas-body');
-  if (_propostasAba === 'legado') return renderPropostasLegado(body);
   try {
     const r = await api('/api/crm/trevis/documentos');
     if (S.mod !== 'propostas') return;
     renderTrevisDocumentos(body, r.documentos || []);
   } catch (e) { body.innerHTML = `<div class="empty">Erro ao carregar documentos Trevis: ${esc(e.message)}</div>`; }
-}
-
-function trocarAbaPropostas(aba) {
-  _propostasAba = aba;
-  load('propostas');
 }
 
 function renderTrevisDocumentos(el, documentos) {
@@ -3982,7 +3970,7 @@ async function importarTrevis(botao) {
     const r = await api('/api/crm/trevis/importar', { method:'POST', body: JSON.stringify({ url }) });
     const d = r.dados;
     document.getElementById('tr-tipo').value = 'proposta';
-    for (const [id, valor] of Object.entries({ 'tr-titulo-doc':d.titulo, 'tr-numero':d.numero, 'tr-nome':d.cliente_nome, 'tr-viajantes':d.viajantes, 'tr-valor':d.valor_total, 'tr-moeda':d.moeda, 'tr-validade':d.validade })) {
+    for (const [id, valor] of Object.entries({ 'tr-titulo-doc':d.titulo, 'tr-numero':d.numero, 'tr-nome':d.cliente_nome, 'tr-destinos':(d.destinos || []).join(', '), 'tr-viajantes':d.viajantes, 'tr-valor':d.valor_total, 'tr-moeda':d.moeda, 'tr-validade':d.validade, 'tr-embarque':d.embarque, 'tr-retorno':d.retorno })) {
       if (valor !== null && valor !== undefined && valor !== '') document.getElementById(id).value = valor;
     }
     ajustarCamposTrevis();
