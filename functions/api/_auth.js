@@ -1,5 +1,7 @@
 const SESSION_DAYS = 14;
-const PBKDF2_ITERATIONS = 210000;
+// Compatível com o limite de CPU do Cloudflare Pages e ainda protegido por
+// salt único, PBKDF2/SHA-256 e comparacão em tempo constante.
+const PBKDF2_ITERATIONS = 50000;
 const encoder = new TextEncoder();
 
 export async function requireAuth(request, env, permissao = null) {
