@@ -1,22 +1,15 @@
-import sobreImg from "@/assets/sobre-specialle.jpg";
+import sobreImg from "@/assets/anastacia-specialle.jpg";
 
 const AboutSection = () => (
   <section id="sobre" className="section-padding bg-offwhite">
     <div className="container max-w-[1200px] grid items-center gap-12 md:grid-cols-[minmax(0,1.05fr)_minmax(0,.95fr)] md:gap-14 lg:gap-24">
       <figure className="relative min-w-0 w-full">
-        {/* PLACEHOLDER — trocar pelas fotos do escritório da Specialle (varanda e mapa de acrílico). */}
         <img
           src={sobreImg}
-          alt="Mapa, passaporte e câmera sobre a mesa durante o planejamento de uma viagem"
-          className="w-full aspect-[4/4.2] object-cover rounded-[5px] md:aspect-[4/5]"
+          alt="Anastacia Ribeiro no escritório da Specialle Viagens"
+          className="w-full aspect-[4/4.2] object-cover object-[center_65%] rounded-[5px] md:aspect-[4/5]"
           loading="lazy"
         />
-        <span className="absolute left-4 top-4 rounded-sm bg-[#280046] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-white">
-          Foto provisória
-        </span>
-        <figcaption className="text-xs tracking-[0.12em] uppercase text-foreground/60 mt-4">
-          Substituir pelas fotos do escritório · Washington Soares, Fortaleza
-        </figcaption>
       </figure>
       <div className="min-w-0">
         <span className="eyebrow text-specialle-violet mb-6 block">Quem está por trás</span>

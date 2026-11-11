@@ -829,9 +829,6 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
       <div class="nav-item" data-m="guias" onclick="go('guias')">
         <span class="icon">📚</span> Guias
       </div>
-      <div class="nav-item" data-m="config" onclick="go('config')">
-        <span class="icon">⚙️</span> Configurações
-      </div>
 
       <!-- Saem do CRM: abrem em nova aba. "Ver loja" só aparece para quem tem
            guias cadastrados — ver atualizarLinksExternos(). -->
@@ -1658,11 +1655,16 @@ async function carregarConfig() {
 // `atual` garante que um registro antigo não perca o valor só porque a opção
 // saiu da lista: ela volta ao fim, marcada, em vez de o select cair no vazio.
 function cfgOptions(lista, atual, vazio = 'Selecione') {
-  const itens = CFG[lista] || [];
+  let itens = CFG[lista] || [];
+  if (lista === 'tipos_servico') {
+    const removidos = new Set(['turismo ferroviário', 'roteiros lua de mel', 'viagens ecológicas', 'viagens religiosas', 'guia de viagem']);
+    itens = itens.filter(i => !removidos.has(i.trim().toLocaleLowerCase('pt-BR')))
+      .slice().sort((a, b) => a.localeCompare(b, 'pt-BR'));
+  }
   const extra = atual && !itens.includes(atual) ? [atual] : [];
   return `<option value="">${esc(vazio)}</option>`
     + [...itens, ...extra].map(i =>
-        `<option value="${esc(i)}"${i === atual ? ' selected' : ''}>${esc(i)}</option>`).join('');
+        `<option value="${esc(i)}"${i === atual ? ' selected' : ''}>${esc(lista === 'tipos_servico' ? i.replace(/(^|\s)(\p{L})/gu, (_, espaco, letra) => espaco + letra.toLocaleUpperCase('pt-BR')) : i)}</option>`).join('');
 }
 
 // ── state ──────────────────────────────────────────────────────────────────────
