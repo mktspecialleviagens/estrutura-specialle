@@ -1,7 +1,9 @@
 import { can, requireAuth } from './api/_auth.js';
 import { onRequest as tracking } from './_tracking.js';
 
-const PROTEGIDAS = [/^\/api\/crm\/(?!lead-capture$)/, /^\/loja\/api\/admin\//];
+// O webhook Trevis é a única rota CRM sem sessão: valida HMAC próprio dentro
+// da Function e fica inativo enquanto o secret não existir no Pages.
+const PROTEGIDAS = [/^\/api\/crm\/(?!lead-capture$|trevis\/webhook$)/, /^\/loja\/api\/admin\//];
 const FINANCEIRO = /^\/api\/crm\/(faturas|despesas|receitas|contratos)(?:\/|$)/;
 
 export async function onRequest(context) {

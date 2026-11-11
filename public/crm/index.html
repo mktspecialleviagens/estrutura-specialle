@@ -445,6 +445,12 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
 .t-actions .ml { margin-left:auto; }
 
 /* ── propostas ──────────────────────────────────────────────────────────────── */
+.trevis-cards { display:none; }
+.trevis-card { background:#fff; border:1px solid var(--border); border-radius:12px; padding:14px; display:grid; gap:9px; box-shadow:var(--shadow-sm); }
+.trevis-card-hd { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+.trevis-card-meta { font-size:12px; color:var(--muted); }
+.trevis-card-line { font-size:12.5px; color:var(--ink); }
+.trevis-card-actions { display:flex; gap:6px; flex-wrap:wrap; padding-top:4px; border-top:1px solid var(--border); }
 .prop-steps { display:flex; gap:0; border-bottom:1px solid var(--border); padding:0 32px; flex-shrink:0; background:#fff; }
 .prop-step { padding:15px 0; font-size:12.5px; font-weight:600; color:var(--ink-mute); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px; white-space:nowrap; font-family:var(--font-ui); transition:color var(--tr-fast), border-color var(--tr-fast); flex:1; text-align:center; }
 .prop-step.active { color:var(--purple); border-bottom-color:var(--purple); }
@@ -664,6 +670,8 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
   .cfg-hd  { flex-direction: column; gap: 6px; }
   .cfg-ft  { flex-direction: column-reverse; }
   .cfg-ft .btn { width: 100%; justify-content: center; }
+  .trevis-table-wrap { display:none; }
+  .trevis-cards { display:grid; gap:10px; }
 }
 
 /* ── parcelas da proposta ─────────────────────────────────────────────────── */
@@ -952,6 +960,28 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
       <button class="btn btn-danger btn-sm" id="m-del" onclick="deleteLead()" style="display:none">Excluir</button>
       <button class="btn btn-primary" onclick="saveLead()">Salvar</button>
     </div>
+  </div>
+</div>
+
+<!-- ── DOCUMENTO TREVIS ─────────────────────────────────────────────────────── -->
+<div class="overlay hidden" id="ov-trevis">
+  <div class="modal" style="max-width:700px">
+    <div class="modal-hd"><h2 id="tr-title">Vincular documento Trevis</h2><button class="modal-close" onclick="closeTrevisModal()">×</button></div>
+    <div class="modal-body">
+      <input type="hidden" id="tr-id">
+      <div class="field"><label>Código da viagem</label><input id="tr-viagem" type="text" readonly><div class="fin-sub">É o vínculo permanente entre proposta, roteiro e CRM. O link pode mudar sem quebrar essa relação.</div></div>
+      <div class="row2"><div class="field"><label>Lead no CRM</label><select id="tr-lead" onchange="preencherTrevisDoLead()"></select></div><div class="field"><label>Cliente no CRM</label><select id="tr-cliente"></select></div></div>
+      <div class="row2"><div class="field"><label>Documento *</label><select id="tr-tipo" onchange="ajustarCamposTrevis()"><option value="proposta">Proposta</option><option value="roteiro">Roteiro</option></select></div><div class="field"><label>Número no Trevis</label><input id="tr-numero" type="text" placeholder="Ex: 0003/2027"></div></div>
+      <div class="field"><label>Título *</label><input id="tr-titulo-doc" type="text" placeholder="Ex: Itália em família"></div>
+      <div class="row2"><div class="field"><label>Nome do viajante</label><input id="tr-nome" type="text" placeholder="Ex: Ana e Paulo"></div><div class="field"><label>Destinos</label><input id="tr-destinos" type="text" placeholder="Ex: Roma, Florença"></div></div>
+      <div class="row2"><div class="field"><label>Embarque</label><input id="tr-embarque" type="date"></div><div class="field"><label>Retorno</label><input id="tr-retorno" type="date"></div></div>
+      <div class="row2"><div class="field"><label>Viajantes</label><input id="tr-viajantes" type="number" min="1" max="100" placeholder="2"></div><div class="field"><label>Status</label><select id="tr-status"><option value="rascunho">Rascunho</option><option value="enviada">Enviada</option><option value="aprovada">Aprovada</option><option value="confirmada">Confirmada</option><option value="perdida">Perdida</option><option value="substituida">Substituída</option><option value="entregue">Entregue</option></select></div></div>
+      <div class="row2" id="tr-valor-wrap"><div class="field"><label>Valor total</label><input id="tr-valor" type="number" min="0" step="0.01" placeholder="0,00"></div><div class="field"><label>Moeda</label><select id="tr-moeda"><option value="BRL">BRL</option><option value="USD">USD</option><option value="EUR">EUR</option></select></div></div>
+      <div class="field" id="tr-validade-wrap"><label>Validade</label><input id="tr-validade" type="date"></div>
+      <div class="field"><label>Link público *</label><input id="tr-link" type="url" placeholder="https://..."></div>
+      <div class="field"><label>Pasta do cliente no Drive</label><input id="tr-pasta" type="url" placeholder="https://drive.google.com/... (opcional)"></div>
+    </div>
+    <div class="modal-ft" style="gap:8px"><button class="btn btn-ghost" onclick="closeTrevisModal()">Cancelar</button><button class="btn btn-ghost" onclick="copyTrevisBrief()">📋 Copiar contexto Trevis</button><button class="btn btn-danger btn-sm" id="tr-del" onclick="deleteTrevisDocumento()" style="display:none">Excluir</button><button class="btn btn-primary" onclick="saveTrevisDocumento()">Salvar vínculo</button></div>
   </div>
 </div>
 
@@ -1657,7 +1687,8 @@ const ACTIONS  = {
   tarefas:    '<button class="btn btn-primary btn-sm" onclick="openTarefaModal()">+ Nova Tarefa</button>',
   financeiro: '<button class="btn btn-ghost btn-sm" onclick="exportFinanceiroXlsx(this)">📊 Exportar Excel</button>'
             + '<button class="btn btn-primary btn-sm" style="margin-left:8px" onclick="openFinModal()">+ Lançar</button>',
-  propostas:  '<button class="btn btn-primary btn-sm" onclick="openProposalModal()">+ Nova Proposta</button>',
+  propostas:  '<button class="btn btn-primary btn-sm" onclick="openTrevisModal()">+ Vincular Trevis</button>'
+            + '<button class="btn btn-ghost btn-sm" style="margin-left:8px" onclick="openProposalModal()">Proposta interna</button>',
   artigos:    '<button class="btn btn-primary btn-sm" onclick="openArtigoModal()">+ Novo Artigo</button>',
   guias:      '<button class="btn btn-primary btn-sm" onclick="openGuiaModal()">+ Novo Guia</button>',
 };
@@ -3804,7 +3835,183 @@ function sBadge(s)     { return {novo:'bg-gray',contato:'bg-blue',proposta:'bg-a
 
 // ── toast ──────────────────────────────────────────────────────────────────────
 // ── propostas ─────────────────────────────────────────────────────────────────
+let _propostasAba = 'trevis';
+let _trevisLeads = [];
+let _trevisClientes = [];
+
 async function renderPropostas(el) {
+  el.innerHTML = `
+    <div class="fin-tabs" style="margin-bottom:18px">
+      <span class="fin-tab ${_propostasAba === 'trevis' ? 'active' : ''}" onclick="trocarAbaPropostas('trevis')">Trevis</span>
+      <span class="fin-tab ${_propostasAba === 'legado' ? 'active' : ''}" onclick="trocarAbaPropostas('legado')">Propostas internas antigas</span>
+    </div>
+    <div id="propostas-body" class="loading">Carregando…</div>`;
+  const body = document.getElementById('propostas-body');
+  if (_propostasAba === 'legado') return renderPropostasLegado(body);
+  try {
+    const r = await api('/api/crm/trevis/documentos');
+    if (S.mod !== 'propostas') return;
+    renderTrevisDocumentos(body, r.documentos || []);
+  } catch (e) { body.innerHTML = `<div class="empty">Erro ao carregar documentos Trevis: ${esc(e.message)}</div>`; }
+}
+
+function trocarAbaPropostas(aba) {
+  _propostasAba = aba;
+  load('propostas');
+}
+
+function renderTrevisDocumentos(el, documentos) {
+  if (!documentos.length) {
+    el.innerHTML = `<div class="empty" style="padding:60px 0">
+      <div style="font-size:36px;margin-bottom:12px">🧭</div>
+      <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px">Nenhuma proposta ou roteiro Trevis vinculado</div>
+      <div style="color:var(--muted);font-size:13px">Crie o documento no Trevis e cole aqui o link. O código da viagem mantém proposta e roteiro juntos.</div>
+    </div>`;
+    return;
+  }
+  const rows = documentos.map(d => {
+    const destinos = trevisDestinos(d).join(', ') || '—';
+    const periodo = d.embarque ? `${fmtD(d.embarque)}${d.retorno ? ' → ' + fmtD(d.retorno) : ''}` : '—';
+    const valor = d.tipo === 'proposta' && d.valor_total != null ? fmtV(d.valor_total, d.moeda) : '—';
+    const titulo = d.titulo || (d.tipo === 'proposta' ? 'Proposta' : 'Roteiro');
+    return `<tr>
+      <td><strong>${esc(titulo)}</strong><div class="fin-sub">${esc(d.cliente_nome || 'Sem viajante')} · ${d.tipo === 'proposta' ? 'Proposta' : 'Roteiro'}</div></td>
+      <td>${esc(destinos)}</td><td style="white-space:nowrap">${periodo}</td><td class="fin-num">${valor}</td>
+      <td><span class="badge ${trevisStatusClasse(d.status)}">${esc(trevisStatusLabel(d.status))}</span>${d.status === 'confirmada' ? '<div class="fin-sub" style="color:var(--green)">Pronta para lançar no Financeiro</div>' : ''}</td>
+      <td><div class="fin-actions"><a class="btn btn-ghost btn-sm" href="${esc(d.url_publica)}" target="_blank" rel="noopener">Abrir ↗</a><button class="btn btn-ghost btn-sm" onclick="openTrevisModal('${d.id}')">✏️</button><button class="btn btn-ghost btn-sm" style="color:var(--red)" onclick="deleteTrevisDocumento('${d.id}')">🗑</button></div></td>
+    </tr>`;
+  }).join('');
+  const cards = documentos.map(d => {
+    const destinos = trevisDestinos(d).join(', ') || 'Destino a definir';
+    const periodo = d.embarque ? `${fmtD(d.embarque)}${d.retorno ? ' → ' + fmtD(d.retorno) : ''}` : '';
+    const valor = d.tipo === 'proposta' && d.valor_total != null ? fmtV(d.valor_total, d.moeda) : '';
+    return `<article class="trevis-card">
+      <div class="trevis-card-hd"><div><strong>${esc(d.titulo)}</strong><div class="trevis-card-meta">${esc(d.cliente_nome || 'Sem viajante')} · ${d.tipo === 'proposta' ? 'Proposta' : 'Roteiro'}</div></div><span class="badge ${trevisStatusClasse(d.status)}">${esc(trevisStatusLabel(d.status))}</span></div>
+      <div class="trevis-card-line">${esc(destinos)}${periodo ? ` · ${periodo}` : ''}${valor ? ` · ${valor}` : ''}</div>
+      <div class="trevis-card-actions"><a class="btn btn-ghost btn-sm" href="${esc(d.url_publica)}" target="_blank" rel="noopener">Abrir ↗</a><button class="btn btn-ghost btn-sm" onclick="openTrevisModal('${d.id}')">Editar</button><button class="btn btn-ghost btn-sm" style="color:var(--red)" onclick="deleteTrevisDocumento('${d.id}')">Excluir</button></div>
+    </article>`;
+  }).join('');
+  el.innerHTML = `<div class="fin-sub" style="margin:-4px 0 14px">Os documentos são produzidos no Trevis. Aqui ficam o vínculo comercial, o status e os links da viagem.</div>
+    <div class="trevis-table-wrap" style="overflow-x:auto"><table class="fin-table" style="min-width:760px"><thead><tr><th>Documento / Viajante</th><th>Destinos</th><th>Período</th><th>Valor</th><th>Status</th><th></th></tr></thead><tbody>${rows}</tbody></table></div><div class="trevis-cards">${cards}</div>`;
+}
+
+function trevisDestinos(d) { try { return Array.isArray(d.destinos) ? d.destinos : JSON.parse(d.destinos || '[]'); } catch { return []; } }
+function trevisStatusLabel(status) { return ({rascunho:'Rascunho',enviada:'Enviada',aprovada:'Aprovada',confirmada:'Confirmada',perdida:'Perdida',substituida:'Substituída',entregue:'Entregue'})[status] || status; }
+function trevisStatusClasse(status) { return ({confirmada:'bg-green',aprovada:'bg-green',enviada:'bg-amber',rascunho:'bg-gray',perdida:'bg-red',substituida:'bg-gray',entregue:'bg-blue'})[status] || 'bg-gray'; }
+
+async function openTrevisModal(id, leadId) {
+  const [leads, clientes] = await Promise.all([
+    api('/api/crm/leads?limit=500').catch(() => ({ leads: [] })),
+    api('/api/crm/clientes?limit=500').catch(() => ({ clientes: [] })),
+  ]);
+  _trevisLeads = leads.leads || [];
+  _trevisClientes = clientes.clientes || [];
+  document.getElementById('tr-lead').innerHTML = `<option value="">Sem lead vinculado</option>${_trevisLeads.map(l => `<option value="${esc(l.id)}">${esc(l.nome)}</option>`).join('')}`;
+  document.getElementById('tr-cliente').innerHTML = `<option value="">Sem cliente vinculado</option>${_trevisClientes.map(c => `<option value="${esc(c.id)}">${esc(c.nome)}</option>`).join('')}`;
+  const fields = ['tr-id','tr-numero','tr-titulo-doc','tr-nome','tr-destinos','tr-embarque','tr-retorno','tr-viajantes','tr-valor','tr-validade','tr-link','tr-pasta'];
+  fields.forEach(f => document.getElementById(f).value = '');
+  document.getElementById('tr-id').value = id || '';
+  document.getElementById('tr-viagem').value = criarIdTrevis();
+  document.getElementById('tr-tipo').value = 'proposta';
+  document.getElementById('tr-status').value = 'rascunho';
+  document.getElementById('tr-moeda').value = 'BRL';
+  document.getElementById('tr-del').style.display = id ? '' : 'none';
+  document.getElementById('tr-title').textContent = id ? 'Editar vínculo Trevis' : 'Vincular documento Trevis';
+  if (id) {
+    try {
+      const r = await api(`/api/crm/trevis/documentos/${encodeURIComponent(id)}`);
+      preencherTrevisDocumento(r.documento);
+    } catch (e) { toast('Erro ao carregar documento: ' + e.message, 'err'); return; }
+  } else if (leadId) {
+    document.getElementById('tr-lead').value = leadId;
+    preencherTrevisDoLead();
+  }
+  ajustarCamposTrevis();
+  document.getElementById('ov-trevis').classList.remove('hidden');
+}
+
+function preencherTrevisDocumento(d) {
+  document.getElementById('tr-id').value = d.id || '';
+  document.getElementById('tr-viagem').value = d.viagem_id || criarIdTrevis();
+  document.getElementById('tr-lead').value = d.lead_id || '';
+  document.getElementById('tr-cliente').value = d.cliente_id || '';
+  document.getElementById('tr-tipo').value = d.tipo || 'proposta';
+  document.getElementById('tr-numero').value = d.numero || '';
+  document.getElementById('tr-titulo-doc').value = d.titulo || '';
+  document.getElementById('tr-nome').value = d.cliente_nome || '';
+  document.getElementById('tr-destinos').value = trevisDestinos(d).join(', ');
+  document.getElementById('tr-embarque').value = d.embarque || '';
+  document.getElementById('tr-retorno').value = d.retorno || '';
+  document.getElementById('tr-viajantes').value = d.viajantes || '';
+  document.getElementById('tr-valor').value = d.valor_total ?? '';
+  document.getElementById('tr-moeda').value = d.moeda || 'BRL';
+  document.getElementById('tr-validade').value = d.validade || '';
+  document.getElementById('tr-status').value = d.status || 'rascunho';
+  document.getElementById('tr-link').value = d.url_publica || '';
+  document.getElementById('tr-pasta').value = d.pasta_cliente || '';
+}
+
+function preencherTrevisDoLead() {
+  const l = _trevisLeads.find(x => x.id === document.getElementById('tr-lead').value);
+  if (!l) return;
+  const setIfBlank = (id, value) => { const el = document.getElementById(id); if (!el.value && value) el.value = value; };
+  setIfBlank('tr-nome', l.nome);
+  setIfBlank('tr-destinos', l.destino);
+  setIfBlank('tr-embarque', l.data_viagem);
+  setIfBlank('tr-valor', l.valor_estimado);
+  setIfBlank('tr-titulo-doc', [l.destino, l.nome].filter(Boolean).join(' · '));
+  if (l.moeda) document.getElementById('tr-moeda').value = l.moeda;
+}
+
+function ajustarCamposTrevis() {
+  const roteiro = document.getElementById('tr-tipo').value === 'roteiro';
+  document.getElementById('tr-valor-wrap').style.display = roteiro ? 'none' : '';
+  document.getElementById('tr-validade-wrap').style.display = roteiro ? 'none' : '';
+  const status = document.getElementById('tr-status');
+  if (roteiro && !['entregue','rascunho'].includes(status.value)) status.value = 'entregue';
+}
+
+function criarIdTrevis() { return window.crypto?.randomUUID ? window.crypto.randomUUID() : `viagem-${Date.now()}-${Math.random().toString(16).slice(2)}`; }
+function closeTrevisModal() { document.getElementById('ov-trevis').classList.add('hidden'); }
+
+function dadosTrevis() {
+  return {
+    viagem_id: document.getElementById('tr-viagem').value, lead_id: document.getElementById('tr-lead').value || null,
+    cliente_id: document.getElementById('tr-cliente').value || null, tipo: document.getElementById('tr-tipo').value,
+    numero: document.getElementById('tr-numero').value.trim(), titulo: document.getElementById('tr-titulo-doc').value.trim(),
+    cliente_nome: document.getElementById('tr-nome').value.trim(), destinos: document.getElementById('tr-destinos').value.split(',').map(x => x.trim()).filter(Boolean),
+    embarque: document.getElementById('tr-embarque').value || null, retorno: document.getElementById('tr-retorno').value || null,
+    viajantes: document.getElementById('tr-viajantes').value || null, valor_total: document.getElementById('tr-valor').value || null,
+    moeda: document.getElementById('tr-moeda').value, validade: document.getElementById('tr-validade').value || null,
+    status: document.getElementById('tr-status').value, url_publica: document.getElementById('tr-link').value.trim(), pasta_cliente: document.getElementById('tr-pasta').value.trim(),
+  };
+}
+
+async function saveTrevisDocumento() {
+  const id = document.getElementById('tr-id').value;
+  const d = dadosTrevis();
+  if (!d.titulo || !d.url_publica) return toast('Preencha o título e o link público.', 'err');
+  try {
+    await api(id ? `/api/crm/trevis/documentos/${encodeURIComponent(id)}` : '/api/crm/trevis/documentos', { method: id ? 'PUT' : 'POST', body: JSON.stringify(d) });
+    closeTrevisModal(); toast('Documento Trevis vinculado.'); if (S.mod === 'propostas') load('propostas');
+  } catch (e) { toast('Erro: ' + e.message, 'err'); }
+}
+
+async function deleteTrevisDocumento(id) {
+  const target = id || document.getElementById('tr-id').value;
+  if (!target || !confirm('Excluir este vínculo do CRM? O documento continuará preservado no Trevis.')) return;
+  try { await api(`/api/crm/trevis/documentos/${encodeURIComponent(target)}`, { method: 'DELETE' }); closeTrevisModal(); toast('Vínculo removido do CRM.'); if (S.mod === 'propostas') load('propostas'); }
+  catch (e) { toast('Erro: ' + e.message, 'err'); }
+}
+
+async function copyTrevisBrief() {
+  const d = dadosTrevis();
+  const texto = `INTEGRAÇÃO CRM SPECIALLE\nviagem_id: ${d.viagem_id}\ncrm_lead_id: ${d.lead_id || 'a vincular depois'}\nViajante: ${d.cliente_nome || 'a definir'}\nDestinos: ${d.destinos.join(', ') || 'a definir'}\nEmbarque: ${d.embarque || 'a definir'}\nRetorno: ${d.retorno || 'a definir'}\nViajantes: ${d.viajantes || 'a definir'}\n\nAo publicar, mantenha viagem_id e registre o link da ${d.tipo} no CRM.`;
+  try { await navigator.clipboard.writeText(texto); toast('Contexto copiado para usar no Trevis.'); }
+  catch { prompt('Copie este contexto para o Trevis:', texto); }
+}
+
+async function renderPropostasLegado(el) {
   let list;
   try { list = await api('/loja/api/admin/proposals'); }
   catch (e) {
@@ -4377,8 +4584,7 @@ async function deleteProposal(id) {
 }
 
 function proposalFromLead(id) {
-  const l = (S.leads || []).find(x => String(x.id) === String(id));
-  openProposalModal(null, l || null);
+  openTrevisModal(null, id);
 }
 
 // ── lançar proposta no financeiro ─────────────────────────────────────────────
