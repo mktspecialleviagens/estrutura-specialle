@@ -142,6 +142,8 @@ export async function onRequestPost(context) {
   const now = Math.floor(Date.now() / 1000);
 
   try {
+    const contrato = await env.DB.prepare('SELECT id FROM crm_contratos WHERE id = ? AND cliente_id = ? AND EXISTS (SELECT 1 FROM crm_clientes WHERE id = ?)').bind(contrato_id, cliente_id, cliente_id).first();
+    if (!contrato) return json({ error: 'Cliente ou contrato inválido.' }, 400);
     await env.DB.prepare(`
       INSERT INTO crm_faturas
         (id, cliente_id, contrato_id, mes, vencimento, valor, comissao,

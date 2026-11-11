@@ -86,7 +86,9 @@ export async function onRequestPost(context) {
   }
 
   try {
-    await env.DB.prepare(`
+    const cliente = await env.DB.prepare('SELECT id FROM crm_clientes WHERE id = ?').bind(cliente_id).first();
+    if (!cliente) return json({ error: 'Cliente não encontrado.' }, 400);
+    const contratoStmt = env.DB.prepare(`
       INSERT INTO crm_contratos
         (id, cliente_id, valor, recorrencia, data_inicio, vencimento,
          status, moeda, dia_vencimento, num_parcelas,
@@ -102,7 +104,7 @@ export async function onRequestPost(context) {
       comissao_estimada ?? null,
       forma_pagamento_prevista ?? null,
       now, now,
-    ).run();
+    );
 
     if (faturas.length) {
       const stmt = env.DB.prepare(`
@@ -112,11 +114,13 @@ export async function onRequestPost(context) {
            forma_pagamento, condicao_pagamento, status, created_at, updated_at)
         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
       `);
-      await env.DB.batch(faturas.map(f => stmt.bind(
+      await env.DB.batch([contratoStmt, ...faturas.map(f => stmt.bind(
         f.id, f.cliente_id, f.contrato_id, f.mes, f.vencimento, f.valor, f.comissao,
         f.descricao, f.categoria, f.parcela_num, f.parcela_total,
         f.forma_pagamento, f.condicao_pagamento, f.status, now, now,
-      )));
+      ))]);
+    } else {
+      await contratoStmt.run();
     }
 
     const contrato = await env.DB.prepare('SELECT * FROM crm_contratos WHERE id = ?').bind(id).first();

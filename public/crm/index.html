@@ -2720,7 +2720,7 @@ function buildFaturasView(faturas, kpis, mes) {
             ${atrasada ? `<div class="fin-sub" style="color:var(--red)">atrasada</div>` : ''}
           </td>
           <td>
-            <strong>${esc(f.cliente_nome || '—')}</strong>
+            <strong>${esc(f.cliente_nome || 'Cliente excluído')}</strong>
             ${sub ? `<div class="fin-sub">${sub}</div>` : ''}
           </td>
           <td>${f.parcela_total > 1 ? `<span class="fin-parc">${f.parcela_num}/${f.parcela_total}</span>` : '—'}</td>
@@ -3076,6 +3076,7 @@ function editFatura(id) {
   if (!f) return;
   openFinModal('fatura').then(() => {
     document.getElementById('ff-id').value         = f.id;
+    document.getElementById('fin-del').style.display = 'inline-flex';
     document.getElementById('ff-cliente').value    = f.cliente_id;
     document.getElementById('ff-cliente').disabled = true;   // cliente não é editável depois de criada
     document.getElementById('ff-desc').value       = f.descricao || '';
@@ -3294,6 +3295,18 @@ async function saveFinItem() {
 }
 
 async function deleteFinItem() {
+  if (_finModalTab === 'fatura') {
+    const id = document.getElementById('ff-id').value;
+    if (!id || !confirm('Excluir este lançamento financeiro? Essa ação não pode ser desfeita.')) return;
+    try {
+      await api(`/api/crm/faturas/${encodeURIComponent(id)}`, { method:'DELETE' });
+      _receitas = null;
+      closeFinModal();
+      await loadFinTab();
+      toast('Lançamento excluído', 'ok');
+    } catch (e) { toast('Erro: '+e.message, 'err'); }
+    return;
+  }
   const id = document.getElementById('fd-id').value;
   if (!id || !confirm('Excluir esta despesa?')) return;
   try {

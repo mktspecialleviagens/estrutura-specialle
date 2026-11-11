@@ -66,10 +66,14 @@ export async function onRequestDelete(context) {
   if (!auth(url, env)) return json({ error: 'Unauthorized' }, 401);
 
   try {
-    const result = await env.DB.prepare(
-      'DELETE FROM crm_clientes WHERE id = ?'
-    ).bind(params.id).run();
-    if (!result.meta.changes) return json({ error: 'Not found' }, 404);
+    const result = await env.DB.prepare(`DELETE FROM crm_clientes WHERE id = ?
+      AND NOT EXISTS (SELECT 1 FROM crm_faturas WHERE cliente_id = ?)
+      AND NOT EXISTS (SELECT 1 FROM crm_contratos WHERE cliente_id = ?)`
+    ).bind(params.id, params.id, params.id).run();
+    if (!result.meta.changes) {
+      const cliente = await env.DB.prepare('SELECT id FROM crm_clientes WHERE id = ?').bind(params.id).first();
+      return cliente ? json({ error: 'Este cliente possui lançamentos ou contratos. Preserve o cadastro como inativo para manter o histórico financeiro.' }, 409) : json({ error: 'Not found' }, 404);
+    }
     return json({ ok: true });
   } catch (err) {
     return json({ error: err.message }, 500);
