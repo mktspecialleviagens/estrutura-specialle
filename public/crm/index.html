@@ -978,7 +978,7 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
       <div class="row2"><div class="field"><label>Viajantes</label><input id="tr-viajantes" type="number" min="1" max="100" placeholder="2"></div><div class="field"><label>Status</label><select id="tr-status"><option value="rascunho">Rascunho</option><option value="enviada">Enviada</option><option value="aprovada">Aprovada</option><option value="confirmada">Confirmada</option><option value="perdida">Perdida</option><option value="substituida">Substituída</option><option value="entregue">Entregue</option></select></div></div>
       <div class="row2" id="tr-valor-wrap"><div class="field"><label>Valor total</label><input id="tr-valor" type="number" min="0" step="0.01" placeholder="0,00"></div><div class="field"><label>Moeda</label><select id="tr-moeda"><option value="BRL">BRL</option><option value="USD">USD</option><option value="EUR">EUR</option></select></div></div>
       <div class="field" id="tr-validade-wrap"><label>Validade</label><input id="tr-validade" type="date"></div>
-      <div class="field"><label>Link público *</label><input id="tr-link" type="url" placeholder="https://..."></div>
+      <div class="field"><label>Link público *</label><input id="tr-link" type="url" placeholder="https://..."><button class="btn btn-ghost btn-sm" style="margin-top:8px" onclick="importarTrevis(this)">Buscar dados da proposta</button><div class="fin-sub" id="tr-import-aviso">Cole o link e busque os dados. Confira antes de salvar.</div></div>
       <div class="field"><label>Pasta do cliente no Drive</label><input id="tr-pasta" type="url" placeholder="https://drive.google.com/... (opcional)"></div>
     </div>
     <div class="modal-ft" style="gap:8px"><button class="btn btn-ghost" onclick="closeTrevisModal()">Cancelar</button><button class="btn btn-ghost" onclick="copyTrevisBrief()">📋 Copiar contexto Trevis</button><button class="btn btn-danger btn-sm" id="tr-del" onclick="deleteTrevisDocumento()" style="display:none">Excluir</button><button class="btn btn-primary" onclick="saveTrevisDocumento()">Salvar vínculo</button></div>
@@ -1687,8 +1687,7 @@ const ACTIONS  = {
   tarefas:    '<button class="btn btn-primary btn-sm" onclick="openTarefaModal()">+ Nova Tarefa</button>',
   financeiro: '<button class="btn btn-ghost btn-sm" onclick="exportFinanceiroXlsx(this)">📊 Exportar Excel</button>'
             + '<button class="btn btn-primary btn-sm" style="margin-left:8px" onclick="openFinModal()">+ Lançar</button>',
-  propostas:  '<button class="btn btn-primary btn-sm" onclick="openTrevisModal()">+ Vincular Trevis</button>'
-            + '<button class="btn btn-ghost btn-sm" style="margin-left:8px" onclick="openProposalModal()">Proposta interna</button>',
+  propostas:  '<button class="btn btn-primary btn-sm" onclick="openTrevisModal()">+ Importar do Trevis</button>',
   artigos:    '<button class="btn btn-primary btn-sm" onclick="openArtigoModal()">+ Novo Artigo</button>',
   guias:      '<button class="btn btn-primary btn-sm" onclick="openGuiaModal()">+ Novo Guia</button>',
 };
@@ -3911,6 +3910,7 @@ async function openTrevisModal(id, leadId) {
   const fields = ['tr-id','tr-numero','tr-titulo-doc','tr-nome','tr-destinos','tr-embarque','tr-retorno','tr-viajantes','tr-valor','tr-validade','tr-link','tr-pasta'];
   fields.forEach(f => document.getElementById(f).value = '');
   document.getElementById('tr-id').value = id || '';
+  document.getElementById('tr-import-aviso').textContent = 'Cole o link e busque os dados. Confira antes de salvar.';
   document.getElementById('tr-viagem').value = criarIdTrevis();
   document.getElementById('tr-tipo').value = 'proposta';
   document.getElementById('tr-status').value = 'rascunho';
@@ -3973,6 +3973,24 @@ function ajustarCamposTrevis() {
 
 function criarIdTrevis() { return window.crypto?.randomUUID ? window.crypto.randomUUID() : `viagem-${Date.now()}-${Math.random().toString(16).slice(2)}`; }
 function closeTrevisModal() { document.getElementById('ov-trevis').classList.add('hidden'); }
+
+async function importarTrevis(botao) {
+  const url = document.getElementById('tr-link').value.trim();
+  if (!url) return toast('Cole o link da proposta.', 'err');
+  botao.disabled = true;
+  try {
+    const r = await api('/api/crm/trevis/importar', { method:'POST', body: JSON.stringify({ url }) });
+    const d = r.dados;
+    document.getElementById('tr-tipo').value = 'proposta';
+    for (const [id, valor] of Object.entries({ 'tr-titulo-doc':d.titulo, 'tr-numero':d.numero, 'tr-nome':d.cliente_nome, 'tr-viajantes':d.viajantes, 'tr-valor':d.valor_total, 'tr-moeda':d.moeda, 'tr-validade':d.validade })) {
+      if (valor !== null && valor !== undefined && valor !== '') document.getElementById(id).value = valor;
+    }
+    ajustarCamposTrevis();
+    document.getElementById('tr-import-aviso').textContent = r.aviso;
+    toast('Dados carregados. Confira antes de salvar.');
+  } catch (e) { document.getElementById('tr-import-aviso').textContent = e.message; toast(e.message, 'err'); }
+  finally { botao.disabled = false; }
+}
 
 function dadosTrevis() {
   return {
