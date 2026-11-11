@@ -737,9 +737,11 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
       </div>
       <div class="login-kicker">Área restrita</div>
       <h2 class="login-welcome">Boas-vindas.</h2>
-      <p class="login-welcome-sub">Insira sua chave de acesso para entrar no painel da Specialle.</p>
-      <label class="login-lbl" for="lkey">Chave de acesso</label>
-      <input type="password" id="lkey" placeholder="Insira sua chave de acesso">
+      <p class="login-welcome-sub">Entre com seu usuário e senha para acessar o painel da Specialle.</p>
+      <label class="login-lbl" for="luser">Usuário</label>
+      <input type="text" id="luser" autocomplete="username" placeholder="Seu usuário">
+      <label class="login-lbl" for="lpass" style="margin-top:16px">Senha</label>
+      <input type="password" id="lpass" autocomplete="current-password" placeholder="Sua senha">
       <button onclick="doLogin()">Entrar no painel <span aria-hidden="true">→</span></button>
       <div class="login-err" id="lerr"></div>
       <div class="login-foot">Acesso exclusivo · Specialle Viagens</div>
@@ -809,7 +811,7 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
       <div class="nav-item" data-m="tarefas" onclick="go('tarefas')">
         <span class="icon">✅</span> Tarefas
       </div>
-      <div class="nav-item" data-m="financeiro" onclick="go('financeiro')">
+      <div class="nav-item" data-m="financeiro" data-permissao="financeiro" onclick="go('financeiro')">
         <span class="icon">💰</span> Financeiro
       </div>
       <div style="height:1px;background:rgba(255,255,255,.2);margin:10px 16px"></div>
@@ -1635,7 +1637,10 @@ function cfgOptions(lista, atual, vazio = 'Selecione') {
 
 // ── state ──────────────────────────────────────────────────────────────────────
 const S = {
-  key:    localStorage.getItem('crm_key') || '',
+  // Mantém acesso aos links legados enquanto as contas individuais são
+  // implantadas. A chave continua no endereço só para a compatibilidade atual.
+  key:    new URLSearchParams(location.search).get('key') || localStorage.getItem('crm_key') || '',
+  user:   null,
   mod:    'dashboard',
   leads:  [],
   dragId: null,
@@ -1661,39 +1666,59 @@ const ACTIONS  = {
 // Adiado 1 tick: showApp() → load() usa `_loadGen`, declarado mais abaixo neste
 // mesmo script. Chamar direto no parse causava TDZ ("Cannot access '_loadGen'
 // before initialization") no auto-login de quem volta com a chave salva.
-if (S.key) setTimeout(showApp, 0);
+setTimeout(restaurarSessao, 0);
 
 // Recarrega conteúdo quando o Chrome restaura a página do bfcache (F5 / voltar)
 window.addEventListener('pageshow', function(event) {
-  if (event.persisted && S.key) load(S.mod || 'dashboard');
+  if (event.persisted && (S.key || S.user)) load(S.mod || 'dashboard');
 });
 
-document.getElementById('lkey').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+document.getElementById('lpass').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
 
 async function doLogin() {
-  const k = document.getElementById('lkey').value.trim();
+  const usuario = document.getElementById('luser').value.trim();
+  const senha = document.getElementById('lpass').value;
   document.getElementById('lerr').textContent = '';
-  if (!k) return;
+  if (!usuario || !senha) return document.getElementById('lerr').textContent = 'Informe usuário e senha.';
   try {
-    await api('/api/crm/dashboard', {}, k);
-    S.key = k;
-    localStorage.setItem('crm_key', k);
+    const res = await fetch('/api/auth/login', {
+      method: 'POST', credentials: 'include',
+      headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ usuario, senha }),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || 'Não foi possível entrar.');
+    S.user = data.user;
     showApp();
-  } catch {
-    document.getElementById('lerr').textContent = 'Chave inválida ou servidor indisponível.';
+  } catch (e) {
+    document.getElementById('lerr').textContent = e.message || 'Não foi possível entrar.';
   }
 }
 
-function doLogout() {
+async function doLogout() {
+  try { await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' }); } catch (e) {}
   try { localStorage.removeItem('crm_key'); } catch (e) {}
   S.key = '';
+  S.user = null;
   location.reload();
+}
+
+async function restaurarSessao() {
+  try {
+    const res = await fetch('/api/auth/sessao', { credentials: 'include' });
+    if (res.ok) { S.user = (await res.json()).user; return showApp(); }
+  } catch (e) {}
+  // Compatibilidade temporária com os links antigos que ainda usam ?key=.
+  if (S.key) showApp();
 }
 
 function showApp() {
   document.getElementById('login').classList.add('hidden');
   document.getElementById('app').classList.remove('hidden');
   initSidebar();
+  document.querySelectorAll('[data-permissao]').forEach(el => {
+    const permitida = S.key || S.user?.papel === 'administradora' || S.user?.permissoes?.[el.dataset.permissao];
+    el.classList.toggle('hidden', !permitida);
+  });
   // As listas de opções precisam estar em memória antes de qualquer modal abrir
   carregarConfig();
   go('dashboard');
@@ -1753,8 +1778,10 @@ async function load(mod) {
 async function api(path, opts = {}, _key) {
   const k   = _key || S.key;
   const sep = path.includes('?') ? '&' : '?';
-  const res = await fetch(`${path}${sep}key=${encodeURIComponent(k)}`, {
+  const target = k ? `${path}${sep}key=${encodeURIComponent(k)}` : path;
+  const res = await fetch(target, {
     ...opts,
+    credentials: 'include',
     headers: { 'Content-Type': 'application/json', ...(opts.headers || {}) },
   });
   const data = await res.json().catch(() => ({}));
@@ -4742,7 +4769,50 @@ async function renderConfig(el) {
             <button class="btn btn-primary btn-sm" onclick="cfgSalvar('${b.chave}', this)">Salvar</button>
           </div>
         </div>`).join('')}
+      ${(S.key || S.user?.papel === 'administradora' || S.user?.permissoes?.usuarios) ? `
+        <div class="card cfg-card">
+          <div class="cfg-hd"><div><div class="cfg-titulo">Usuários</div><div class="cfg-ajuda">Crie acessos individuais. A senha só é enviada para salvar e nunca volta para a tela.</div></div></div>
+          <div id="cfg-usuarios" class="cfg-ajuda">Carregando usuários…</div>
+          <div class="row2" style="margin-top:16px">
+            <div class="field"><label>Nome</label><input id="usr-nome" placeholder="Nome completo"></div>
+            <div class="field"><label>Usuário</label><input id="usr-usuario" placeholder="usuario"></div>
+            <div class="field"><label>E-mail</label><input id="usr-email" type="email" placeholder="nome@empresa.com"></div>
+            <div class="field"><label>Perfil</label><select id="usr-papel"><option value="atendimento">Atendimento</option><option value="administradora">Administradora</option></select></div>
+            <div class="field"><label>Senha</label><input id="usr-senha" type="password" autocomplete="new-password" placeholder="Mínimo de 8 caracteres"></div>
+          </div>
+          <div class="cfg-ft"><button class="btn btn-primary btn-sm" onclick="criarUsuario(this)">Criar usuário</button></div>
+        </div>` : ''}
     </div>`;
+  if (S.key || S.user?.papel === 'administradora' || S.user?.permissoes?.usuarios) carregarUsuariosConfig();
+}
+
+async function carregarUsuariosConfig() {
+  const el = document.getElementById('cfg-usuarios');
+  if (!el) return;
+  try {
+    const r = await api('/api/auth/usuarios');
+    const usuarios = r.usuarios || [];
+    el.innerHTML = usuarios.length ? usuarios.map(u => `<div style="display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--border)"><span><strong>${esc(u.nome)}</strong> · ${esc(u.usuario)}</span><span>${esc(u.papel)}</span></div>`).join('') : 'Nenhum usuário criado.';
+  } catch (e) { el.textContent = 'Não foi possível carregar os usuários.'; }
+}
+
+async function criarUsuario(btn) {
+  const body = {
+    nome: document.getElementById('usr-nome')?.value.trim(),
+    usuario: document.getElementById('usr-usuario')?.value.trim(),
+    email: document.getElementById('usr-email')?.value.trim(),
+    papel: document.getElementById('usr-papel')?.value,
+    senha: document.getElementById('usr-senha')?.value,
+  };
+  if (!body.nome || !body.usuario || !body.senha) return toast('Preencha nome, usuário e senha.', 'err');
+  const original = btn.textContent; btn.disabled = true; btn.textContent = 'Criando…';
+  try {
+    await api('/api/auth/usuarios', { method: 'POST', body: JSON.stringify(body) });
+    document.getElementById('usr-senha').value = '';
+    toast('Usuário criado ✓', 'ok');
+    carregarUsuariosConfig();
+  } catch (e) { toast('Erro ao criar usuário: ' + e.message, 'err'); }
+  finally { btn.disabled = false; btn.textContent = original; }
 }
 
 // Contador ao lado do título, para a pessoa ver que a linha vazia não conta
