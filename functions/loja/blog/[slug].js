@@ -211,6 +211,8 @@ export async function onRequest({ params, env, request }) {
     .footer a{color:var(--amber);margin:0 .75rem}
   </style>
   <link rel="stylesheet" href="/loja/assets/article-editorial.css">
+  <script src="/brand/config.js"></script>
+  <script defer src="/brand/tracking.js"></script>
 </head>
 <body>
   <div class="reading-progress" aria-hidden="true"><span id="reading-progress-bar"></span></div>

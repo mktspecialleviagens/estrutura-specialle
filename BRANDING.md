@@ -60,8 +60,10 @@ fundos escuros e `#120020` para os overlays mais profundos.
    partir dos 30 anos; confirmar a data real com a Anastacia. Os pontos a corrigir, se mudar, são
    `index.html` (description, og/twitter description e o JSON-LD), `HeroSection`, `AboutSection`,
    `FooterCTA` e este arquivo.
-6. **Domínio e tracking** — definir `og:url` em `index.html` e preencher `metaPixelId` /
-   `ga4MeasurementId` em `config.js`, só então ligar `trackingEnabled`. Segredos nunca nesse arquivo.
+6. **Domínio e tracking** — domínios e `og:url` no ar desde 17/11/2026. Pixel Meta
+   `2270872136513078` ligado em `config.js` e carregado nas páginas públicas (roteiros, Pacotes,
+   links, loja, blog e artigos). Falta o `ga4MeasurementId`, e para a API de Conversões os
+   secrets `META_PIXEL_ID` e `META_ACCESS_TOKEN` no painel do Pages. Segredos nunca em `config.js`.
 7. **Cloudflare Pages + D1** — criar o projeto na conta da cliente, aplicar as migrations de
    `migrations/` e configurar `DB`, `DASH_KEY` e demais secrets. Ver `DEPLOY.md`.
 8. **Artigos do blog** — os três artigos em `content/editorial-articles.js` foram reescritos para

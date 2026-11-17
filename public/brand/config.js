@@ -6,7 +6,8 @@ window.SPECIALLE_CONFIG = Object.freeze({
   agencyName: 'Specialle Viagens',
   whatsapp: '5585999625722',
   whatsappMessage: 'Olá, Specialle Viagens! Quero falar sobre a minha viagem.',
-  metaPixelId: '',
+  // Pixel da Specialle, informado pelo JP em 17/11/2026.
+  metaPixelId: '2270872136513078',
   ga4MeasurementId: '',
-  trackingEnabled: false
+  trackingEnabled: true
 });
