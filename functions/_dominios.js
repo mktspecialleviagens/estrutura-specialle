@@ -14,7 +14,12 @@ export const DOMINIO = 'specialleviagens.com.br';
 const PAGINA_INICIAL = {
   [DOMINIO]: '/pacotes/',
   [`links.${DOMINIO}`]: '/links/',
+  [`painel.${DOMINIO}`]: '/painel/',
 };
+
+// Painel interno de propostas e roteiros (Trevis). O middleware só entrega com
+// sessão do CRM, em qualquer domínio.
+export const PAINEL = '/painel/';
 
 /**
  * Decide o que fazer com a requisição antes de qualquer outra regra.

@@ -14,6 +14,11 @@ describe("roteamento por domínio", () => {
     expect(rota("https://links.specialleviagens.com.br/")).toEqual({ pagina: "/links/" });
   });
 
+  it("painel abre o painel de propostas e roteiros", () => {
+    expect(rota("https://painel.specialleviagens.com.br/")).toEqual({ pagina: "/painel/" });
+    expect(rota("https://painel.specialleviagens.com.br/painel/")).toEqual({ redirecionar: "https://painel.specialleviagens.com.br/" });
+  });
+
   it("roteiros e o pages.dev seguem com a landing de roteiros na raiz", () => {
     expect(rota("https://roteiros.specialleviagens.com.br/")).toEqual({});
     expect(rota("https://estrutura-specialle.pages.dev/")).toEqual({});
@@ -77,5 +82,26 @@ describe("middleware com o roteamento", () => {
     expect(await resposta.text()).toBe("<html>padrao</html>");
     expect(next).toHaveBeenCalledOnce();
     expect(assets).not.toHaveBeenCalled();
+  });
+
+  it("o painel sem sessão mostra a tela de entrar no CRM, sem servir o arquivo", async () => {
+    for (const endereco of ["https://painel.specialleviagens.com.br/", "https://estrutura-specialle.pages.dev/painel/"]) {
+      const { context, assets, next } = contexto(endereco);
+      const resposta = await onRequest(context as never);
+      expect(resposta.status).toBe(401);
+      expect(await resposta.text()).toContain("/crm/");
+      expect(assets).not.toHaveBeenCalled();
+      expect(next).not.toHaveBeenCalled();
+    }
+  });
+
+  it("o painel com a chave entrega a página fora de busca e de cache", async () => {
+    const { context, assets } = contexto("https://painel.specialleviagens.com.br/?key=segredo");
+    (context.env as Record<string, unknown>).DASH_KEY = "segredo";
+    const resposta = await onRequest(context as never);
+    expect(resposta.status).toBe(200);
+    expect(new URL(assets.mock.calls[0][0].url).pathname).toBe("/painel/");
+    expect(resposta.headers.get("X-Robots-Tag")).toContain("noindex");
+    expect(resposta.headers.get("Cache-Control")).toContain("no-store");
   });
 });
