@@ -1,5 +1,6 @@
 import { can, requireAuth } from './api/_auth.js';
 import { onRequest as tracking } from './_tracking.js';
+import { rotearDominio } from './_dominios.js';
 
 // O webhook Trevis é a única rota CRM sem sessão: valida HMAC próprio dentro
 // da Function e fica inativo enquanto o secret não existir no Pages.
@@ -9,6 +10,17 @@ const FINANCEIRO = /^\/api\/crm\/(faturas|despesas|receitas|contratos)(?:\/|$)/;
 export async function onRequest(context) {
   const { request, env } = context;
   const url = new URL(request.url);
+
+  // Cada domínio abre numa página diferente do mesmo build. Ver _dominios.js.
+  const rota = rotearDominio(url);
+  if (rota.redirecionar) return Response.redirect(rota.redirecionar, 301);
+  if (rota.pagina) {
+    // O rastreamento roda sobre a requisição original (cookies, UTMs, sessão) e
+    // só a resposta vem da outra página.
+    const pagina = new Request(new URL(rota.pagina, url), { method: request.method, headers: request.headers });
+    return tracking({ ...context, next: () => env.ASSETS.fetch(pagina) });
+  }
+
   if (!PROTEGIDAS.some(pattern => pattern.test(url.pathname))) return tracking(context);
 
   const auth = await requireAuth(request, env);
