@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CRM · Specialle Viagens</title>
+<meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
@@ -1626,6 +1627,10 @@ body:not(.sb-off) .sb-toggle-ico::after  { width:9px; transform:translateX(-3px)
 //
 // Os valores abaixo são só o que aparece antes de a API responder, no primeiro
 // carregamento. A fonte de verdade dos padrões é functions/api/crm/config.js.
+// Link de proposta vai para o cliente: sai sempre no domínio principal, nunca no
+// endereço do CRM. Fora dos domínios da Specialle (pages.dev, local) usa o próprio host.
+const ORIGEM_PUBLICA = /(^|\.)specialleviagens\.com\.br$/.test(location.hostname) ? 'https://specialleviagens.com.br' : location.origin;
+
 const CFG = {
   tipos_servico:      ['Passagens aéreas', 'Pacotes e excursões', 'Cruzeiros marítimos',
                        'Turismo ferroviário', 'Roteiros lua de mel', 'Viagens de negócios',
@@ -4382,19 +4387,19 @@ function updateLinkPreview() {
   const slug = document.getElementById('mp-slug').value.trim();
   const el   = document.getElementById('mp-link-preview');
   el.innerHTML = slug
-    ? `<strong>${location.origin}/loja/proposta/${esc(slug)}</strong>`
+    ? `<strong>${ORIGEM_PUBLICA}/loja/proposta/${esc(slug)}</strong>`
     : '<span style="font-size:12px">Preencha o slug para ver o link</span>';
 }
 
 function copyPropLink() {
   const slug = document.getElementById('mp-slug').value.trim();
   if (!slug) { toast('Defina o slug primeiro', 'err'); return; }
-  navigator.clipboard.writeText(`${location.origin}/loja/proposta/${slug}`);
+  navigator.clipboard.writeText(`${ORIGEM_PUBLICA}/loja/proposta/${slug}`);
   toast('Link copiado!');
 }
 
 function copyPropLinkById(slug) {
-  navigator.clipboard.writeText(`${location.origin}/loja/proposta/${slug}`);
+  navigator.clipboard.writeText(`${ORIGEM_PUBLICA}/loja/proposta/${slug}`);
   toast('Link copiado!');
 }
 

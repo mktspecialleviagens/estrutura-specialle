@@ -7,7 +7,7 @@ Clone da matriz Scandia Travel para a Specialle Viagens (Fortaleza, desde 1996):
 | `src/`, `index.html` | Página de captação React (Specialle) |
 | `public/pacotes/` | Landing de Pacotes em HTML estático, servida em `/pacotes/`. Grava o lead no CRM com origem "Landing Page Pacotes" |
 | `public/links/` | Página de links da bio, servida em `/links/` |
-| `functions/_dominios.js` | Qual página abre na raiz de cada domínio: `specialleviagens.com.br` → Pacotes, `roteiros.` → landing de roteiros, `links.` → links, `www` → redireciona |
+| `functions/_dominios.js` | Qual página abre na raiz de cada domínio: `specialleviagens.com.br` → Pacotes, `roteiros.` → landing de roteiros, `links.` → links, `painel.` → painel, `crm.` → CRM, `www` → redireciona |
 | `public/brand/` | Logos, configuração pública e tracking |
 | `public/crm/` | CRM e pipeline (Specialle) |
 | `public/dash/` | Dashboard (Specialle) |

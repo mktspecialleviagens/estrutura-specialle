@@ -19,6 +19,16 @@ describe("roteamento por domínio", () => {
     expect(rota("https://painel.specialleviagens.com.br/painel/")).toEqual({ redirecionar: "https://painel.specialleviagens.com.br/" });
   });
 
+  it("crm abre o CRM na raiz, com login e APIs no mesmo endereço", () => {
+    expect(rota("https://crm.specialleviagens.com.br/")).toEqual({ pagina: "/crm/" });
+    expect(rota("https://crm.specialleviagens.com.br/crm/")).toEqual({ redirecionar: "https://crm.specialleviagens.com.br/" });
+    for (const caminho of ["/api/auth/login", "/api/crm/leads", "/loja/api/admin/proposals", "/brand/logo.webp", "/dash"]) {
+      expect(rota(`https://crm.specialleviagens.com.br${caminho}`)).toEqual({});
+    }
+    // O endereço antigo continua abrindo, para quem tem o favorito salvo.
+    expect(rota("https://specialleviagens.com.br/crm/")).toEqual({});
+  });
+
   it("roteiros e o pages.dev seguem com a landing de roteiros na raiz", () => {
     expect(rota("https://roteiros.specialleviagens.com.br/")).toEqual({});
     expect(rota("https://estrutura-specialle.pages.dev/")).toEqual({});

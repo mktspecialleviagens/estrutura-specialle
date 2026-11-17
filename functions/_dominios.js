@@ -15,6 +15,7 @@ const PAGINA_INICIAL = {
   [DOMINIO]: '/pacotes/',
   [`links.${DOMINIO}`]: '/links/',
   [`painel.${DOMINIO}`]: '/painel/',
+  [`crm.${DOMINIO}`]: '/crm/',
 };
 
 // Painel interno de propostas e roteiros (Trevis). O middleware só entrega com
