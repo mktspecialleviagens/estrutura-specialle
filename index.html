@@ -10,20 +10,21 @@
     <link rel="icon" type="image/webp" href="/brand/logo.webp" />
 
     <meta property="og:type" content="website" />
-    <!-- TODO: definir o domínio do cliente em og:url quando o Cloudflare Pages estiver no ar. -->
+    <!-- Esta página também abre no *.pages.dev; o canonical diz ao Google qual é o endereço oficial. -->
+    <link rel="canonical" href="https://roteiros.specialleviagens.com.br/" />
+    <meta property="og:url" content="https://roteiros.specialleviagens.com.br/" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:title" content="Specialle Viagens — Viagens internacionais resolvidas do início ao fim">
     <meta name="twitter:title" content="Specialle Viagens — Viagens internacionais resolvidas do início ao fim">
     <meta property="og:description" content="Europa, Estados Unidos e cruzeiros organizados por quem está em Fortaleza desde 1996. Tudo reservado antes de você sair e equipe disponível enquanto você estiver fora.">
     <meta name="twitter:description" content="Europa, Estados Unidos e cruzeiros organizados por quem está em Fortaleza desde 1996. Tudo reservado antes de você sair e equipe disponível enquanto você estiver fora.">
-    <meta property="og:image" content="/brand/logo.webp">
-    <meta name="twitter:image" content="/brand/logo.webp">
+    <meta property="og:image" content="https://roteiros.specialleviagens.com.br/brand/logo.webp">
+    <meta name="twitter:image" content="https://roteiros.specialleviagens.com.br/brand/logo.webp">
 
     <!--
       Dados estruturados da agência. O telefone repete o número de
       public/brand/config.js: se corrigir o WhatsApp lá, corrija aqui também.
-      TODO: acrescentar "url" quando o domínio no Cloudflare Pages estiver definido.
     -->
     <script type="application/ld+json">
     {
@@ -31,8 +32,9 @@
       "@type": "TravelAgency",
       "name": "Specialle Viagens",
       "description": "Agência de viagens em Fortaleza especializada em Europa, Estados Unidos e cruzeiros.",
-      "logo": "/brand/logo.webp",
-      "image": "/brand/logo.webp",
+      "url": "https://specialleviagens.com.br/",
+      "logo": "https://specialleviagens.com.br/brand/logo.webp",
+      "image": "https://specialleviagens.com.br/brand/logo.webp",
       "foundingDate": "1996",
       "telephone": "+5585999625722",
       "address": {
