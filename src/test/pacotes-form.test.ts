@@ -63,6 +63,12 @@ describe("landing de Pacotes", () => {
     await vi.waitFor(() => expect(document.querySelector("#form-error")!.textContent).toContain("Não foi possível registrar"));
   });
 
+  it("não tem atalho direto para o WhatsApp: todo lead passa pelo formulário", () => {
+    const window = abrirPagina(vi.fn());
+    expect(window.document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp.com"]')).toHaveLength(0);
+    expect(window.document.querySelector(".float")).toBeNull();
+  });
+
   it("o atalho do card já preenche o destino e pula para o período", () => {
     const window = abrirPagina(vi.fn());
     window.document.querySelector<HTMLAnchorElement>('[data-destino="Cruzeiro Grécia e Croácia"]')!.click();
