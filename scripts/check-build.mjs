@@ -6,7 +6,7 @@ import { editorialArticles } from '../content/editorial-articles.js';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const dist = resolve(root, 'dist');
-for (const file of ['index.html', 'pacotes/index.html', 'crm/index.html', 'dash/index.html', 'dash/design.css', 'dash/design.js', 'loja/index.html', 'loja/blog/index.html', 'loja/assets/blog-editorial.css', 'loja/assets/article-editorial.css']) {
+for (const file of ['index.html', 'pacotes/index.html', 'links/index.html', 'crm/index.html', 'dash/index.html', 'dash/design.css', 'dash/design.js', 'loja/index.html', 'loja/blog/index.html', 'loja/assets/blog-editorial.css', 'loja/assets/article-editorial.css']) {
   assert(existsSync(join(dist, file)), `Arquivo ausente no build: ${file}`);
 }
 // As imagens dos artigos saem do próprio conteúdo editorial, para o check acompanhar
@@ -35,7 +35,7 @@ assert(!html.includes('/src/main.tsx'), 'A landing não foi compilada.');
 for (const [, asset] of html.matchAll(/(?:src|href)="(\/assets\/[^"?#]+)"/g)) {
   assert(existsSync(join(dist, asset.slice(1))), `Asset ausente: ${asset}`);
 }
-for (const file of ['pacotes/index.html', 'crm/index.html', 'dash/index.html', 'dash/design.css', 'dash/design.js']) {
+for (const file of ['pacotes/index.html', 'links/index.html', 'crm/index.html', 'dash/index.html', 'dash/design.css', 'dash/design.js']) {
   assert(readFileSync(join(dist, file)).equals(readFileSync(join(root, 'public', file))), `Cópia divergente: ${file}`);
 }
 // A landing de Pacotes é HTML estático: cada imagem e script que ela pede precisa estar no build.
@@ -44,6 +44,6 @@ assert(!pacotes.includes('base64,'), 'A landing de Pacotes voltou a embutir imag
 for (const [, asset] of pacotes.matchAll(/(?:src|href)="\/([^"?#]+\.(?:jpg|jpeg|png|webp|js))"/g)) {
   assert(existsSync(join(dist, asset)), `Asset da landing de Pacotes ausente: /${asset}`);
 }
-console.log('Build validado: landing, pacotes, CRM, dashboard, loja e blog; sem arquivos privados.');
+console.log('Build validado: landing, pacotes, links, CRM, dashboard, loja e blog; sem arquivos privados.');
 
 assert(!existsSync(join(dist, "lp")), "public/lp não faz parte desta Matrix.");
