@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import bgImg from "@/assets/hero-europa-paris.jpg";
 
@@ -16,6 +16,16 @@ const steps = [
   { label: "Passagem", title: "Você já comprou a passagem?", hint: "Isso muda a forma como a gente monta a proposta.", options: ["Já comprei", "Ainda não comprei", "Quero que a Specialle cuide disso"] },
 ] as const;
 
+// Depois do lead gravado, a tela de confirmação fica no ar entre 0,8 e 1,5 segundo
+// antes de abrir o WhatsApp. Sair da página na hora pode cortar o Lead do pixel no
+// navegador; a espera mínima dá tempo ao pixel e a máxima segura a do servidor
+// (/tracker) sem prender quem está com internet lenta.
+const ESPERA_MINIMA_MS = 800;
+const ESPERA_MAXIMA_MS = 1500;
+const esperar = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
+
+type Confirmacao = { primeiroNome: string; url: string; envio: Promise<void> };
+
 const StepForm = () => {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<string[]>(Array(steps.length).fill(""));
@@ -23,7 +33,16 @@ const StepForm = () => {
   const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false);
   const [erro, setErro] = useState("");
+  const [confirmacao, setConfirmacao] = useState<Confirmacao | null>(null);
   const onContact = step === steps.length;
+
+  useEffect(() => {
+    if (!confirmacao) return;
+    let ativo = true;
+    Promise.all([esperar(ESPERA_MINIMA_MS), Promise.race([confirmacao.envio, esperar(ESPERA_MAXIMA_MS)])])
+      .then(() => { if (ativo) window.location.assign(confirmacao.url); });
+    return () => { ativo = false; };
+  }, [confirmacao]);
 
   const select = (value: string) => {
     setAnswers((current) => current.map((answer, index) => index === step ? value : answer));
@@ -70,8 +89,9 @@ const StepForm = () => {
 
       const eventId = crypto.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
       if (typeof window.fbq === "function") window.fbq("track", "Lead", {}, { eventID: eventId });
+      let envio: Promise<void> = Promise.resolve();
       if (config.trackingEnabled) {
-        fetch("/tracker", {
+        envio = fetch("/tracker", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           keepalive: true,
@@ -86,7 +106,7 @@ const StepForm = () => {
               ln: nomeTrim.split(" ").slice(1).join(" ").toLowerCase() || undefined,
             },
           }),
-        }).catch(() => {});
+        }).then(() => undefined, () => undefined);
       }
 
       const message = [
@@ -99,7 +119,11 @@ const StepForm = () => {
         `Pessoas: ${answers[2]}`,
         `Passagem: ${answers[3]}`,
       ].join("\n");
-      window.location.assign(`https://wa.me/${config.whatsapp}?text=${encodeURIComponent(message)}`);
+      setConfirmacao({
+        primeiroNome: nomeTrim.split(" ")[0],
+        url: `https://wa.me/${config.whatsapp}?text=${encodeURIComponent(message)}`,
+        envio,
+      });
     } catch {
       setErro("Não foi possível registrar seu pedido agora. Verifique sua conexão e tente novamente.");
       setLoading(false);
@@ -122,14 +146,21 @@ const StepForm = () => {
 
         <div className="min-w-0 rounded-2xl bg-[#F4F0F7] p-6 sm:p-8 md:p-10 shadow-[0_24px_70px_rgba(0,0,0,0.22)]">
           <div className="flex items-center justify-between gap-4 mb-3">
-            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-specialle-violet">{onContact ? "Último passo · contato" : `Etapa ${step + 1} de ${steps.length} · ${steps[step].label}`}</span>
-            <span className="text-xs font-semibold text-specialle-violet">{Math.round((step / steps.length) * 100)}%</span>
+            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-specialle-violet">{confirmacao ? "Pedido registrado" : onContact ? "Último passo · contato" : `Etapa ${step + 1} de ${steps.length} · ${steps[step].label}`}</span>
+            <span className="text-xs font-semibold text-specialle-violet">{confirmacao ? 100 : Math.round((step / steps.length) * 100)}%</span>
           </div>
-          <div className="h-1.5 w-full rounded-full bg-[#280046]/10 overflow-hidden" role="progressbar" aria-valuemin={0} aria-valuemax={steps.length} aria-valuenow={step} aria-label="Progresso do formulário">
-            <div className="h-full rounded-full bg-specialle-violet transition-all duration-300" style={{ width: `${(step / steps.length) * 100}%` }} />
+          <div className="h-1.5 w-full rounded-full bg-[#280046]/10 overflow-hidden" role="progressbar" aria-valuemin={0} aria-valuemax={steps.length} aria-valuenow={confirmacao ? steps.length : step} aria-label="Progresso do formulário">
+            <div className="h-full rounded-full bg-specialle-violet transition-all duration-300" style={{ width: `${confirmacao ? 100 : (step / steps.length) * 100}%` }} />
           </div>
 
-          {onContact ? (
+          {confirmacao ? (
+            <div className="mt-8" role="status">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#280046] text-specialle-lilac" aria-hidden="true"><Check size={24} strokeWidth={3} /></span>
+              <h3 className="mt-5 text-[26px] md:text-[32px] font-semibold leading-tight text-[#280046]">Pedido registrado, {confirmacao.primeiroNome}!</h3>
+              <p className="mt-3 text-[15px] font-light leading-relaxed text-[#231F20]/70">Estamos abrindo o WhatsApp com as suas respostas. Se não abrir sozinho, toque no botão abaixo.</p>
+              <a href={confirmacao.url} className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#280046] px-5 py-3.5 text-sm font-bold text-white hover:bg-specialle-violet transition-colors">Abrir WhatsApp <ArrowRight size={16} /></a>
+            </div>
+          ) : onContact ? (
             <form onSubmit={handleSubmit} className="mt-8">
               <h3 className="text-[26px] md:text-[32px] font-semibold leading-tight text-[#280046]">Seu nome e WhatsApp</h3>
               <p className="mt-3 mb-6 text-[15px] font-light leading-relaxed text-[#231F20]/70">Seu pedido será registrado e uma mensagem com as suas respostas fica pronta para enviar à Specialle.</p>

@@ -63,6 +63,35 @@ describe("landing de Pacotes", () => {
     await vi.waitFor(() => expect(document.querySelector("#form-error")!.textContent).toContain("Não foi possível registrar"));
   });
 
+  it("com o lead gravado, dispara o Lead e mostra a confirmação com o botão do WhatsApp", async () => {
+    const fetchMock = vi.fn().mockResolvedValue({ ok: true });
+    const window = abrirPagina(fetchMock);
+    const fbq = vi.fn();
+    Object.assign(window, { fbq });
+    Object.assign(window.SPECIALLE_CONFIG, { trackingEnabled: true });
+    const { document } = window;
+
+    for (const opcao of ["Grécia e Croácia", "Entre 3 e 6 meses", "2 pessoas", "Ainda não comprei"]) clicar(window, opcao);
+    const form = document.querySelector<HTMLFormElement>("#form")!;
+    form.querySelector<HTMLInputElement>('[name="nome"]')!.value = "Ana Exemplo";
+    form.querySelector<HTMLInputElement>('[name="telefone"]')!.value = "(85) 99999-9999";
+    form.dispatchEvent(new window.Event("submit", { cancelable: true }));
+
+    await vi.waitFor(() => expect(document.querySelector(".confirmacao")).not.toBeNull());
+    expect(form.hidden).toBe(true);
+    expect(document.querySelector(".confirmacao h3")!.textContent).toBe("Pedido registrado, Ana!");
+    expect(document.querySelector("#step-label")!.textContent).toBe("Pedido registrado");
+    const destino = new URL(document.querySelector<HTMLAnchorElement>(".confirmacao a")!.href);
+    expect(destino.origin + destino.pathname).toBe("https://wa.me/5585999625722");
+    expect(destino.searchParams.get("text")).toContain("Destino: Grécia e Croácia");
+
+    // Lead pelo navegador e pelo servidor com o mesmo eventID, para a Meta deduplicar.
+    expect(fbq).toHaveBeenCalledWith("track", "Lead", {}, expect.objectContaining({ eventID: expect.any(String) }));
+    const tracker = fetchMock.mock.calls.find(([url]) => url === "/tracker")!;
+    expect(JSON.parse(tracker[1].body)).toMatchObject({ event_name: "Lead", event_id: fbq.mock.calls[0][3].eventID });
+    window.close(); // encerra a espera antes do redirecionamento, que o JSDOM não executa
+  });
+
   it("não tem atalho direto para o WhatsApp: todo lead passa pelo formulário", () => {
     const window = abrirPagina(vi.fn());
     expect(window.document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp.com"]')).toHaveLength(0);

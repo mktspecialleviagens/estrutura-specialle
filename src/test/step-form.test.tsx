@@ -51,4 +51,32 @@ describe("formulário de captação", () => {
     });
     expect(await screen.findByRole("alert")).toHaveTextContent("Não foi possível registrar");
   });
+
+  it("com o lead gravado, dispara o Lead e mostra a confirmação com o botão do WhatsApp", async () => {
+    window.SPECIALLE_CONFIG = { ...window.SPECIALLE_CONFIG!, trackingEnabled: true };
+    const fbq = vi.fn();
+    window.fbq = fbq;
+    const fetchMock = vi.fn().mockResolvedValue({ ok: true });
+    vi.stubGlobal("fetch", fetchMock);
+    render(<StepForm />);
+
+    for (const option of ["Europa", "Entre 6 e 12 meses", "2 pessoas", "Já comprei"]) {
+      fireEvent.click(screen.getByRole("button", { name: option }));
+    }
+    fireEvent.change(screen.getByLabelText("Seu nome"), { target: { value: "Ana Exemplo" } });
+    fireEvent.change(screen.getByLabelText("Seu WhatsApp com DDD"), { target: { value: "(85) 99999-9999" } });
+    fireEvent.click(screen.getByRole("button", { name: /falar com a specialle/i }));
+
+    expect(await screen.findByRole("status")).toHaveTextContent("Pedido registrado, Ana!");
+    const botao = screen.getByRole("link", { name: /abrir whatsapp/i });
+    const destino = new URL(botao.getAttribute("href")!);
+    expect(destino.origin + destino.pathname).toBe("https://wa.me/5585999625722");
+    expect(destino.searchParams.get("text")).toContain("Destino: Europa");
+
+    // Lead pelo navegador e pelo servidor com o mesmo eventID, para a Meta deduplicar.
+    expect(fbq).toHaveBeenCalledWith("track", "Lead", {}, expect.objectContaining({ eventID: expect.any(String) }));
+    const tracker = fetchMock.mock.calls.find(([url]) => url === "/tracker")!;
+    expect(JSON.parse(tracker[1].body)).toMatchObject({ event_name: "Lead", event_id: fbq.mock.calls[0][3].eventID });
+    delete window.fbq;
+  });
 });
