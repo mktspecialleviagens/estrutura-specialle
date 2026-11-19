@@ -6,7 +6,11 @@ export async function onRequestPost({ request, env }) {
   try {
     const body = await request.json();
     const url = new URL(body.url);
-    if (url.protocol !== 'https:' || !/^[a-z0-9-]+\.pages\.dev$/.test(url.hostname) || url.port || url.username || url.password || !/^\/p\/[^/]+\/?$/.test(url.pathname)) throw new Error('Informe um link público de proposta Trevis hospedado no Cloudflare Pages.');
+    // Esta lista é um limite de segurança: o servidor busca a URL que vier daqui,
+    // então só os endereços da própria Specialle entram. Sem curinga, sem IP, sem porta.
+    const hostPermitido = /^[a-z0-9-]+\.pages\.dev$/.test(url.hostname)
+      || /^(?:[a-z0-9-]+\.)?specialleviagens\.com\.br$/.test(url.hostname);
+    if (url.protocol !== 'https:' || !hostPermitido || url.port || url.username || url.password || !/^\/p\/[^/]+\/?$/.test(url.pathname)) throw new Error('Informe um link público de proposta Trevis, em specialleviagens.com.br ou no endereço pages.dev.');
     const response = await fetch(url.toString(), { redirect: 'manual', signal: AbortSignal.timeout(12000) });
     if (!response.ok) throw new Error('Não foi possível abrir a proposta. Confira o link.');
     const length = Number(response.headers.get('content-length') || 0);
